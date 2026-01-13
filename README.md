@@ -8,11 +8,19 @@
 ## Landing Page
 Basic HTML Page with some pictures of gameplay mixed in
 
+<img width="1936" height="1416" alt="landing page drawing" src="https://github.com/user-attachments/assets/48de5980-a6c1-487c-9ce8-80dd810e91f3" />
+
 ### Game Download Page
 The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer. This page provides release notes and a live count of how many downloads the game has.
 
+<img width="1936" height="1458" alt="downloads page" src="https://github.com/user-attachments/assets/9b958735-eaf2-43c9-a7e7-0563de242919" />
+
+
 ### Community Suggestions Page
 Provides a page for community suggestions. Allows users to vote up suggestions and help features get the attention of developers.
+
+<img width="1936" height="1458" alt="community suggestions page" src="https://github.com/user-attachments/assets/0fa8fd9a-7ae9-44e4-98ee-5569538db7a6" />
+
 
 ### Seed Sharing
 Similar to the Community Voting Page, but this page will allow users to share world generation seeds that they found fun to play! Users can also upvote seeds they found entertaining!
@@ -22,6 +30,9 @@ Tracks user engagement and promotes users with likes over users without likes
 
 ### Log-In Page
 Allows account creation and log in
+
+<img width="1936" height="1458" alt="Log In Page Drawing" src="https://github.com/user-attachments/assets/ae4350e6-801e-4567-bf77-be4f295d8e76" />
+
 
 ## Technology Specifications
 
