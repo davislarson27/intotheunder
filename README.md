@@ -1,7 +1,7 @@
 # *Into the Under Game* Hub
 
 ## What it is (Pitch)
-*Into the Under* is a 2d python game I am developing that I want to create a hub website to download it and provide a space for community engagement!
+*Into the Under* is a 2D Python game I am developing that I want to create a hub website to download it and provide a space for community engagement!
 
 ## Key Features of the *Into the Under* Game Hub
 
@@ -48,5 +48,5 @@ Create new accounts
 Stores user's suggestions and community involvement scores (based on count of likes they have gotten and count of suggestions or seed sharing made)
 (may keep game's data as well and store time spent on the game)
 
-### Websocket
+### WebSocket
 Feeds live comments and suggestions
