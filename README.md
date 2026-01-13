@@ -7,3 +7,9 @@ Into the Under is a 2d python game I began building in late December of 2025. I 
 
 ### Game Download Page
 The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer
+
+### Community Voting Page
+It would be fun for users to be able to suggest features and vote on other user's suggestions. The community suggestions will be able to be voted to the top and have a higher chance of making it in the game.
+
+### Seed Sharing
+Similar to the Community Voting Page, but this page will allow users to share world generation seeds that they found fun to play! Users can also upvote seeds they found entertaining!
