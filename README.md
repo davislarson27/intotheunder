@@ -6,7 +6,7 @@
 ## Features of the *Into the Under* Game Hub
 
 ### Game Download Page
-The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer
+The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer. This will also include release notes!
 
 ### Game Details and Live Count Page
 A page will be included that tells users about what the game is and includes a live and actively updating count of how many users have downloaded *Into the Under*!
