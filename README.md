@@ -29,7 +29,7 @@ Has pages built for downloading, login, acount creation, community suggestions, 
 Make pages look good and encourage downloads by providing a good first impression for the game using correct CSS formats
 
 ### React
-Allows users to up-vote new game features
+Displays likes on up-votes for new game features
 Displays live download numbers
 Displays live seed suggestions and new game features ideas as comments that get added to the list as they are included
 Provides Login UI
