@@ -1,18 +1,52 @@
 # *Into the Under Game* Hub
 
-## What it is
-*Into the Under* is a 2d python game I began building in late December of 2025 that mixes elements of Minecraft and Super Mario Brothers into a block based exploration game with some new twists! I have been wanting to find a way to distribute it, and a website is a perfect way to do that.
+## What it is (Pitch)
+*Into the Under* is a 2d python game I am developing that I want to create a hub website to download it and provide a space for community engagement!
 
-## Features of the *Into the Under* Game Hub
+## Key Features of the *Into the Under* Game Hub
 
 ### Game Download Page
-The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer. This will also include release notes!
+The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer. This page provides release notes and a live count of how many downloads the game has.
 
-### Game Details and Live Count Page
-A page will be included that tells users about what the game is and includes a live and actively updating count of how many users have downloaded *Into the Under*!
-
-### Community Voting Page
-It would be fun for users to be able to suggest features and vote on other user's suggestions. The community suggestions will be able to be voted to the top and have a higher chance of making it in the game.
+### Community Suggestions Page
+Provides a page for community suggestions. Allows users to vote up suggestions and help features get the attention of developers.
 
 ### Seed Sharing
 Similar to the Community Voting Page, but this page will allow users to share world generation seeds that they found fun to play! Users can also upvote seeds they found entertaining!
+
+### User Engagement Scores
+Tracks user engagement and promotes users with likes over users without likes
+
+### Log-In Page
+Allows account creation and log in
+
+## Technology Specifications
+
+### HTML
+Has pages built for downloading, login, acount creation, community suggestions, and seed sharing
+
+### CSS
+Make pages look good and encourage downloads by providing a good first impression for the game using correct CSS formats
+
+### React
+Allows users to up-vote new game features
+Displays live download numbers
+Displays live seed suggestions and new game features ideas as comments that get added to the list as they are included
+Provides Login UI
+
+### Service
+Stores user's current most recent downloaded version on download
+Stores suggestions and seed suggestion comments
+Stores likes on comments
+Retreiving download versions
+Retrieving user's most recent version downloaded
+Retrieves likes and comments
+Log-in and Log-out users
+Create new accounts
+
+### Database
+Stores user's suggestions and community involvement scores (based on count of likes they have gotten and count of suggestions or seed sharing made)
+(may keep game's data as well and store time spent on the game)
+
+### Websocket
+Feeds live comments and suggestions
