@@ -5,6 +5,9 @@
 
 ## Key Features of the *Into the Under* Game Hub
 
+## Landing Page
+Basic HTML Page with some pictures of gameplay mixed in
+
 ### Game Download Page
 The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer. This page provides release notes and a live count of how many downloads the game has.
 
