@@ -1,7 +1,7 @@
 # *Into the Under Game* Hub
 
 ## What it is
-*Into the Under* is a 2d python game I began building in late December of 2025. It is a mix of Minecraft and Mario Brother's style games. I have been wanting to find a way to distribute it, and a website is a perfect way to do that.
+*Into the Under* is a 2d python game I began building in late December of 2025 that mixes elements of Minecraft and Super Mario Brothers into a block based exploration game with some new twists! I have been wanting to find a way to distribute it, and a website is a perfect way to do that.
 
 ## Features of the *Into the Under* Game Hub
 
