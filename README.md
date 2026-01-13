@@ -8,6 +8,9 @@ Into the Under is a 2d python game I began building in late December of 2025. I 
 ### Game Download Page
 The Game Download page will allow the user to select a version of *Into the Under* and download it to their computer
 
+### Game Details and Live Count Page
+A page will be included that tells users about what the game is and includes a live and actively updating count of how many users have downloaded *Into the Under*!
+
 ### Community Voting Page
 It would be fun for users to be able to suggest features and vote on other user's suggestions. The community suggestions will be able to be voted to the top and have a higher chance of making it in the game.
 
