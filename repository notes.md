@@ -1,7 +1,6 @@
 Things to remember
 
 Command to get in: 
-
 ssh -i~/desktop/cs260/whykeepdigging.pem ubuntu@54.243.197.140
 
 
