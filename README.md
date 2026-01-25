@@ -64,3 +64,17 @@ Stores user's suggestions and community involvement scores (based on count of li
 
 ### WebSocket
 Feeds live comments and suggestions
+
+
+
+## HTML Deliverable
+
+ the prerequisites for this deliverable were completed (Simon deployed, GitHub link, Git commits)
+ HTML pages - 6 HTML pages for downloading, community engagmenet, a landing page, and log-in, sign-up, and an account page
+ Proper HTML element usage - I just used div elements for everything.
+ Links - Nav bar links to each page, log in and sign up page link to the account page
+ Text - Each of the voting choices is represented by a textual description.
+ 3rd party API placeholder - Placeholder for loging in through Google
+ Images - Added image on the landing page
+ DB/Login - Input box and submit button for login. The comments are pulled from the database.
+ WebSocket - Real time upvotes and comments
