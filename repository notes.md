@@ -14,4 +14,5 @@ when using vi to edit caddy click the esc button then the :eq to exit and save
 
 for deploying to the server
 - caddy is responsible for rerouting to which application (simon vs startup)
+- the -s flag is which service parameter is being used
 - command is ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
