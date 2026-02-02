@@ -44,6 +44,7 @@ simon.intotheunder.com {
 }
 
 
+## Using the .sh file to deploy to the server
 for deploying to the server
 - caddy is responsible for rerouting to which application (simon vs startup)
 - the -s flag is which service parameter is being used
