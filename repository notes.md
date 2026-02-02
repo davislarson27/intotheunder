@@ -1,4 +1,4 @@
-Things to remember
+## Things to remember
 
 Command to get in: 
 ssh -i~/desktop/cs260/whykeepdigging.pem ubuntu@54.243.197.140
@@ -8,7 +8,7 @@ public ip: 44.222.189.36
 
 elastic ip: 54.243.197.140
 
-
+## Caddy
 when using vi to edit caddy click the esc button then then :wq to exit and save
     vi Caddyfile
     esc, :wq to write and escape
