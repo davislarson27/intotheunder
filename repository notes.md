@@ -1,4 +1,4 @@
-Things to remember
+## Things to remember
 
 Command to get in: 
 ssh -i~/desktop/cs260/whykeepdigging.pem ubuntu@54.243.197.140
@@ -8,7 +8,7 @@ public ip: 44.222.189.36
 
 elastic ip: 54.243.197.140
 
-
+## Caddy
 when using vi to edit caddy click the esc button then then :wq to exit and save
     vi Caddyfile
     esc, :wq to write and escape
@@ -44,6 +44,7 @@ simon.intotheunder.com {
 }
 
 
+## Using the .sh file to deploy to the server
 for deploying to the server
 - caddy is responsible for rerouting to which application (simon vs startup)
 - the -s flag is which service parameter is being used
