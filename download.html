@@ -31,38 +31,46 @@
             </nav>
         </header>
 
-        <main>
+        <main class="py-4">
 
 
             <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-7">
-                        <!-- <div class="card"> -->
-                            <h2>Download Into the Under</h2>
-                            <p>
-                                Select your computer type:
-                                <select>
-                                    <option>Mac (Silicon)</option>
-                                    <option>Mac (Intel)</option>
-                                    <option>Windows</option>
-                                </select>
-                            </p>
-                            <p>
-                                Select Game Version
-                                <select>
-                                    <option>v1.4.0</option>
-                                    <option>v1.3.2</option>
-                                    <option>v1.3.1</option>
-                                    <option>v1.3.0</option>
-                                </select>
-                            </p>
-                            <button class="btn btn-primary">Download</button>
-                        <!-- </div>         -->
-                    </div>
-                    <div class="col-12 col-md-5">
+                <div class="row g-4">
+                    <div class="col-12 col-md-6">
                         <div class="card shadow-sm">
                             <div class="card-header">
-                                <h3>Release Notes</h3>
+                                <h2>Download App</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    <label class="form-label">Select your computer type:</label>
+                                    <select class="form-select">
+                                        <option>Mac (Silicon)</option>
+                                        <!-- <option>Mac (Intel)</option> -->
+                                        <option>Windows</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label class="form-label">Select Game Version</label>
+                                    <select class="form-select">
+                                        <optgroup label="1.4">
+                                            <option>v1.4.0</option>
+                                        </optgroup>
+                                        <optgroup label="1.3">
+                                            <option>v1.3.2</option>
+                                            <option>v1.3.1</option>
+                                            <option>v1.3.0</option>    
+                                        </optgroup>
+                                    </select>
+                                </p>
+                                <button class="btn btn-primary">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h3>Version Release Notes</h3>
                             </div>
                             <!--will update when a different version is selected to show the release notes for that version-->
                             <div class="card-body">
