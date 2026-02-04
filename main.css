@@ -1,3 +1,11 @@
 .welcome_text {
     text-align: center;
 }
+
+#main_logo {
+    width: 25vw;
+}
+
+#primary_main_box {
+    height: 80vh;
+}
