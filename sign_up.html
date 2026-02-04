@@ -34,17 +34,66 @@
         </header>
 
         <main class="py-4">
-            <form action="profile.html" method="post">
-                <p>First Name: <input type="text" name="firstName" placeholder="John" required></input></p>
-                <p>Last Name: <input type="text" name="lastName" placeholder="Doe" required></input></p>
-                <p>User Name: <input type="text" name="userName" placeholder="username123" required></input></p>
-                <p>Email: <input type="text" name="email" placeholder="example@email.com" required></input></p>
-                <p>Password: <input type="password" name="password" placeholder="password" required></input></p>
-                <p>
-                    <button type="submit">Sign Up</button>
-                    <a href="log_in.html">Log In</a>
-                </p>
-            </form>
+
+
+
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-10 col-md-6 mx-auto">
+
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4 class="h-4">Create an account</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="profile.html" method="post">
+                                    <div class="mb-4 text-muted">already have an account - log in <a href="log_in.html">here</a>!</div>
+                                    <!-- <div class="mb-3">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input id="firstName" type="text" name="firstName" class="form-control" placeholder="John" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input id="lastName" type="text" name="lastName" class="form-control" placeholder="Doe" required>
+                                    </div> -->
+
+                                    <div class="mb-3">
+                                        <label for="userName" class="form-label">Username</label>
+                                        <input id="userName" type="text" name="userName" class="form-control" placeholder="username123" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input id="email" type="email" name="email" class="form-control" placeholder="name@example.com" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input id="password" type="password" name="password" class="form-control" placeholder="enter password here" required>
+                                    </div>
+
+
+
+                                    <br class="my-3">
+
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-primary w-100">Create Account </button>
+                                    </div>
+
+                                    <!-- <div class="mb-3">
+                                        <button type="google_login" class="btn btn-outline-secondary w-100">Log in With Google</button>
+                                    </div> -->
+
+                                </form>        
+                            </div>
+                        </div>
+
+            
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <footer>
