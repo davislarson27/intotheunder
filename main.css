@@ -21,3 +21,12 @@
 .featured_image {
     max-width: 32vw;
 }
+
+.comment_user {
+    font-weight: 500;
+}
+
+.comment p {
+    margin: 0px;
+    padding: 0px;
+}
