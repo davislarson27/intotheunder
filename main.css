@@ -7,7 +7,11 @@
 }
 
 #primary_main_box {
-    height: 80vh;
+    height: 81vh;
+}
+
+.spacing_row {
+    height: 15vh;
 }
 
 .featured_text {
