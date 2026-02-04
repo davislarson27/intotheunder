@@ -30,3 +30,9 @@
     margin: 0px;
     padding: 0px;
 }
+
+.like_count p {
+    padding: 0px;
+    margin: 0px;
+    margin-top: 1em;
+}
