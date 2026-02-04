@@ -9,3 +9,11 @@
 #primary_main_box {
     height: 80vh;
 }
+
+.featured_text {
+    max-width: 30vw;
+}
+
+.featured_image {
+    max-width: 32vw;
+}
