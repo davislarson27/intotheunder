@@ -93,4 +93,4 @@ Use of different types of selectors including element, class, ID, and pseudo sel
  I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
  Bundled using Vite - Yes
  Components - I have 7 components for each page and a page not found error
- Router - 
+ Router - Routing between each page and also between the login and sign-up page and from the home to the download page
