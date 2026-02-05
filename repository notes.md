@@ -50,3 +50,27 @@ for deploying to the server
 - the -s flag is which service parameter is being used
 - command is ./deployReact.sh -k <yourpemkey> -h <yourdomain> -s simon/startup
 - use "sudo chmod +x deployFiles.sh" to give the .sh file permission to run
+
+
+## Setting Up React
+
+### in directory
+npm init -y
+npm install vite@latest -D
+
+### go to package.json and replace script section with
+"scripts": {
+   "dev": "vite",
+   "build": "vite build",
+   "preview": "vite preview"
+}
+
+### move files (example from simon)
+mkdir public && mv placeholder.jpg favicon.ico public/
+mkdir -p src/about src/login src/play src/scores
+mv main.css src/app.css
+
+### install bootstrap
+npm install bootstrap react-bootstrap
+
+import 'bootstrap/dist/css/bootstrap.min.css';
