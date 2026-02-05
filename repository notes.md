@@ -48,5 +48,5 @@ simon.intotheunder.com {
 for deploying to the server
 - caddy is responsible for rerouting to which application (simon vs startup)
 - the -s flag is which service parameter is being used
-- command is ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon/startup
+- command is ./deployReact.sh -k <yourpemkey> -h <yourdomain> -s simon/startup
 - use "sudo chmod +x deployFiles.sh" to give the .sh file permission to run
