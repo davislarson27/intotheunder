@@ -139,6 +139,12 @@ export default function App() {
       </BrowserRouter>
    );
 
+## If using links in body
+make sure to import on top
+   import { NavLink } from "react-router-dom";
+do this:
+   to="/downloads" not to="downloads"
+
 
 ### Helpful Shortcuts
 command + shift + l -> changes name throughout page
