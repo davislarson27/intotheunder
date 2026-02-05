@@ -37,19 +37,23 @@
     margin-top: 1em;
 }
 
-.like_button {
+.like_button_container {
     background: none;
     outline: none;
     cursor: pointer;
 }
 
-.like_button {
+.like_button_container {
     cursor: pointer;
     margin: 0;
     padding: 0;
 }
 
-.like_button:hover .material-icons-outlined {
-    font-family: 'Material Icons';
-    /* color: blue; */
+.like_button_container:hover .material-icons-outlined {
+    /* font-family: 'Material Icons'; */
+    color: #0d6efd;
 }
+
+/* .like_button {
+    color: grey;
+} */
