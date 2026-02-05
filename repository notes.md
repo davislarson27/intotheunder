@@ -75,4 +75,45 @@ npm install bootstrap react-bootstrap
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-### create jsx files
+### create index.jsx in root
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './src/app';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
+### create app.jsx in src
+create app.jsx
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css';
+
+export default function App() {
+  return <div className="body bg-dark text-light">App will display here</div>;
+}
+
+### change names in CSS
+change body references to .body
+
+### create an index.html page in the root as entry point
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>Simon React</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script> <!-- this is wher the code is getting injected -->
+  </body>
+</html>
+
+
+## running the live page for a react page 
+npm run dev

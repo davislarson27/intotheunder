@@ -4,9 +4,9 @@
   "description": "*Into the Under* is a 2D Python game I am developing that I want to create a hub website to download it and provide a space for community engagement!",
   "main": "index.js",
   "scripts": {
-   "dev": "vite",
-   "build": "vite build",
-   "preview": "vite preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
   "homepage": "https://github.com/davislarson27/intotheunder#readme",
   "devDependencies": {
     "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react-bootstrap": "^2.10.10"
   }
 }
