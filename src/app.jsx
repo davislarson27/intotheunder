@@ -16,7 +16,14 @@ export default function App() {
     <browswer_router>
       <div className="body bg-dark text-light">App will display here</div>
       <Routes>
-        
+        <Route path='/' element={<Home />} exact />
+        <Route path='/home' element={<Home />} />
+        <Route path='/download' element={<Download />} />
+        <Route path='/feedback' element={<Feedback />} />
+        <Route path='/login' element={<Log_in />} />
+        <Route path='/sign_up' element={<Sign_up />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </browswer_router>
   );
