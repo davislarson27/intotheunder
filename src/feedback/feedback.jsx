@@ -52,8 +52,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">87</p>
+                    <div className="full_like_container" style={{padding : "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>87</p>
                         <span className="like_button_container" id="like_1">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -70,8 +70,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">62</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>62</p>
                         <span className="like_button_container" id="like_2">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -89,8 +89,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">23</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>23</p>
                         <span className="like_button_container" id="like_3">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -107,8 +107,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">17</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_4">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -125,8 +125,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">14</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_5">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -143,8 +143,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">13</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_6">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -161,8 +161,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">11</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_7">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -179,8 +179,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">3</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_8">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -198,8 +198,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">1</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_9">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
@@ -217,8 +217,8 @@ export function Feedback() {
                     </div>
                 </div>
                 <div className="col-1 me-2">
-                    <div className="full_like_container" style="padding: 0px;">
-                        <p className="like_count" style="margin-top: 1.5em;">0</p>
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
                         <span className="like_button_container" id="like_10">
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>

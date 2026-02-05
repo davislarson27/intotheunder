@@ -138,3 +138,7 @@ export default function App() {
          </Routes>
       </BrowserRouter>
    );
+
+
+### Helpful Shortcuts
+command + shift + l -> changes name throughout page
