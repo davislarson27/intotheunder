@@ -78,3 +78,13 @@ Feeds live comments and suggestions
  Images - Added image on the landing page
  DB/Login - Input box and submit button for login. The comments are pulled from the database.
  WebSocket - Real time upvotes and comments
+
+
+## CSS Deliverable
+All of the prerequisities for this deliverable were completed (simon was deployed, GitHub link was added to every page, git comments for every save)
+Visually appealing colors and layout. No overflowing elements. - kept a fairly simple white and grey look, but used images and buttons to keep it interesting. elemenets are in place.
+Use of a CSS framework - Bootstrap was used A LOT
+All visual elements styled using CSS - yes (through bootstrap or through inheritance). note that some span tags were not styled, but were put there to give an element id tag to certain values for the future.
+Responsive to window resizing using flexbox and/or grid display - yes, including for mobile (hip hip horraah for Bootstrap and random intertwined CSS)
+Use of a imported font - Roboto is the goat
+Use of different types of selectors including element, class, ID, and pseudo selectors - used all three throughout, including pseudo selectors for the hovering on the like button
