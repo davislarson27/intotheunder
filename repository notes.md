@@ -74,3 +74,5 @@ mv main.css src/app.css
 npm install bootstrap react-bootstrap
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+### create jsx files
