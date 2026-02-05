@@ -88,6 +88,7 @@ root.render(<App />);
 create app.jsx
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import './app.css';
 
 export default function App() {
@@ -118,3 +119,22 @@ change body references to .body
 
 ## running the live page for a react page 
 npm run dev
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Home } from './home/home';
+
+inside the thing
+export default function App() {
+   return (
+      <BrowserRouter>
+         <Routes>
+            <Route path='/' element={<Home />} exact />
+            <Route path='/home' element={<Home />} />
+            <Route path='/download' element={<Download />} />
+            <Route path='/feedback' element={<Feedback />} />
+            <Route path='/login' element={<Log_in />} />
+            <Route path='/sign_up' element={<Sign_up />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='*' element={<NotFound />} />
+         </Routes>
+      </BrowserRouter>
+   );
