@@ -17,7 +17,7 @@ export function Login() {
                         </div>
                         <div className="card-body">
                             <form>
-                                <div className="mb-4 text-muted">create a new account <NavLink to="/sign_up">here</NavLink>!</div>
+                                <div className="mb-4 text-muted">create a new account <NavLink to="/sign-up">here</NavLink>!</div>
                                 <div className="mb-3">
                                     <label for="email" className="form-label">Email</label>
                                     <input id="email" type="email" name="email" className="form-control" placeholder="name@example.com" required></input>

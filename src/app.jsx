@@ -8,7 +8,7 @@ import { Home } from './home/home';
 import { Download } from './download/download';
 import { Feedback } from './feedback/feedback';
 import { Login } from './login/login';
-import { Sign_up } from './sign_up/sign_up';
+import { Sign_up } from './sign-up/sign-up';
 import { Profile } from './profile/profile';
 import { NotFound } from './notfound/notfound';
 
@@ -29,14 +29,14 @@ export default function App() {
                             <div className="d-flex ms-lg-auto">
                                 <ul className="navbar-nav mb-2 mb-lg-0">
                                     <li className="nav-item"><NavLink to="/" className="nav-link">Home</NavLink></li>
-                                    <li className="nav-item"><NavLink to="download" href="download.html" className="nav-link">Download</NavLink></li>
-                                    <li className="nav-item"><NavLink to="feedback" href="feedback.html" className="nav-link">Feedback</NavLink></li>
+                                    <li className="nav-item"><NavLink to="download" className="nav-link">Download</NavLink></li>
+                                    <li className="nav-item"><NavLink to="feedback" className="nav-link">Feedback</NavLink></li>
                                     <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                                        <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                                         
                                         <ul className="dropdown-menu dropdown-menu-end">
                                             <li><NavLink className="dropdown-item" to="login">Log In</NavLink></li>
-                                            <li><NavLink className="dropdown-item" to="sign_up">Sign Up</NavLink></li>
+                                            <li><NavLink className="dropdown-item" to="sign-up">Sign Up</NavLink></li>
                                             <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
                                         </ul>
                                         
@@ -54,7 +54,7 @@ export default function App() {
             <Route path='/download' element={<Download />} />
             <Route path='/feedback' element={<Feedback />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/sign_up' element={<Sign_up />} />
+            <Route path='/sign-up' element={<Sign_up />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
