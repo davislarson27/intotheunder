@@ -2,25 +2,25 @@ import React from 'react';
 
 export function Download() {
   return (
-    <main class="py-4 flex-grow-1">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-                    <div class="card shadow-sm">
-                        <div class="card-header">
-                            <h4 class="h4 mb-0">Download App</h4>
+    <main className="py-4 flex-grow-1">
+        <div className="container">
+            <div className="row g-4">
+                <div className="col-12 col-md-6">
+                    <div className="card shadow-sm">
+                        <div className="card-header">
+                            <h4 className="h4 mb-0">Download App</h4>
                         </div>
-                        <div class="card-body">
+                        <div className="card-body">
                             <p>
-                                <label class="form-label">Select your computer type:</label>
-                                <select class="form-select">
+                                <label className="form-label">Select your computer type:</label>
+                                <select className="form-select">
                                     <option>Mac (Silicon)</option>
                                     <option>Windows</option>
                                 </select>
                             </p>
                             <p>
-                                <label class="form-label">Select Game Version</label>
-                                <select class="form-select">
+                                <label className="form-label">Select Game Version</label>
+                                <select className="form-select">
                                     <optgroup label="1.4">
                                         <option>v1.4.0 (current)</option>
                                     </optgroup>
@@ -31,17 +31,17 @@ export function Download() {
                                     </optgroup>
                                 </select>
                             </p>
-                            <button class="btn btn-primary w-100 mt-3">Download</button>
+                            <button className="btn btn-primary w-100 mt-3">Download</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="card shadow-sm">
-                        <div class="card-header">
-                            <h4  class="h4 mb-0">Version Release Notes</h4>
+                <div className="col-12 col-md-6">
+                    <div className="card shadow-sm">
+                        <div className="card-header">
+                            <h4  className="h4 mb-0">Version Release Notes</h4>
                         </div>
-                        <div class="card-body">
-                            <p><span id="selected_game_version" class="text-muted">v1.4.0</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
+                        <div className="card-body">
+                            <p><span id="selected_game_version" className="text-muted">v1.4.0</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
                             <ul>
                                 <li>added glacier biome</li>
                                 <li>added naturally generating snowmen</li>
