@@ -2,12 +2,12 @@
     text-align: center;
 }
 
-#main_logo {
-    width: 25vw;
-}
-
 #primary_main_box {
     height: 81vh;
+}
+
+#main_logo {
+    width: 75vw;
 }
 
 .spacing_row {
@@ -20,7 +20,11 @@
     }
 }
 
-@media (min-width: 992px) {    
+@media (min-width: 992px) {   
+    #main_logo {
+        width: 25vw;
+    }
+     
     .featured_text {
         max-width: 30vw;
     }
