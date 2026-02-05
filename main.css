@@ -14,12 +14,14 @@
     height: 15vh;
 }
 
-.featured_text {
-    max-width: 30vw;
-}
+@media (min-width: 992px) {
+    .featured_text {
+        max-width: 30vw;
+    }
 
-.featured_image {
-    max-width: 32vw;
+    .featured_image {
+        max-width: 32vw;
+    }
 }
 
 .comment_user {
