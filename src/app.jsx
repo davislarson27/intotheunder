@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
+// import "@fontsource/material-icons-outlined";
+// import "@fontsource/material-icons"; // this will be needed when the thumbs up can be filled in
 import './app.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
