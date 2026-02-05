@@ -15,7 +15,7 @@ export function Sign_up() {
                             <h4 className="h-4">Create an account</h4>
                         </div>
                         <div className="card-body">
-                            <form action="profile.html" method="post">
+                            <form>
                               
                                 <div className="mb-4 text-muted">already have an account - log in <NavLink to="/login">here</NavLink>!</div>
 

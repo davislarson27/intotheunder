@@ -16,7 +16,7 @@ export function Login() {
                             <h4 className="h-4">Log in</h4>
                         </div>
                         <div className="card-body">
-                            <form action="profile.html" method="post">
+                            <form>
                                 <div className="mb-4 text-muted">create a new account <NavLink to="/sign_up">here</NavLink>!</div>
                                 <div className="mb-3">
                                     <label for="email" className="form-label">Email</label>

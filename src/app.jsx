@@ -21,14 +21,14 @@ export default function App() {
             <header>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <div className="container-fluid px-4">
-                        <NavLink className="navbar-brand" to="home">Into The Under</NavLink>
+                        <NavLink className="navbar-brand" to="/">Into The Under</NavLink>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>                  
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <div className="d-flex ms-lg-auto">
                                 <ul className="navbar-nav mb-2 mb-lg-0">
-                                    <li className="nav-item"><NavLink to="home" className="nav-link">Home</NavLink></li>
+                                    <li className="nav-item"><NavLink to="/" className="nav-link">Home</NavLink></li>
                                     <li className="nav-item"><NavLink to="download" href="download.html" className="nav-link">Download</NavLink></li>
                                     <li className="nav-item"><NavLink to="feedback" href="feedback.html" className="nav-link">Feedback</NavLink></li>
                                     <li className="nav-item dropdown">
