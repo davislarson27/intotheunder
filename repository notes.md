@@ -70,8 +70,9 @@ mkdir public && mv placeholder.jpg favicon.ico public/
 mkdir -p src/about src/login src/play src/scores
 mv main.css src/app.css
 
-### install bootstrap
+### install bootstrap and react
 npm install bootstrap react-bootstrap
+npm install react react-dom react-router-dom
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
