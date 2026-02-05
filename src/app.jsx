@@ -9,12 +9,43 @@ import { Feedback } from './feedback/feedback';
 import { Log_in } from './log_in/log_in';
 import { Sign_up } from './sign_up/sign_up';
 import { Profile } from './profile/profile';
+import { NotFound } from './notfound/notfound';
+
 
 
 export default function App() {
   return (
-    <browswer_router>
-      <div className="body bg-dark text-light">App will display here</div>
+    <BrowserRouter>
+        <header>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid px-4">
+                    <a className="navbar-brand" href="index.html">Into The Under</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>                  
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div className="d-flex ms-lg-auto">
+                            <ul className="navbar-nav mb-2 mb-lg-0">
+                                <li className="nav-item"><a href="index.html" className="nav-link">Home</a></li>
+                                <li className="nav-item"><a href="download.html" className="nav-link">Download</a></li>
+                                <li className="nav-item"><a href="feedback.html" className="nav-link active">Feedback</a></li>
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                                    
+                                    <ul className="dropdown-menu dropdown-menu-end">
+                                        <li><a className="dropdown-item" href="log_in.html">Log In</a></li>
+                                        <li><a className="dropdown-item" href="sign_up.html">Sign Up</a></li>
+                                        <li><a className="dropdown-item" href="profile.html">Profile</a></li>
+                                    </ul>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
       <Routes>
         <Route path='/' element={<Home />} exact />
         <Route path='/home' element={<Home />} />
@@ -25,6 +56,23 @@ export default function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-    </browswer_router>
+
+        
+        <footer className="bg-light text-dark">
+            <div className="container py-4">
+                <div className="row align-items-center g-4">
+                    <div className="col-12 col-md-auto">
+                        <span className="footer_text text-muted">&copy; 2026 Into The Under</span>
+                    </div>
+                    <div className="col-12 col-md-auto">
+                        <a className="text-muted" target="_blank" href="https://github.com/davislarson27/intotheunder/">Page Git Hub</a>
+                    </div>
+                </div>    
+            </div>
+        </footer>
+        
+        {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> */}
+
+    </BrowserRouter>
   );
 }
