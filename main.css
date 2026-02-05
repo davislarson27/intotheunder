@@ -36,3 +36,20 @@
     margin: 0px;
     margin-top: 1em;
 }
+
+.like_button {
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.like_button {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.like_button:hover .material-icons-outlined {
+    font-family: 'Material Icons';
+    /* color: blue; */
+}
