@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { NavLink } from "react-router-dom";
+
 export function Sign_up() {
   return (
     <main className="py-4 flex-grow-1">
@@ -15,7 +17,7 @@ export function Sign_up() {
                         <div className="card-body">
                             <form action="profile.html" method="post">
                               
-                                <div className="mb-4 text-muted">already have an account - log in <a href="log_in.html">here</a>!</div>
+                                <div className="mb-4 text-muted">already have an account - log in <NavLink to="/login">here</NavLink>!</div>
 
                                 <div className="mb-3">
                                     <label for="userName" className="form-label">Username</label>
