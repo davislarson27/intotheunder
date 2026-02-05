@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { NavLink } from "react-router-dom";
+
+
 export function Login() {
   return (
     <main className="py-4 flex-grow-1">
@@ -14,7 +17,7 @@ export function Login() {
                         </div>
                         <div className="card-body">
                             <form action="profile.html" method="post">
-                                <div className="mb-4 text-muted">create a new account <a href="sign_up.html">here</a>!</div>
+                                <div className="mb-4 text-muted">create a new account <NavLink to="/sign_up">here</NavLink>!</div>
                                 <div className="mb-3">
                                     <label for="email" className="form-label">Email</label>
                                     <input id="email" type="email" name="email" className="form-control" placeholder="name@example.com" required></input>
