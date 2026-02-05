@@ -91,6 +91,6 @@ Use of different types of selectors including element, class, ID, and pseudo sel
 
 ## React Deliverable Pt 1
  I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
- Bundled using Vite - 
- Components - 
+ Bundled using Vite - Yes
+ Components - I have 7 components for each page and a page not found error
  Router - 
