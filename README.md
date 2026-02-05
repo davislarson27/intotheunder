@@ -88,3 +88,9 @@ All visual elements styled using CSS - yes (through bootstrap or through inherit
 Responsive to window resizing using flexbox and/or grid display - yes, including for mobile (hip hip horraah for Bootstrap and random intertwined CSS)
 Use of a imported font - Roboto is the goat
 Use of different types of selectors including element, class, ID, and pseudo selectors - used all three throughout, including pseudo selectors for the hovering on the like button
+
+## React Deliverable Pt 1
+ I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+ Bundled using Vite - 
+ Components - 
+ Router - 
