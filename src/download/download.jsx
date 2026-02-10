@@ -2,8 +2,82 @@ import React from 'react';
 
 export function Download() {
     // declare react state variables
+    const [versionData, updateVersionData] = React.useState (
+        {
+            windows: {
+                currentVersion: "v1.3.2",
+                versionGroups: [
+                    {
+                        sectionName: "1.3",
+                        availableVersions: [
+                            {
+                                updateNum: "v1.3.2",
+                                versionName: "World Names",
+                                updateNotes: [
+                                    "tbd",
+                                    "tbd"
+                                ]
+                            }, 
+                        ]
+                    }
+                ]
+            },
+            macsilicon: {
+                currentVersion: "v1.4.0",
+                versionGroups: [
+                    {
+                        sectionName: "1.4",
+                        availableVersions: [
+                            {
+                                updateNum: "v1.4.0",
+                                versionName: "The Robotic Update",
+                                updateNotes: [
+                                    "added the glacier biome",
+                                    "added naturally generating snowmen",
+                                    "allowed user to mine and build using the mouse",
+                                    "updated character to be a robot"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        sectionName: "1.3",
+                        availableVersions: [
+                            {
+                                updateNum: "v1.3.2",
+                                versionName: "World Names",
+                                updateNotes: [
+                                    "Updated the \"Create World\" screen",
+                                    "Added the ability to choose a world name",
+                                ]
+                            },
+                            {
+                                updateNum: "v1.3.1",
+                                versionName: "Universe of Worlds",
+                                updateNotes: [
+                                    "Added the load screen on the menu!",
+                                    "Added the ability to load different worlds from the load screen"
+                                ]
+                            },
+                            {
+                                updateNum: "v1.3.0",
+                                versionName: "\"This Gets Interesting\"",
+                                updateNotes: [
+                                    "First Releaseable Version",
+                                    "Added a Menu",
+                                    "Added health bar placeholder"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    
+    )
+
     const [os_type, update_os] = React.useState("macsilicon");
-    const [version, updateVersion] = React.useState("v1.4.0");
+    const [version, updateVersion] = React.useState(versionData[os_type].curVersion);
 
     // main return value
     return (
@@ -17,7 +91,7 @@ export function Download() {
                             </div>
                             <div className="card-body">
                                 <SelectOS os_type={os_type} update_os={update_os} />
-                                <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} />
+                                <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} versionData={versionData} />
                                 <DownloadButton version={version} os_type={os_type} />
                             </div>
                         </div>
@@ -62,80 +136,9 @@ function SelectOS ({os_type, update_os}) {
     );
 }
 
-function SelectVersion ({version, updateVersion, os_type}) {
+function SelectVersion ({version, updateVersion, os_type, versionData}) {
     function onChange (updateValue) {
         updateVersion(updateValue.target.value)
-    }
-
-    const versionsAvailable = {
-        windows: {
-            currentVersion: "v1.3.2",
-            versionGroups: [
-                {
-                    sectionName: "1.3",
-                    availableVersions: [
-                        {
-                            updateNum: "v1.3.2",
-                            versionName: "World Names",
-                            updateNotes: [
-                                "tbd",
-                                "tbd"
-                            ]
-                        }, 
-                    ]
-                }
-            ]
-        },
-        macsilicon: {
-            currentVersion: "v1.4.0",
-            versionGroups: [
-                {
-                    sectionName: "1.4",
-                    availableVersions: [
-                        {
-                            updateNum: "v1.4.0",
-                            versionName: "The Robotic Update",
-                            updateNotes: [
-                                "added the glacier biome",
-                                "added naturally generating snowmen",
-                                "allowed user to mine and build using the mouse",
-                                "updated character to be a robot"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    sectionName: "1.3",
-                    availableVersions: [
-                        {
-                            updateNum: "v1.3.2",
-                            versionName: "World Names",
-                            updateNotes: [
-                                "Updated the \"Create World\" screen",
-                                "Added the ability to choose a world name",
-                            ]
-                        },
-                        {
-                            updateNum: "v1.3.1",
-                            versionName: "Universe of Worlds",
-                            updateNotes: [
-                                "Added the load screen on the menu!",
-                                "Added the ability to load different worlds from the load screen"
-                            ]
-                        },
-                        {
-                            updateNum: "v1.3.0",
-                            versionName: "\"This Gets Interesting\"",
-                            updateNotes: [
-                                "First Releaseable Version",
-                                "Added a Menu",
-                                "Added health bar placeholder"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
     }
 
     function getCurVersionString (curVersion, curVersionKey) {
@@ -146,8 +149,8 @@ function SelectVersion ({version, updateVersion, os_type}) {
     }
 
     const optionsElements = [];
-    const curVersion = versionsAvailable[os_type].currentVersion;
-    for (const curVersionGroup of versionsAvailable[os_type].versionGroups) {
+    const curVersion = versionData[os_type].currentVersion;
+    for (const curVersionGroup of versionData[os_type].versionGroups) {
         optionsElements.push(
             <optgroup key={curVersionGroup.sectionName} label={curVersionGroup.sectionName}>
                 {
