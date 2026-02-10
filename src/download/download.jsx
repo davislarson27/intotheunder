@@ -19,7 +19,7 @@ export function Download() {
                                 <SelectOS os_type={os_type} update_os={update_os} />
                                 <SelectVersion version={version} updateVersion={updateVersion}/>
                                 {/* <button className="btn btn-primary w-100 mt-3">Download</button> */}
-                                <DownloadButton version={version} update_os={update_os} />
+                                <DownloadButton version={version} os_type={os_type} />
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,13 @@ function SelectVersion ({version, updateVersion}) {
 
 function DownloadButton ({version, os_type}) {
     function downloadGame () {
-        
+        var file_extention = ".txt"
+        var file_path = "/" + "game_downloads/" + os_type + "/" + version + file_extention;
+
+        const link = document.createElement("a");
+        link.href = file_path;
+        link.download = "";
+        link.click();
     }
 
     return (
