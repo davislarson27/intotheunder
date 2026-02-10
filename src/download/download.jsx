@@ -4,7 +4,6 @@ export function Download() {
     // declare react state variables
     const [os_type, update_os] = React.useState("macsilicon");
     const [version, updateVersion] = React.useState("v1.4.0");
-    // const [dropDownList, updateDropDown] = React.useState(0)
 
     // main return value
     return (
@@ -18,7 +17,7 @@ export function Download() {
                             </div>
                             <div className="card-body">
                                 <SelectOS os_type={os_type} update_os={update_os} />
-                                <SelectVersion version={version} updateVersion={updateVersion}/>
+                                <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} />
                                 <DownloadButton version={version} os_type={os_type} />
                             </div>
                         </div>
@@ -63,46 +62,66 @@ function SelectOS ({os_type, update_os}) {
     );
 }
 
-function SelectVersion ({version, updateVersion}) {
+function SelectVersion ({version, updateVersion, os_type}) {
     function onChange (updateValue) {
         updateVersion(updateValue.target.value)
     }
 
-    const versions_available = {
-        windows: [
-            {
-                sectionName: "1.4",
-                availableVersions: ["v1.4.0"]
-            },
-            {
-                sectionName: "1.3",
-                availableVersions: ["v1.3.2"]
-            }
-        ],
-        macsilicon: [
-            {
-                sectionName: "1.4",
-                availableVersions: ["v1.4.0"]
-            },
-            {
-                sectionName: "1.3",
-                availableVersions: ["v1.3.2", "v1.3.1", "v1.3.0"]
-            }
-        ]
+    const versionsAvailable = {
+        windows: {
+            currentVersion: "v1.4.0",
+            versionGroups: [
+                {
+                    sectionName: "1.4",
+                    availableVersions: ["v1.4.0"]
+                },
+                {
+                    sectionName: "1.3",
+                    availableVersions: ["v1.3.2"]
+                }
+            ]
+        },
+        macsilicon: {
+            currentVersion: "v1.4.0",
+            versionGroups: [
+                {
+                    sectionName: "1.4",
+                    availableVersions: ["v1.4.0"]
+                },
+                {
+                    sectionName: "1.3",
+                    availableVersions: ["v1.3.2", "v1.3.1", "v1.3.0"]
+                }
+            ]
+        }
+    }
+
+    function getCurVersionString (curVersion, curVersionKey) {
+        if (curVersion == curVersionKey){
+            return " (current)"
+        }
+        return ""
+    }
+
+    const optionsElements = [];
+    const curVersion = versionsAvailable[os_type].currentVersion;
+    for (const curVersionGroup of versionsAvailable[os_type].versionGroups) {
+        optionsElements.push(
+            <optgroup key={curVersionGroup.sectionName} label={curVersionGroup.sectionName}>
+                {
+                    curVersionGroup.availableVersions.map( version => (
+                        <option key={version} value={version}>{version} {getCurVersionString(version, curVersion)}</option>
+                    ) )
+                }
+            </optgroup>
+        )
     }
 
     return (
         <p>
             <label className="form-label">Select Game Version</label>
             <select className="form-select" value={version} onChange={onChange}>
-                <optgroup label="1.4">
-                    <option value="v1.4.0">v1.4.0 (current)</option>
-                </optgroup>
-                <optgroup label="1.3">
-                    <option value="v1.3.2">v1.3.2</option>
-                    <option value="v1.3.1">v1.3.1</option>
-                    <option value="v1.3.0">v1.3.0</option>    
-                </optgroup>
+                {optionsElements}
             </select>
         </p>
     );
