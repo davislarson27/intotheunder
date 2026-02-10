@@ -176,12 +176,15 @@ function DownloadButton ({version, os_type}) {
             macsilicon: ".dmg"
         }
 
-        var file_path = "/" + "game_downloads/" + os_type + "/" + version + "/IntoTheUnder" + file_extention[os_type];
-
-        const link = document.createElement("a");
-        link.href = file_path;
-        link.download = "";
-        link.click();
+        const confirmed_download = window.confirm("Are you sure you want to download Into The Under?");
+        
+        if (confirmed_download){
+            var file_path = "/" + "game_downloads/" + os_type + "/" + version + "/IntoTheUnder" + file_extention[os_type];
+            const link = document.createElement("a");
+            link.href = file_path;
+            link.download = "";
+            link.click();    
+        }
     }
 
     return (
