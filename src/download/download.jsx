@@ -18,7 +18,8 @@ export function Download() {
                             <div className="card-body">
                                 <SelectOS os_type={os_type} update_os={update_os} />
                                 <SelectVersion version={version} updateVersion={updateVersion}/>
-                                <button className="btn btn-primary w-100 mt-3">Download</button>
+                                {/* <button className="btn btn-primary w-100 mt-3">Download</button> */}
+                                <DownloadButton version={version} update_os={update_os} />
                             </div>
                         </div>
                     </div>
@@ -81,5 +82,15 @@ function SelectVersion ({version, updateVersion}) {
                 </optgroup>
             </select>
         </p>
+    );
+}
+
+function DownloadButton ({version, os_type}) {
+    function downloadGame () {
+        
+    }
+
+    return (
+        <button className="btn btn-primary w-100 mt-3" onClick={downloadGame}>Download</button>
     );
 }
