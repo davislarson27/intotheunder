@@ -4,6 +4,7 @@ export function Download() {
     // declare react state variables
     const [os_type, update_os] = React.useState("macsilicon");
     const [version, updateVersion] = React.useState("v1.4.0");
+    // const [dropDownList, updateDropDown] = React.useState(0)
 
     // main return value
     return (
@@ -18,7 +19,6 @@ export function Download() {
                             <div className="card-body">
                                 <SelectOS os_type={os_type} update_os={update_os} />
                                 <SelectVersion version={version} updateVersion={updateVersion}/>
-                                {/* <button className="btn btn-primary w-100 mt-3">Download</button> */}
                                 <DownloadButton version={version} os_type={os_type} />
                             </div>
                         </div>
@@ -66,6 +66,29 @@ function SelectOS ({os_type, update_os}) {
 function SelectVersion ({version, updateVersion}) {
     function onChange (updateValue) {
         updateVersion(updateValue.target.value)
+    }
+
+    const versions_available = {
+        windows: [
+            {
+                sectionName: "1.4",
+                availableVersions: ["v1.4.0"]
+            },
+            {
+                sectionName: "1.3",
+                availableVersions: ["v1.3.2"]
+            }
+        ],
+        macsilicon: [
+            {
+                sectionName: "1.4",
+                availableVersions: ["v1.4.0"]
+            },
+            {
+                sectionName: "1.3",
+                availableVersions: ["v1.3.2", "v1.3.1", "v1.3.0"]
+            }
+        ]
     }
 
     return (
