@@ -1,6 +1,11 @@
 import React from 'react';
 
 export function Download() {
+    // declare react state variables
+    const [os_type, update_os] = React.useState("mac-silicon");
+    const [version, updateVersion] = React.useState("v1.4.0");
+
+    // main return value
     return (
         <main className="py-4 flex-grow-1">
             <div className="container">
@@ -11,26 +16,8 @@ export function Download() {
                                 <h4 className="h4 mb-0">Download App</h4>
                             </div>
                             <div className="card-body">
-                                <p>
-                                    <label className="form-label">Select your computer type:</label>
-                                    <select className="form-select">
-                                        <option value="mac-silicon">Mac (Silicon)</option>
-                                        <option value="windows">Windows</option>
-                                    </select>
-                                </p>
-                                <p>
-                                    <label className="form-label">Select Game Version</label>
-                                    <select className="form-select">
-                                        <optgroup label="1.4">
-                                            <option value="v1.4.0">v1.4.0 (current)</option>
-                                        </optgroup>
-                                        <optgroup label="1.3">
-                                            <option value="v1.3.2">v1.3.2</option>
-                                            <option value="v1.3.1">v1.3.1</option>
-                                            <option value="v1.3.0">v1.3.0</option>    
-                                        </optgroup>
-                                    </select>
-                                </p>
+                                <SelectOS os_type={os_type} update_os={update_os} />
+                                <SelectVersion version={version} updateVersion={updateVersion}/>
                                 <button className="btn btn-primary w-100 mt-3">Download</button>
                             </div>
                         </div>
@@ -55,5 +42,44 @@ export function Download() {
                 </div>
             </div>
         </main>
+    );
+}
+
+
+function SelectOS ({os_type, update_os}) {
+    function onChange (updateValue) {
+        update_os(updateValue.target.value)
+    }
+
+    return (
+        <p>
+            <label className="form-label">Select your computer type:</label>
+            <select className="form-select" value={os_type} onChange={onChange}>
+                <option value="mac-silicon">Mac (Silicon)</option>
+                <option value="windows">Windows</option>
+            </select>
+        </p>
+    );
+}
+
+function SelectVersion ({version, updateVersion}) {
+    function onChange (updateValue) {
+        updateVersion(updateValue.target.value)
+    }
+
+    return (
+        <p>
+            <label className="form-label">Select Game Version</label>
+            <select className="form-select" value={version} onChange={onChange}>
+                <optgroup label="1.4">
+                    <option value="v1.4.0">v1.4.0 (current)</option>
+                </optgroup>
+                <optgroup label="1.3">
+                    <option value="v1.3.2">v1.3.2</option>
+                    <option value="v1.3.1">v1.3.1</option>
+                    <option value="v1.3.0">v1.3.0</option>    
+                </optgroup>
+            </select>
+        </p>
     );
 }

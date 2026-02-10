@@ -148,3 +148,6 @@ do this:
 
 ### Helpful Shortcuts
 command + shift + l -> changes name throughout page
+
+### React Notes
+React component names need to be capitalized!
