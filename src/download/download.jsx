@@ -105,16 +105,6 @@ export function Download() {
                             <div className="card-header">
                                 <h4  className="h4 mb-0">Version Release Notes</h4>
                             </div>
-                            {/* <div className="card-body">
-                                <p><span id="selected_game_version" className="text-muted">v1.4.0</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
-                                <ul>
-                                    <li>added glacier biome</li>
-                                    <li>added naturally generating snowmen</li>
-                                    <li>changed key to build blocks to right click</li>
-                                    <li>changed key to destroy blocks to left click</li>
-                                    <li>added chests</li>
-                                </ul>
-                            </div> */}
                             <UpdateInfoDisplay version={version} os_type={os_type} versionData={versionData}/>
                         </div>
                     </div>
