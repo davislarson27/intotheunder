@@ -69,15 +69,20 @@ function SelectVersion ({version, updateVersion, os_type}) {
 
     const versionsAvailable = {
         windows: {
-            currentVersion: "v1.4.0",
+            currentVersion: "v1.3.2",
             versionGroups: [
                 {
-                    sectionName: "1.4",
-                    availableVersions: ["v1.4.0"]
-                },
-                {
                     sectionName: "1.3",
-                    availableVersions: ["v1.3.2"]
+                    availableVersions: [
+                        {
+                            updateNum: "v1.3.2",
+                            versionName: "World Names",
+                            updateNotes: [
+                                "tbd",
+                                "tbd"
+                            ]
+                        }, 
+                    ]
                 }
             ]
         },
@@ -86,11 +91,48 @@ function SelectVersion ({version, updateVersion, os_type}) {
             versionGroups: [
                 {
                     sectionName: "1.4",
-                    availableVersions: ["v1.4.0"]
+                    availableVersions: [
+                        {
+                            updateNum: "v1.4.0",
+                            versionName: "The Robotic Update",
+                            updateNotes: [
+                                "added the glacier biome",
+                                "added naturally generating snowmen",
+                                "allowed user to mine and build using the mouse",
+                                "updated character to be a robot"
+                            ]
+                        }
+                    ]
                 },
                 {
                     sectionName: "1.3",
-                    availableVersions: ["v1.3.2", "v1.3.1", "v1.3.0"]
+                    availableVersions: [
+                        {
+                            updateNum: "v1.3.2",
+                            versionName: "World Names",
+                            updateNotes: [
+                                "Updated the \"Create World\" screen",
+                                "Added the ability to choose a world name",
+                            ]
+                        },
+                        {
+                            updateNum: "v1.3.1",
+                            versionName: "Universe of Worlds",
+                            updateNotes: [
+                                "Added the load screen on the menu!",
+                                "Added the ability to load different worlds from the load screen"
+                            ]
+                        },
+                        {
+                            updateNum: "v1.3.0",
+                            versionName: "\"This Gets Interesting\"",
+                            updateNotes: [
+                                "First Releaseable Version",
+                                "Added a Menu",
+                                "Added health bar placeholder"
+                            ]
+                        }
+                    ]
                 }
             ]
         }
@@ -110,7 +152,7 @@ function SelectVersion ({version, updateVersion, os_type}) {
             <optgroup key={curVersionGroup.sectionName} label={curVersionGroup.sectionName}>
                 {
                     curVersionGroup.availableVersions.map( version => (
-                        <option key={version} value={version}>{version} {getCurVersionString(version, curVersion)}</option>
+                        <option key={version.updateNum} value={version.updateNum}>{version.updateNum} {getCurVersionString(version.updateNum, curVersion)}</option>
                     ) )
                 }
             </optgroup>
