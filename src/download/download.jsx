@@ -77,7 +77,9 @@ export function Download() {
     )
 
     const [os_type, update_os] = React.useState("macsilicon");
-    const [version, updateVersion] = React.useState(versionData[os_type].curVersion);
+    // const [version, updateVersion] = React.useState(versionData[os_type].curVersion);
+    const [version, updateVersion] = React.useState("v1.4.0");
+
 
     // main return value
     return (
@@ -90,7 +92,7 @@ export function Download() {
                                 <h4 className="h4 mb-0">Download App</h4>
                             </div>
                             <div className="card-body">
-                                <SelectOS os_type={os_type} update_os={update_os} />
+                                <SelectOS os_type={os_type} update_os={update_os} version={version} versionData={versionData} updateVersion={updateVersion} />
                                 <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} versionData={versionData} />
                                 <DownloadButton version={version} os_type={os_type} />
                             </div>
@@ -101,7 +103,7 @@ export function Download() {
                             <div className="card-header">
                                 <h4  className="h4 mb-0">Version Release Notes</h4>
                             </div>
-                            <div className="card-body">
+                            {/* <div className="card-body">
                                 <p><span id="selected_game_version" className="text-muted">v1.4.0</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
                                 <ul>
                                     <li>added glacier biome</li>
@@ -110,7 +112,8 @@ export function Download() {
                                     <li>changed key to destroy blocks to left click</li>
                                     <li>added chests</li>
                                 </ul>
-                            </div>
+                            </div> */}
+                            <UpdateInfoDisplay version={version} os_type={os_type} versionData={versionData}/>
                         </div>
                     </div>
                 </div>
@@ -120,9 +123,11 @@ export function Download() {
 }
 
 
-function SelectOS ({os_type, update_os}) {
+function SelectOS ({os_type, update_os, version, versionData, updateVersion }) {
     function onChange (updateValue) {
-        update_os(updateValue.target.value)
+        const updatedOs = updateValue.target.value;
+        update_os(updatedOs);
+        updateVersion(versionData[updatedOs].currentVersion);
     }
 
     return (
@@ -189,5 +194,22 @@ function DownloadButton ({version, os_type}) {
 
     return (
         <button className="btn btn-primary w-100 mt-3" onClick={downloadGame}>Download</button>
+    );
+}
+
+function UpdateInfoDisplay ({version, os_type, versionData}) {
+
+    const cardElements = [];
+    cardElements.push(
+        // <p><span id="selected_game_version" className="text-muted">{}</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
+    )
+
+    return (
+        <div className="card-body">
+            <p><span id="selected_game_version" className="text-muted">{version}</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
+            <ul>
+                {cardElements}
+            </ul>
+        </div>
     );
 }
