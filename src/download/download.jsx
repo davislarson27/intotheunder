@@ -14,20 +14,20 @@ export function Download() {
                                 <p>
                                     <label className="form-label">Select your computer type:</label>
                                     <select className="form-select">
-                                        <option>Mac (Silicon)</option>
-                                        <option>Windows</option>
+                                        <option value="mac-silicon">Mac (Silicon)</option>
+                                        <option value="windows">Windows</option>
                                     </select>
                                 </p>
                                 <p>
                                     <label className="form-label">Select Game Version</label>
                                     <select className="form-select">
                                         <optgroup label="1.4">
-                                            <option>v1.4.0 (current)</option>
+                                            <option value="v1.4.0">v1.4.0 (current)</option>
                                         </optgroup>
                                         <optgroup label="1.3">
-                                            <option>v1.3.2</option>
-                                            <option>v1.3.1</option>
-                                            <option>v1.3.0</option>    
+                                            <option value="v1.3.2">v1.3.2</option>
+                                            <option value="v1.3.1">v1.3.1</option>
+                                            <option value="v1.3.0">v1.3.0</option>    
                                         </optgroup>
                                     </select>
                                 </p>
