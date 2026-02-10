@@ -14,8 +14,9 @@ export function Download() {
                                 updateNum: "v1.3.2",
                                 versionName: "World Names",
                                 updateNotes: [
-                                    "tbd",
-                                    "tbd"
+                                    "updated the \"Create World\" screen",
+                                    "added the ability to choose a world name",
+                                    "added ability to run on Windows"
                                 ]
                             }, 
                         ]
@@ -47,25 +48,26 @@ export function Download() {
                                 updateNum: "v1.3.2",
                                 versionName: "World Names",
                                 updateNotes: [
-                                    "Updated the \"Create World\" screen",
-                                    "Added the ability to choose a world name",
+                                    "updated the \"Create World\" screen",
+                                    "added the ability to choose a world name",
+                                    "added ability to run on Windows"
                                 ]
                             },
                             {
                                 updateNum: "v1.3.1",
                                 versionName: "Universe of Worlds",
                                 updateNotes: [
-                                    "Added the load screen on the menu!",
-                                    "Added the ability to load different worlds from the load screen"
+                                    "added the load screen on the menu!",
+                                    "added the ability to load different worlds from the load screen"
                                 ]
                             },
                             {
                                 updateNum: "v1.3.0",
                                 versionName: "\"This Gets Interesting\"",
                                 updateNotes: [
-                                    "First Releaseable Version",
-                                    "Added a Menu",
-                                    "Added health bar placeholder"
+                                    "first released Version",
+                                    "added a Menu",
+                                    "added health bar placeholder"
                                 ]
                             }
                         ]
@@ -92,7 +94,7 @@ export function Download() {
                                 <h4 className="h4 mb-0">Download App</h4>
                             </div>
                             <div className="card-body">
-                                <SelectOS os_type={os_type} update_os={update_os} version={version} versionData={versionData} updateVersion={updateVersion} />
+                                <SelectOS os_type={os_type} update_os={update_os} versionData={versionData} updateVersion={updateVersion} />
                                 <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} versionData={versionData} />
                                 <DownloadButton version={version} os_type={os_type} />
                             </div>
@@ -123,7 +125,7 @@ export function Download() {
 }
 
 
-function SelectOS ({os_type, update_os, version, versionData, updateVersion }) {
+function SelectOS ({os_type, update_os, versionData, updateVersion }) {
     function onChange (updateValue) {
         const updatedOs = updateValue.target.value;
         update_os(updatedOs);
@@ -199,17 +201,39 @@ function DownloadButton ({version, os_type}) {
 
 function UpdateInfoDisplay ({version, os_type, versionData}) {
 
+    function getUpdateNotes () {
+        for (const curVersionGroup of versionData[os_type].versionGroups) {
+            for (const curVersion of curVersionGroup.availableVersions) {
+                if (curVersion.updateNum == version) {
+                    return curVersion.updateNotes;
+                }
+            }
+        }    
+    }
+
+    function getVersionName () {
+        for (const curVersionGroup of versionData[os_type].versionGroups) {
+            for (const curVersion of curVersionGroup.availableVersions) {
+                if (curVersion.updateNum == version) {
+                    return curVersion.versionName;
+                }
+            }
+        }    
+    }
+
     const cardElements = [];
     cardElements.push(
-        // <p><span id="selected_game_version" className="text-muted">{}</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
+        <p key={version}><span key={version} className="text-muted">{version} - </span> The {getVersionName()} Update!</p>
     )
 
+    const updateNotes = getUpdateNotes()
+    updateNotes.map(curNote => (
+        cardElements.push(<li key={curNote}>{curNote}</li>)
+    ))
+
     return (
-        <div className="card-body">
-            <p><span id="selected_game_version" className="text-muted">{version}</span> <span id="selected_game_version_name">The Arctic Update!</span></p>
-            <ul>
-                {cardElements}
-            </ul>
+        <div className='card-body'>
+            {cardElements}
         </div>
     );
 }
