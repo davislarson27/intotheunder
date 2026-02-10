@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Download() {
     // declare react state variables
-    const [os_type, update_os] = React.useState("mac-silicon");
+    const [os_type, update_os] = React.useState("macsilicon");
     const [version, updateVersion] = React.useState("v1.4.0");
 
     // main return value
@@ -56,7 +56,7 @@ function SelectOS ({os_type, update_os}) {
         <p>
             <label className="form-label">Select your computer type:</label>
             <select className="form-select" value={os_type} onChange={onChange}>
-                <option value="mac-silicon">Mac (Silicon)</option>
+                <option value="macsilicon">Mac (Silicon)</option>
                 <option value="windows">Windows</option>
             </select>
         </p>
@@ -87,8 +87,12 @@ function SelectVersion ({version, updateVersion}) {
 
 function DownloadButton ({version, os_type}) {
     function downloadGame () {
-        var file_extention = ".txt"
-        var file_path = "/" + "game_downloads/" + os_type + "/" + version + file_extention;
+        const file_extention = {
+            windows:".zip",
+            macsilicon: ".dmg"
+        }
+
+        var file_path = "/" + "game_downloads/" + os_type + "/" + version + file_extention[os_type];
 
         const link = document.createElement("a");
         link.href = file_path;
