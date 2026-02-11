@@ -8,7 +8,62 @@ export function Feedback() {
                 commentVersion: "v1.4.0",
                 commentText: "The game is cool but crafting unique blocks would make it even better",
                 likes: 87
-            }
+            },
+            {
+                user: "JimTheThird",
+                commentVersion: "v1.4.0",
+                commentText: "We should let us remove stuff from our inventory or throw it out",
+                likes: 62
+            },
+            {
+                user: "CrazyDave67",
+                commentVersion: "v1.3.2",
+                commentText: "I wish that we had chests in the game",
+                likes: 26
+            },
+            {
+                user: "McDonaldsLover",
+                commentVersion: "v1.4.0",
+                commentText: "Increase the build height limit!",
+                likes: 17
+            },
+            {
+                user: "JoseTheGOAT",
+                commentVersion: "v1.4.0",
+                commentText: "A background would be so cool! Maybe like in Terraria.",
+                likes: 17
+            },
+            {
+                user: "McDonaldsLover",
+                commentVersion: "v1.3.1",
+                commentText: "Ok imagine this. Right now the insides of buildings look off because they don't have backgrounds. Imagine if they had a way to add blocks as a wall that made it look more like you were inside! I would be so down for that. Then we wouldn't have to dig out the ground to build tall stuff!",
+                likes: 14
+            },
+            {
+                user: "Johnny123",
+                commentVersion: "v1.3.0",
+                commentText: "Doors please?",
+                likes: 11
+            },
+            {
+                user: "rambo2.0",
+                commentVersion: "v1.3.1",
+                commentText: "Please make swimming mechanics more consistent!",
+                likes: 9
+            },
+            {
+                user: "WhatAUser111",
+                commentVersion: "v1.3.1",
+                commentText: "Ladders would be so nice",
+                likes: 3
+            },
+            {
+                user: "MegaBatman",
+                commentVersion: "v1.4.0",
+                commentText: "Please add the ability to take damage!",
+                likes: 0
+            },
+
         ]
     )
 
