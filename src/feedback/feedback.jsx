@@ -180,9 +180,15 @@ export function Feedback() {
 function Comments ({comments, updateComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function loadMoreComments () {
-        updateCountLoadedComments(
+        updateCountLoadedComments (
             countLoadedComments + 5
-        )
+        );
+    }
+
+    function collapseComments () {
+        updateCountLoadedComments (
+            DEFAULTLOADEDCOMMENTS
+        );
     }
     
     const commentElements = [];
@@ -214,12 +220,37 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
         )
     }
 
+    const commentControlButtons = [];
+    if (comments.length > countLoadedComments) {
+        commentControlButtons.push(
+            <button key={countLoadedComments} className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button>
+        );
+        if (comments.length <= countLoadedComments) {
+            commentControlButtons.push(
+                <br key={countLoadedComments} className="d-block d-lg-none" />
+            );
+        }
+        if (comments.length <= countLoadedComments) {
+            commentControlButtons.push(
+                <button key={countLoadedComments} className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button>
+            );
+        }   
+    }
+    else if (comments.length <= countLoadedComments) {
+        commentControlButtons.push(
+            <button key={countLoadedComments} className="btn btn-outline-danger" onClick={collapseComments}>Collapse Comments</button>
+        );
+    }
+
     return (
         <div className="container">
             {commentElements}
             <div className="row g-4 mt-3" id="move_comment_sections_buttons">
                     <div className="col-12 col-md-8">
-                        <button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button>
+                        {/* <button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button>
+                        <br className="d-block d-lg-none" />
+                        <button className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button> */}
+                        {commentControlButtons}
                     </div>
             </div>
         </div>
