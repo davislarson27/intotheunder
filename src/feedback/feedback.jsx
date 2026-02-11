@@ -173,7 +173,16 @@ export function Feedback() {
 
                 <div className="row g-4 mt-1 comment" id="commentNum1">
                     <div className="col-12 col-md-8">
-                        <h4>Top Suggestions:</h4>
+                        {comments.length > 0 ? (
+                            <><h4>Top Suggestions:</h4></>
+                        ): (
+                            <>
+                                <h4>No Suggestions Yet</h4>
+                                <p>Be the first to give one!</p>
+                            </>
+                        )
+                        }
+                        
                     </div>
                 </div>
             
