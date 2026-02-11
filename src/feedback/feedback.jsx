@@ -125,193 +125,14 @@ export function Feedback() {
                         <h4>Top Suggestions:</h4>
                     </div>
                 </div>
+            
+            </div>
 
-                <div className="row g-4 mt-1 comment" id="commentNum1">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">BestUserNameEver</span> <span className="text-muted">v1.4.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">The game is cool but crafting unique blocks would make it even better</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding : "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>87</p>
-                            <span className="like_button_container" id="like_1">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>    
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum2">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">JimTheThird</span> <span className="text-muted">v1.4.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">We should let us remove stuff from our inventory or throw it out</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>62</p>
-                            <span className="like_button_container" id="like_2">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum3">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">CrazyDave67</span> <span className="text-muted">v1.3.2</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">I wish that we had chests in the game</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>23</p>
-                            <span className="like_button_container" id="like_3">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>    
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum4">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">McDonaldsLover</span> <span className="text-muted">v1.4.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Increase the build height limit!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_4">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum5">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">JoseTheGOAT</span> <span className="text-muted">v1.4.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">A background would be so cool! Maybe like in Terraria.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_5">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum6">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">McDonaldsLover</span> <span className="text-muted">v1.3.1</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Ok imagine this. Right now the insides of buildings look off because they don't have backgrounds. Imagine if they had a way to add blocks as a wall that made it look more like you were inside! I would be so down for that. Then we wouldn't have to dig out the ground to build tall stuff!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_6">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum7">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">Johnny123</span> <span className="text-muted">v1.3.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Doors please?</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_7">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>    
-                    </div>
-                </div>
-                <div className="row g-4 mt-1 comment" id="commentNum8">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">rambo2.0</span> <span className="text-muted">v1.3.1</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Please make swimming mechanics more consistent!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_8">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row g-4 mt-1 comment" id="commentNum9">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">WhatAUser111</span> <span className="text-muted">v1.3.1</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Ladders would be so nice</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_9">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>    
-                    </div>
-                </div>
-
-                <div className="row g-4 mt-1 comment" id="commentNum10">
-                    <div className="col-10 col-md-7">
-                        <p className="comment"><span className="comment_user">MegaBatman</span> <span className="text-muted">v1.4.0</span></p>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="commenet">Please add the ability to take damage!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-1 me-2">
-                        <div className="full_like_container" style={{padding: "0px"}}>
-                            <p className="like_count" style={{marginTop: "1.5em"}}>17</p>
-                            <span className="like_button_container" id="like_10">
-                                <span className="material-icons-outlined like_button">thumb_up</span>
-                            </span>
-                        </div>    
-                    </div>
-                </div>
+            
+            <Comments comments={comments} updateComments={updateComments} />
 
 
-
+            <div className="container">
                 <div className="row g-4 mt-3" id="move_comment_sections_buttons">
                     <div className="col-12 col-md-8">
                         <button className="btn btn-outline-primary">Load More Comments</button>
@@ -339,11 +160,43 @@ export function Feedback() {
                 </div>
 
 
-
-
             </div>
 
 
         </main>
+    );
+}
+
+function Comments ({comments}) {
+    
+    const commentElements = [];
+    for (const comment of comments) {
+        commentElements.push(
+            <div className="row g-4 mt-1 comment" id="commentNum9">
+                <div className="col-10 col-md-7">
+                    <p className="comment"><span key={comment.user} className="comment_user">{comment.user}</span> <span key={comment.commentVersion} className="text-muted">{comment.commentVersion}</span></p>
+                    <div className="card">
+                        <div className="card-body">
+                            <p key={comment.commentText} className="commenet">{comment.commentText}</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-1 me-2">
+                    <div className="full_like_container" style={{padding: "0px"}}>
+                        <p key={comment.likes} className="like_count" style={{marginTop: "1.5em"}}>{comment.likes}</p>
+                        <span className="like_button_container" id="like_9">
+                            <span className="material-icons-outlined like_button">thumb_up</span>
+                        </span>
+                    </div>    
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div className="container">
+            {commentElements}
+        </div>
+        
     );
 }
