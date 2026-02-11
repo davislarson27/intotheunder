@@ -4,13 +4,14 @@ export function Feedback() {
     const [comments, updateComments] = React.useState (
         [
             {
-                user: "",
+                user: "BestUserNameEver",
                 commentVersion: "v1.4.0",
                 commentText: "The game is cool but crafting unique blocks would make it even better",
                 likes: 87
             }
         ]
     )
+
     return (
     
         <main className="py-4 flex-grow-1">
