@@ -55,12 +55,30 @@ export function Feedback() {
                 user: "WhatAUser111",
                 commentVersion: "v1.3.1",
                 commentText: "Ladders would be so nice",
-                likes: 3
+                likes: 5
             },
             {
                 user: "MegaBatman",
                 commentVersion: "v1.4.0",
                 commentText: "Please add the ability to take damage!",
+                likes: 2
+            },
+            {
+                user: "SomeoneCool",
+                commentVersion: "v1.4.0",
+                commentText: "Here's some bad advice",
+                likes: 1
+            },
+            {
+                user: "User123",
+                commentVersion: "v1.4.0",
+                commentText: "I like cheese",
+                likes: 0
+            },
+            {
+                user: "TheFakeJimmer",
+                commentVersion: "v1.4.0",
+                commentText: "you should add the whole energy bar thing",
                 likes: 0
             },
 
