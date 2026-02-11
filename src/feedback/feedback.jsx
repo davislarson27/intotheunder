@@ -4,7 +4,7 @@ export function Feedback() {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
-    const [comments, updateComments] = React.useState (
+    const [loadedComments, updateLoadedComments] = React.useState (
         [
             {
                 commentID: 1,
@@ -135,6 +135,7 @@ export function Feedback() {
 
         ]
     );
+    const [filteredComments, updateFilteredComments] = React.useState (loadedComments)
 
     return (
     
@@ -173,7 +174,7 @@ export function Feedback() {
 
                 <div className="row g-4 mt-1 comment" id="commentNum1">
                     <div className="col-12 col-md-8">
-                        {comments.length > 0 ? (
+                        {filteredComments.length > 0 ? (
                             <><h4>Top Suggestions:</h4></>
                         ): (
                             <>
@@ -189,7 +190,7 @@ export function Feedback() {
             </div>
 
 
-            <Comments comments={comments} updateComments={updateComments} countLoadedComments={countLoadedComments} updateCountLoadedComments={updateCountLoadedComments} DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS} />
+            <Comments comments={filteredComments} updateComments={updateFilteredComments} countLoadedComments={countLoadedComments} updateCountLoadedComments={updateCountLoadedComments} DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS} />
 
 
             <div className="container">
@@ -272,16 +273,16 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
                     <div className="col-12 col-md-8">
 
                         {comments.length > countLoadedComments && (
-                            <><button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button></>
+                            <><button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Suggestions</button></>
                         )}
                         {comments.length > countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
                             <><br className="d-block d-lg-none" /></>
                         )}
                         {comments.length > countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
-                            <><button className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button></>
+                            <><button className="btn btn-outline-danger ms-md-3 mt-3 mt-lg-0" onClick={collapseComments}>Collapse Suggestions</button></>
                         )}
                         {comments.length <= countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
-                            <><button className="btn btn-outline-danger" onClick={collapseComments}>Collapse Comments</button></>
+                            <><button className="btn btn-outline-danger" onClick={collapseComments}>Collapse Suggestions</button></>
                         )}
 
                     </div>
