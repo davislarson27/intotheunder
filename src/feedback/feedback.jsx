@@ -190,12 +190,12 @@ export function Feedback() {
 
                 <div className="row mt-5">
                     <div className="col-12 col-md-8">
-                        <AddCommentCard 
-                            
+                        <AddCommentCard
+                            loadedComments={loadedComments}
+                            updateLoadedComments={updateLoadedComments}
                         />
                     </div>
                 </div>
-
 
             </div>
 
@@ -314,19 +314,67 @@ function Comments ({comments, countLoadedComments, updateCountLoadedComments, DE
     );
 }
 
-function AddCommentCard ({}) {
+function AddCommentCard ({loadedComments, updateLoadedComments}) {
+    const [userComment, updateUserComment] = React.useState("");
+
+    function IsValidComment () { // this needs to be done on the server for data safety
+        if (userComment.length < 10) {
+            alert("Failed to Submit: Suggestions Must Be Longer Than 10 Characters!");
+            return false;
+        }
+        else if (false) {
+            // this will check for bad words. download the line below and figure out how to use it.
+            // npm install bad-words
+            // this part also needs to be done server side so users can't bypass it
+            alert("Failed to Submit: This Suggestion Does Not Meet Our Community Standards");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function submitComment () {
+        if (IsValidComment()) {
+            // this part will probably be replaced by calling the server
+            updateLoadedComments(
+                [
+                    ...loadedComments,
+                    {
+                        commentID: 90,
+                        user: "CurrentUser",
+                        commentVersion: "v1.4.0",
+                        commentText: userComment,
+                        likes: 0
+                    }
+                ]
+            );
+            
+            // now clear the text bos
+            updateUserComment("");
+
+            // alert the user that it succeeded
+            alert("Your Suggestion Was Submitted Successfully!");
+        }
+    }
+
+    function updateTyping (e) {
+        var textInput = e.target.value;
+        updateUserComment(textInput);
+    }
+
     return (
         <div className="card shadow-sm">
             <div className="card-header">
                 <h4>Submit Your Idea!</h4>
             </div>
-            <form className="card-body" action="feedback.html">
+            <div className="card-body">
                 <label htmlFor="user_submission_form" className="form-label">
                     Do you have an idea nobody has shared yet? Share it here!
                 </label>
-                <textarea className ="form-control mb-3" id="user_submission_form" label="Submit Your Idea" placeholder="type idea here!" name="user_submission" required></textarea>
-                <button className="btn btn-primary" type="submit">Submit Idea!</button>
-            </form>
+                <textarea onChange={updateTyping} value={userComment} className ="form-control mb-3" id="user_submission_form" label="Submit Your Idea" placeholder="type idea here!" name="user_submission"></textarea>
+                <button className="btn btn-primary" type="submit" onClick={submitComment}>Submit Idea!</button>
+            </div>
 
         </div>
     );
