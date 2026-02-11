@@ -1,6 +1,7 @@
 import React from 'react';
 
 export function Feedback() {
+
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
     const [comments, updateComments] = React.useState (
@@ -73,27 +74,62 @@ export function Feedback() {
                 user: "MegaBatman",
                 commentVersion: "v1.4.0",
                 commentText: "Please add the ability to take damage!",
-                likes: 2
+                likes: 3
             },
             {
                 commentID: 11,
                 user: "SomeoneCool",
                 commentVersion: "v1.4.0",
                 commentText: "Here's some bad advice",
-                likes: 1
+                likes: 2
             },
             {
                 commentID: 12,
                 user: "User123",
                 commentVersion: "v1.4.0",
                 commentText: "I like cheese",
-                likes: 0
+                likes: 2
             },
             {
                 commentID: 13,
                 user: "TheFakeJimmer",
                 commentVersion: "v1.4.0",
                 commentText: "you should add the whole energy bar thing",
+                likes: 1
+            },
+            {
+                commentID: 14,
+                user: "MabelMagnet",
+                commentVersion: "v1.4.0",
+                commentText: "Multiplayer would be cool",
+                likes: 1
+            },
+            {
+                commentID: 15,
+                user: "JasonBourne123",
+                commentVersion: "v1.4.0",
+                commentText: "what about adding a hunger bar?",
+                likes: 0
+            },
+            {
+                commentID: 16,
+                user: "NotAPolitician",
+                commentVersion: "v1.4.0",
+                commentText: "Can we choose between different skins",
+                likes: 0
+            },
+            {
+                commentID: 17,
+                user: "TheJoker",
+                commentVersion: "v1.4.0",
+                commentText: "We should have creative mode like in Minecraft",
+                likes: 0
+            },
+            {
+                commentID: 18,
+                user: "CougarsBoulevard",
+                commentVersion: "v1.4.0",
+                commentText: "We should be able to play on Linux",
                 likes: 0
             },
 
@@ -220,34 +256,25 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
         )
     }
 
-    const commentControlButtons = [];
-    if (comments.length > countLoadedComments) {
-        commentControlButtons.push(
-            <button key={countLoadedComments} className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button>
-        );
-        if (comments.length <= countLoadedComments) {
-            commentControlButtons.push(
-                <br key={countLoadedComments} className="d-block d-lg-none" />
-            );
-        }
-        if (comments.length <= countLoadedComments) {
-            commentControlButtons.push(
-                <button key={countLoadedComments} className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button>
-            );
-        }   
-    }
-    else if (comments.length <= countLoadedComments) {
-        commentControlButtons.push(
-            <button key={countLoadedComments} className="btn btn-outline-danger" onClick={collapseComments}>Collapse Comments</button>
-        );
-    }
-
     return (
         <div className="container">
             {commentElements}
             <div className="row g-4 mt-3" id="move_comment_sections_buttons">
                     <div className="col-12 col-md-8">
-                        {commentControlButtons}
+
+                        {comments.length > countLoadedComments && (
+                            <><button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button></>
+                        )}
+                        {comments.length > countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
+                            <><br className="d-block d-lg-none" /></>
+                        )}
+                        {comments.length > countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
+                            <><button className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button></>
+                        )}
+                        {comments.length <= countLoadedComments && countLoadedComments > DEFAULTLOADEDCOMMENTS && (
+                            <><button className="btn btn-outline-danger" onClick={collapseComments}>Collapse Comments</button></>
+                        )}
+
                     </div>
             </div>
         </div>
