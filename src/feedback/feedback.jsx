@@ -247,9 +247,6 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
             {commentElements}
             <div className="row g-4 mt-3" id="move_comment_sections_buttons">
                     <div className="col-12 col-md-8">
-                        {/* <button className="btn btn-outline-primary" onClick={loadMoreComments}>Load More Comments</button>
-                        <br className="d-block d-lg-none" />
-                        <button className="btn btn-outline-danger ms-md-3" onClick={collapseComments}>Collapse Comments</button> */}
                         {commentControlButtons}
                     </div>
             </div>
