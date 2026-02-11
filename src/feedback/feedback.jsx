@@ -4,7 +4,7 @@ export function Feedback() {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
-    const [loadedComments, updateLoadedComments] = React.useState (
+    const [dbComments, updateDbComments] = React.useState ( // these will be fetched from the server and filtered BY THE SERVER
         [
             {
                 commentID: 1,
@@ -135,7 +135,7 @@ export function Feedback() {
 
         ]
     );
-    const [filteredComments, updateFilteredComments] = React.useState (loadedComments)
+    const [loadedComments, updateLoadedComments] = React.useState (dbComments)
 
     return (
     
@@ -148,33 +148,20 @@ export function Feedback() {
                         <h3>Game Update Suggestions</h3>
                         <p className="text-muted">upvote ideas that you like and the developer will see them! please be respectful!</p>
                     </div>
-                    <div className="col-12 col-md-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <label className="form-label">Filter by Game Version</label>
-                                <select className="form-select">
-                                    <optgroup label="all">
-                                        <option>all versions</option>
-                                    </optgroup>
-                                    <optgroup label="v1.4">
-                                        <option>v1.4.0 (current)</option>
-                                    </optgroup>
-                                    <optgroup label="1.3">
-                                        <option>v1.3.2</option>
-                                        <option>v1.3.1</option>
-                                        <option>v1.3.0</option>    
-                                    </optgroup>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    < FilterComments 
+                        dbComments={dbComments}
+                        loadedComments={loadedComments}
+                        updateLoadedComments={updateLoadedComments}
+                        updateCountLoadedComments={updateCountLoadedComments}
+                        DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
+                    />
                 </div>
 
                 <hr className="mt-4"/>
 
                 <div className="row g-4 mt-1 comment" id="commentNum1">
                     <div className="col-12 col-md-8">
-                        {filteredComments.length > 0 ? (
+                        {loadedComments.length > 0 ? (
                             <><h4>Top Suggestions:</h4></>
                         ): (
                             <>
@@ -190,7 +177,13 @@ export function Feedback() {
             </div>
 
 
-            <Comments comments={filteredComments} updateComments={updateFilteredComments} countLoadedComments={countLoadedComments} updateCountLoadedComments={updateCountLoadedComments} DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS} />
+            <Comments
+                comments={loadedComments}
+                updateComments={updateLoadedComments}
+                countLoadedComments={countLoadedComments}
+                updateCountLoadedComments={updateCountLoadedComments}
+                DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
+            />
 
 
             <div className="container">
@@ -223,6 +216,48 @@ export function Feedback() {
     );
 }
 
+function FilterComments ({dbComments, loadedComments, updateLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+
+    function applyFilter (selectedVersion) { // this will probably call the server to replace the comments at some point
+        const filterVersion = selectedVersion.target.value;
+        updateCountLoadedComments(DEFAULTLOADEDCOMMENTS);
+        if (filterVersion == "all") {
+            updateLoadedComments(
+                dbComments
+            );
+        }
+        else {
+            updateLoadedComments(
+                dbComments.filter(comment => comment.commentVersion == filterVersion)
+            );    
+        }
+    }
+
+    return (
+        <div className="col-12 col-md-4">
+            <div className="card">
+                <div className="card-body">
+                    <label className="form-label">Filter by Game Version</label>
+                    <select className="form-select" onChange={applyFilter}>
+                        <optgroup label="all">
+                            <option value="all">all versions</option>
+                        </optgroup>
+                        <optgroup label="v1.4">
+                            <option value="v1.4.0">v1.4.0 (current)</option>
+                        </optgroup>
+                        <optgroup label="1.3">
+                            <option value="v1.3.2">v1.3.2</option>
+                            <option value="v1.3.1">v1.3.1</option>
+                            <option value="v1.3.0">v1.3.0</option>    
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+        </div>
+    );
+
+}
+
 function Comments ({comments, updateComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function loadMoreComments () {
@@ -245,7 +280,7 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
             break;
         }
         commentElements.push(
-            <div key={comment.commentID} className="row g-4 mt-1 comment" id="commentNum9">
+            <div key={comment.commentID} className="row g-4 mt-1 comment" id={"commentNum" + comment.commentID}>
                 <div className="col-10 col-md-7">
                     <p className="comment"><span className="comment_user">{comment.user}</span> <span className="text-muted">{comment.commentVersion}</span></p>
                     <div className="card">
