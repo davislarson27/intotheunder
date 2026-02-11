@@ -150,7 +150,6 @@ export function Feedback() {
                     </div>
                     < FilterComments 
                         dbComments={dbComments}
-                        loadedComments={loadedComments}
                         updateLoadedComments={updateLoadedComments}
                         updateCountLoadedComments={updateCountLoadedComments}
                         DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
@@ -179,7 +178,6 @@ export function Feedback() {
 
             <Comments
                 comments={loadedComments}
-                updateComments={updateLoadedComments}
                 countLoadedComments={countLoadedComments}
                 updateCountLoadedComments={updateCountLoadedComments}
                 DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
@@ -192,19 +190,9 @@ export function Feedback() {
 
                 <div className="row mt-5">
                     <div className="col-12 col-md-8">
-                        <div className="card shadow-sm">
-                            <div className="card-header">
-                                <h4>Submit Your Idea!</h4>
-                            </div>
-                            <form className="card-body" action="feedback.html">
-                                <label htmlFor="user_submission_form" className="form-label">
-                                    Do you have an idea nobody has shared yet? Share it here!
-                                </label>
-                                <textarea className ="form-control mb-3" id="user_submission_form" label="Submit Your Idea" placeholder="type idea here!" name="user_submission" required></textarea>
-                                <button className="btn btn-primary" type="submit">Submit Idea!</button>
-                            </form>
-
-                        </div>
+                        <AddCommentCard 
+                            
+                        />
                     </div>
                 </div>
 
@@ -216,7 +204,7 @@ export function Feedback() {
     );
 }
 
-function FilterComments ({dbComments, loadedComments, updateLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+function FilterComments ({dbComments, updateLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function applyFilter (selectedVersion) { // this will probably call the server to replace the comments at some point
         const filterVersion = selectedVersion.target.value;
@@ -255,10 +243,9 @@ function FilterComments ({dbComments, loadedComments, updateLoadedComments, upda
             </div>
         </div>
     );
-
 }
 
-function Comments ({comments, updateComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+function Comments ({comments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
@@ -324,5 +311,23 @@ function Comments ({comments, updateComments, countLoadedComments, updateCountLo
             </div>
         </div>
         
+    );
+}
+
+function AddCommentCard ({}) {
+    return (
+        <div className="card shadow-sm">
+            <div className="card-header">
+                <h4>Submit Your Idea!</h4>
+            </div>
+            <form className="card-body" action="feedback.html">
+                <label htmlFor="user_submission_form" className="form-label">
+                    Do you have an idea nobody has shared yet? Share it here!
+                </label>
+                <textarea className ="form-control mb-3" id="user_submission_form" label="Submit Your Idea" placeholder="type idea here!" name="user_submission" required></textarea>
+                <button className="btn btn-primary" type="submit">Submit Idea!</button>
+            </form>
+
+        </div>
     );
 }
