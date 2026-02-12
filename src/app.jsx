@@ -80,3 +80,38 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+function DataBaseStructureMock () {
+    const [userData, changeUserData] = React.useState (
+        {
+            userName: "userName123",
+            passwordToken: "tokenofsomeform",
+            userEmail: "userEmail@email.com",
+            lastVersionDownloaded: "v1.4.0",
+            lastOSDownloaded: "macsilicon",
+            userCommentsIDt: [ // may want to figure out sets at some point for this
+                11,
+                12    
+            ],
+
+            // maybe store things like commentIDs liked
+            // maybe store list of commentIDs made by user
+            // maybe store other user stats
+        }
+        // needs some way to say it is logged in
+    )
+
+    const [comments, changeComments] = React.useState (
+        [
+            {
+                commentID: 1,
+                user: "BestUserNameEver",
+                commentVersion: "v1.4.0",
+                commentText: "The game is cool but crafting unique blocks would make it even better",
+                likes: 87,
+                isLikedByUser: false // server figures out whether the user has liked the comment
+                // when user likes: call function that likes on the page, then tells the server it was liked. it validates.
+            },
+        ]
+    )
+}
