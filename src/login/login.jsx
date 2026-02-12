@@ -17,6 +17,7 @@ export function Login({userData, changeUserData}) {
         if (userObject == null) {
             alert("username or password is incorrect");
         } else {
+            changeUserData(userObject);
             alert(`${userObject.userName} was logged in successfully`)
         }
     }

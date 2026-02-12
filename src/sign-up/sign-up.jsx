@@ -16,12 +16,12 @@ export function Sign_up({userData, changeUserData}) {
 
         // this is testing code
         if (returnUserObject.user != null) {
+            changeUserData(returnUserObject.user);
             alert(returnUserObject.user.userName);
         }
         else {
             alert("ran into an error creating your account")
         }
-    
     }
     
   return (
