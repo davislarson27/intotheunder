@@ -1,8 +1,8 @@
 // log in and account creation functions
-export function submitNewAccount (userName, userEmail, userPassword) {
+export function createNewAccount (userName, userEmail, userPassword) {
 
     // load userList
-    const userList = JSON.parse(localStorage('userList') || '[]');
+    let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
     // create userObject to be returned
     let userObject = {
@@ -47,7 +47,8 @@ export function submitNewAccount (userName, userEmail, userPassword) {
     userObject.user.passwordToken = userPassword;
 
     // now write that to the database (localstorage)
-    localStorage.setItem(JSON.stringify(userObject.user)); // we don't want to save the error handling
+    userList.push(userObject.user);
+    localStorage.setItem('userList', JSON.stringify(userList)); // we don't want to save the error handling
 
     // return userObject to the user
     return userObject;

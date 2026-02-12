@@ -1,8 +1,29 @@
 import React from 'react';
 
 import { NavLink } from "react-router-dom";
+import { createNewAccount } from '../service';
 
 export function Sign_up() {
+    const [userNameInput, setUserNameInput] = React.useState ("");
+    const [userEmailInput, setUserEmailInput] = React.useState ("");
+    const [userPasswordInput, setUserPasswordInput] = React.useState ("");
+
+    function submitNewAccount (event) {
+        event.preventDefault();
+        const userSubmission = event.target.value;
+
+        const returnUserObject = createNewAccount(userNameInput, userEmailInput, userPasswordInput);
+
+        // this is testing code
+        if (returnUserObject.user != null) {
+            alert(returnUserObject.user.userName);
+        }
+        else {
+            alert("ran into an error creating your account")
+        }
+    
+    }
+    
   return (
     <main className="py-4 flex-grow-1">
 
@@ -15,23 +36,23 @@ export function Sign_up() {
                             <h4 className="h-4">Create an account</h4>
                         </div>
                         <div className="card-body">
-                            <form>
+                            <form onSubmit={submitNewAccount}>
                               
                                 <div className="mb-4 text-muted">already have an account - log in <NavLink to="/login">here</NavLink>!</div>
 
                                 <div className="mb-3">
-                                    <label for="userName" className="form-label">Username</label>
-                                    <input id="userName" type="text" name="userName" className="form-control" placeholder="username123" required></input>
+                                    <label htmlFor="userName" className="form-label">Username</label>
+                                    <input id="userName" type="text" name="userName" className="form-control" placeholder="username123" onChange={(e) => setUserNameInput(e.target.value)} required></input>
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="email" className="form-label">Email</label>
-                                    <input id="email" type="email" name="email" className="form-control" placeholder="name@example.com" required></input>
+                                    <label htmlFor="email" className="form-label">Email</label>
+                                    <input id="email" type="email" name="email" className="form-control" placeholder="name@example.com" onChange={(e) => setUserEmailInput(e.target.value)} required></input>
                                 </div>
 
                                 <div className="mb-3">
-                                    <label for="password" className="form-label">Password</label>
-                                    <input id="password" type="password" name="password" className="form-control" placeholder="enter password here" required></input>
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <input id="password" type="password" name="password" className="form-control" placeholder="enter password here" onChange={(e) => setUserPasswordInput(e.target.value)} required></input>
                                 </div>
 
 
