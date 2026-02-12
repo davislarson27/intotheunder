@@ -5,7 +5,7 @@ export function createNewAccount (userName, userEmail, userPassword) {
     let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
     // create userReturnObject to be returned
-    let userReturnObject = {
+    let userObject = {
         user: {
             userName: null,
             passwordToken: null,
@@ -24,46 +24,40 @@ export function createNewAccount (userName, userEmail, userPassword) {
 
     // check for invalid submissions
     if (IsInList(userName, userList, "userName")) {
-        userReturnObject.userNameTaken = true;
-        userReturnObject.user = null;
+        userObject.userNameTaken = true;
+        userObject.user = null;
     }
     if (IsInList(userEmail, userList, "userEmail")) {
-        userReturnObject.userEmailTaken = true;
-        userReturnObject.user = null;
+        userObject.userEmailTaken = true;
+        userObject.user = null;
     }
     if (isNotValidEmailForm(userEmail)) {
-        userReturnObject.userEmailInvalid = true;
-        userReturnObject.user = null;
+        userObject.userEmailInvalid = true;
+        userObject.user = null;
     }
 
     // return if fail
-    if (userReturnObject.user == null) {
-        return userReturnObject;
+    if (userObject.user == null) {
+        return userObject;
     }
 
     // now continue if userName and email are valid
-    userReturnObject.user.userName = userName;
-    userReturnObject.user.userEmail = userEmail;
-    userReturnObject.user.passwordToken = userPassword;
+    userObject.user.userName = userName;
+    userObject.user.userEmail = userEmail;
+    userObject.user.passwordToken = userPassword;
 
     // now write that to the database (localstorage)
-    userList.push(userReturnObject.user);
+    userList.push(userObject.user);
     localStorage.setItem('userList', JSON.stringify(userList)); // we don't want to save the error handling
 
-    // return userReturnObject to the user
-    return userReturnObject;
+    // return cleaned userObject to the user
+    return cleanUserObject(userObject);
 }
 
-// function createUserObject () {
-//     return {
-//             userName: null,
-//             passwordToken: null,
-//             userEmail: null,
-//             lastVersionDownloaded: null,
-//             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
-//             userCommentsIDs: []
-//         }
-// }
+function cleanUserObject (userObject) { // returns user object that can be returned (cleans off private data)
+    const {passwordToken, ...cleanedUser} = userObject;
+    return cleanedUser;
+}
 
 function IsInList (lookUp, list, listAttr) {
     for (const item of list) {
@@ -95,7 +89,7 @@ export function logInUser (userName, password) {
     const userObject = getUserObject(userName, userList, "userName")
 
     if (userObject != null && password == userObject.userPassword) {
-        return userObject;
+        return cleanUserObject(userObject);
     }
     else {
         return null;
