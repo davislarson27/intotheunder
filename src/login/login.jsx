@@ -21,6 +21,10 @@ export function Login() {
         }
     }
 
+    function submitLogInGoogle () {
+        alert("error: google log in is not currently available");
+    }
+
     return (
         <main className="py-4 flex-grow-1">
                 
@@ -52,7 +56,7 @@ export function Login() {
                                     </div>
 
                                     <div className="mb-3">
-                                        <button id="google_login" className="btn btn-outline-secondary w-100">Log in With Google</button>
+                                        <button type="button" id="google_login" className="btn btn-outline-secondary w-100" onClick={submitLogInGoogle}>Log in With Google</button>
                                     </div>
 
                                 </form>
