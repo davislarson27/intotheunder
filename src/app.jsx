@@ -96,7 +96,6 @@ function DataBaseStructureMock () {
 
             // maybe store list of commentIDs made by user
         }
-        // needs some way to say it is logged in
     )
 
     const [comments, changeComments] = React.useState (
