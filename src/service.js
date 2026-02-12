@@ -72,21 +72,21 @@ function isNotValidEmailForm (email) { // we'll want to check this on the back e
     return false; // this isn't checking for anything yet
 }
 
-function getUserObject (inputUserName, userObjectList, listAttr) {
+function getUserObject (inputIdenfitier, userObjectList, attrIdenfitier) {
     for (const userObject of userObjectList) {
-        if (inputUserName == userObject[listAttr]) {
+        if (inputIdenfitier == userObject[attrIdenfitier]) {
             return userObject;
         }
     }
     return null;
 }
 
-export function logInUser (userName, password) {
+export function logInUser (userEmail, password) {
     // load userList
     const userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
     // get user
-    const userObject = getUserObject(userName, userList, "userName")
+    const userObject = getUserObject(userEmail, userList, "userEmail")
 
     if (userObject != null && password == userObject.passwordToken) {
         return cleanUserObject(userObject);
