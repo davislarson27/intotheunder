@@ -88,7 +88,7 @@ export function logInUser (userName, password) {
     // get user
     const userObject = getUserObject(userName, userList, "userName")
 
-    if (userObject != null && password == userObject.userPassword) {
+    if (userObject != null && password == userObject.passwordToken) {
         return cleanUserObject(userObject);
     }
     else {
