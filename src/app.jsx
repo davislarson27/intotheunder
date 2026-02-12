@@ -24,6 +24,14 @@ export default function App() {
 
     const [userData, changeUserData] = React.useState (null);
     const [dbComments, updateDbComments] = React.useState (getComments());
+
+    function isUserLoggedIn(userObject) {
+        if (userObject == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     
 
     return (
@@ -46,9 +54,18 @@ export default function App() {
                                             <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
                                             
                                             <ul className="dropdown-menu dropdown-menu-end">
-                                                <li><NavLink className="dropdown-item" to="login">Log In</NavLink></li>
-                                                <li><NavLink className="dropdown-item" to="sign-up">Sign Up</NavLink></li>
-                                                <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
+                                                { isUserLoggedIn(userData) ? (
+                                                    <>
+                                                        <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <li><NavLink className="dropdown-item" to="login">Log In</NavLink></li>
+                                                        <li><NavLink className="dropdown-item" to="sign-up">Sign Up</NavLink></li>
+                                                    </>
+                                                )}
+                                                
+                                                
                                             </ul>
                                             
                                         </li>
