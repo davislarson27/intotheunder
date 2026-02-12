@@ -54,6 +54,17 @@ export function createNewAccount (userName, userEmail, userPassword) {
     return userReturnObject;
 }
 
+// function createUserObject () {
+//     return {
+//             userName: null,
+//             passwordToken: null,
+//             userEmail: null,
+//             lastVersionDownloaded: null,
+//             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
+//             userCommentsIDs: []
+//         }
+// }
+
 function IsInList (lookUp, list, listAttr) {
     for (const item of list) {
         if (lookUp == item[listAttr]) {
@@ -65,4 +76,28 @@ function IsInList (lookUp, list, listAttr) {
 
 function isNotValidEmailForm (email) { // we'll want to check this on the back end as well as front end in case of dom manipulation
     return false; // this isn't checking for anything yet
+}
+
+function getUserObject (inputUserName, userObjectList, listAttr) {
+    for (const userObject of userObjectList) {
+        if (inputUserName == userObject[listAttr]) {
+            return userObject;
+        }
+    }
+    return null;
+}
+
+export function logInUser (userName, password) {
+    // load userList
+    const userList = JSON.parse(localStorage.getItem('userList') || '[]');
+
+    // get user
+    const userObject = getUserObject(userName, userList, "userName")
+
+    if (userObject != null && password == userObject.userPassword) {
+        return userObject;
+    }
+    else {
+        return null;
+    }
 }
