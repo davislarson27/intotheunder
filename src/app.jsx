@@ -89,14 +89,12 @@ function DataBaseStructureMock () {
             userEmail: "userEmail@email.com",
             lastVersionDownloaded: "v1.4.0",
             lastOSDownloaded: "macsilicon",
-            userCommentsIDt: [ // may want to figure out sets at some point for this
+            userCommentsIDs: [ // may want to figure out sets at some point for this
                 11,
                 12    
             ],
 
-            // maybe store things like commentIDs liked
             // maybe store list of commentIDs made by user
-            // maybe store other user stats
         }
         // needs some way to say it is logged in
     )

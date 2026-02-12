@@ -4,15 +4,15 @@ export function createNewAccount (userName, userEmail, userPassword) {
     // load userList
     let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
-    // create userObject to be returned
-    let userObject = {
+    // create userReturnObject to be returned
+    let userReturnObject = {
         user: {
             userName: null,
             passwordToken: null,
             userEmail: null,
             lastVersionDownloaded: null,
             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
-            userCommentsIDt: []
+            userCommentsIDs: []
         },
         error: {
             userNameTaken: false,
@@ -24,34 +24,34 @@ export function createNewAccount (userName, userEmail, userPassword) {
 
     // check for invalid submissions
     if (IsInList(userName, userList, "userName")) {
-        userObject.userNameTaken = true;
-        userObject.user = null;
+        userReturnObject.userNameTaken = true;
+        userReturnObject.user = null;
     }
     if (IsInList(userEmail, userList, "userEmail")) {
-        userObject.userEmailTaken = true;
-        userObject.user = null;
+        userReturnObject.userEmailTaken = true;
+        userReturnObject.user = null;
     }
     if (isNotValidEmailForm(userEmail)) {
-        userObject.userEmailInvalid = true;
-        userObject.user = null;
+        userReturnObject.userEmailInvalid = true;
+        userReturnObject.user = null;
     }
 
     // return if fail
-    if (userObject.user == null) {
-        return userObject;
+    if (userReturnObject.user == null) {
+        return userReturnObject;
     }
 
     // now continue if userName and email are valid
-    userObject.user.userName = userName;
-    userObject.user.userEmail = userEmail;
-    userObject.user.passwordToken = userPassword;
+    userReturnObject.user.userName = userName;
+    userReturnObject.user.userEmail = userEmail;
+    userReturnObject.user.passwordToken = userPassword;
 
     // now write that to the database (localstorage)
-    userList.push(userObject.user);
+    userList.push(userReturnObject.user);
     localStorage.setItem('userList', JSON.stringify(userList)); // we don't want to save the error handling
 
-    // return userObject to the user
-    return userObject;
+    // return userReturnObject to the user
+    return userReturnObject;
 }
 
 function IsInList (lookUp, list, listAttr) {
