@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { logInUser } from '../service';
 
 
-export function Login() {
+export function Login({userData, changeUserData}) {
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
 

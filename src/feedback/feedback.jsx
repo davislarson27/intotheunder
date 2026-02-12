@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Feedback({dbComments, updateDbComments}) {
+export function Feedback({dbComments, updateDbComments, userData, changeUserData}) {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);

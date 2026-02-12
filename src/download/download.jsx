@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Download() {
+export function Download({userData, changeUserData}) {
     // declare react state variables
     const [versionData, updateVersionData] = React.useState (
         {

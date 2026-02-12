@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { createNewAccount } from '../service';
 
-export function Sign_up() {
+export function Sign_up({userData, changeUserData}) {
     const [userNameInput, setUserNameInput] = React.useState ("");
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");

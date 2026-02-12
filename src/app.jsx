@@ -62,11 +62,11 @@ export default function App() {
             <Routes>
                 <Route path='/' element={<Home />} exact />
                 <Route path='/home' element={<Home />} />
-                <Route path='/download' element={<Download />} />
-                <Route path='/feedback' element={<Feedback dbComments={dbComments} updateDbComments={updateDbComments} />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/sign-up' element={<Sign_up />} />
-                <Route path='/profile' element={<Profile />} />
+                <Route path='/download' element={<Download  userData={userData} changeUserData={changeUserData}/>} />
+                <Route path='/feedback' element={<Feedback userData={userData} changeUserData={changeUserData} dbComments={dbComments} updateDbComments={updateDbComments} />} />
+                <Route path='/login' element={<Login userData={userData} changeUserData={changeUserData} />} />
+                <Route path='/sign-up' element={<Sign_up userData={userData} changeUserData={changeUserData} />} />
+                <Route path='/profile' element={<Profile userData={userData} changeUserData={changeUserData} />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 

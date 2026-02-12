@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Profile() {
+export function Profile({userData, changeUserData}) {
   return (
     <main className="py-4 flex-grow-1">
 
