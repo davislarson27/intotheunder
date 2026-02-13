@@ -96,7 +96,7 @@ export function Download({userData, changeUserData}) {
                             <div className="card-body">
                                 <SelectOS os_type={os_type} update_os={update_os} versionData={versionData} updateVersion={updateVersion} />
                                 <SelectVersion version={version} updateVersion={updateVersion} os_type={os_type} versionData={versionData} />
-                                <DownloadButton version={version} os_type={os_type} />
+                                <DownloadButton version={version} os_type={os_type} userData={userData} changeUserData={changeUserData} />
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ function SelectVersion ({version, updateVersion, os_type, versionData}) {
     );
 }
 
-function DownloadButton ({version, os_type}) {
+function DownloadButton ({version, os_type, userData, changeUserData}) {
     function downloadGame () {
         const file_extention = {
             windows:".zip",
@@ -183,7 +183,7 @@ function DownloadButton ({version, os_type}) {
             const link = document.createElement("a");
             link.href = file_path;
             link.download = "";
-            link.click();    
+            link.click();
         }
     }
 
