@@ -58,6 +58,7 @@ export default function App() {
                                                     <>
                                                         <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
                                                         <li><button className="dropdown-item text-danger bg-transparent">Log Out</button></li>
+                                                        <li><button className="logout-btn dropdown-item text-danger">Log Out</button></li>
                                                     </>
                                                 ) : (
                                                     <>
