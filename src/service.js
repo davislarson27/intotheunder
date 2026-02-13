@@ -8,7 +8,7 @@ export function createNewAccount (userName, userEmail, userPassword) {
     let userObject = {
         user: {
             userName: null,
-            passwordToken: null,
+            // passwordToken: null,
             userEmail: null,
             lastVersionDownloaded: null,
             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
@@ -44,7 +44,7 @@ export function createNewAccount (userName, userEmail, userPassword) {
     // now continue if userName and email are valid
     userObject.user.userName = userName;
     userObject.user.userEmail = userEmail;
-    userObject.user.passwordToken = userPassword;
+    // userObject.user.passwordToken = userPassword; // this will have to do something but for now chrome is freaking out about it
 
     // now write that to the database (localstorage)
     userList.push(userObject.user);
@@ -87,13 +87,14 @@ export function logInUser (userEmail, password) {
 
     // get user
     const userObject = getUserObject(userEmail, userList, "userEmail")
+    return userObject;
 
-    if (userObject != null && password == userObject.passwordToken) {
-        return cleanUserObject(userObject);
-    }
-    else {
-        return null;
-    }
+    // if (userObject != null && password == userObject.passwordToken) {
+    //     return cleanUserObject(userObject);
+    // }
+    // else {
+    //     return null;
+    // }
 }
 
 export function getComments () {
