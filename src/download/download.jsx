@@ -36,7 +36,8 @@ export function Download({userData, changeUserData}) {
                                     "added the glacier biome",
                                     "added naturally generating snowmen",
                                     "allowed user to mine and build using the mouse",
-                                    "updated character to be a robot"
+                                    "updated character to be a robot",
+                                    "got a new app icon"
                                 ]
                             }
                         ]
