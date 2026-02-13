@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { createNewAccount } from '../service';
 
 export function Sign_up({userData, changeUserData}) {
     const [userNameInput, setUserNameInput] = React.useState ("");
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
+
+    const navagate = useNavigate();
 
     function submitNewAccount (event) {
         event.preventDefault();
@@ -18,6 +20,7 @@ export function Sign_up({userData, changeUserData}) {
         if (returnUserObject.user != null) {
             changeUserData(returnUserObject.user);
             alert(returnUserObject.user.userName);
+            navagate('/profile')
         }
         else {
             alert("ran into an error creating your account")

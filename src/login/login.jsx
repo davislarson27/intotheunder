@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logInUser } from '../service';
 
 
 export function Login({userData, changeUserData}) {
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
+
+    const navagate = useNavigate();
 
     function submitLogIn (event) {
         event.preventDefault();
@@ -18,7 +20,8 @@ export function Login({userData, changeUserData}) {
             alert("username or password is incorrect");
         } else {
             changeUserData(userObject);
-            alert(`${userObject.userName} was logged in successfully`)
+            alert(`${userObject.userName} was logged in successfully`);
+            navagate('/profile');
         }
     }
 
