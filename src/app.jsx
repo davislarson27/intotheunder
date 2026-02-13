@@ -7,7 +7,7 @@ import "@fontsource/roboto/500.css";
 // import "@fontsource/material-icons"; // this will be needed when the thumbs up can be filled in
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useNavigate} from 'react-router-dom';
 import { Home } from './home/home';
 import { Download } from './download/download';
 import { Feedback } from './feedback/feedback';
@@ -25,6 +25,8 @@ export default function App() {
     const [userData, changeUserData] = React.useState (null);
     const [dbComments, updateDbComments] = React.useState (getComments());
 
+    const navagate = useNavigate();
+
     function isUserLoggedIn(userObject) {
         if (userObject == null) {
             return false;
@@ -33,9 +35,18 @@ export default function App() {
         }
     }
     
+    function logOut () {
+        if (isUserLoggedIn(userData)) {
+            changeUserData(null);
+            alert("user was logged out");
+            navagate('/');    
+        } else {
+            alert("error: nobody is logged in");
+        }
+    }
 
     return (
-        <BrowserRouter>
+        // <BrowserRouter>
             <div className="d-flex flex-column min-vh-100">
                 <header>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,7 +68,7 @@ export default function App() {
                                                 { isUserLoggedIn(userData) ? (
                                                     <>
                                                         <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
-                                                        <li><button className="logout-btn dropdown-item text-danger">Log Out</button></li>
+                                                        <li><button className="logout-btn dropdown-item text-danger" onClick={logOut}>Log Out</button></li>
                                                     </>
                                                 ) : (
                                                     <>
@@ -100,6 +111,6 @@ export default function App() {
                     </div>
                 </footer>
             </div>
-        </BrowserRouter>
+        // </BrowserRouter>
     );
 }
