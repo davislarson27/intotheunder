@@ -7,7 +7,7 @@ import "@fontsource/roboto/500.css";
 // import "@fontsource/material-icons"; // this will be needed when the thumbs up can be filled in
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes, useNavigate} from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate} from 'react-router-dom';
 import { Home } from './home/home';
 import { Download } from './download/download';
 import { Feedback } from './feedback/feedback';
