@@ -9,6 +9,25 @@ export function Profile({userData, changeUserData}) {
             return version;
         }
     }
+
+    function isUserLoggedIn(userObject) {
+        if (userObject == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    function logOut () {
+        if (isUserLoggedIn(userData)) {
+            changeUserData(null);
+            alert("user was logged out");
+            navagate('/');   
+        } else {
+            alert("error: nobody is logged in");
+        }
+    }
+
     
     return (
         <main className="py-4 flex-grow-1">
@@ -38,7 +57,7 @@ export function Profile({userData, changeUserData}) {
                                         <br className="my-3"/>
 
                                         <div className="mb-3">
-                                            <button className="btn btn-outline-danger w-100">Log Out</button>
+                                            <button className="btn btn-outline-danger w-100" onClick={logOut}>Log Out</button>
                                         </div>
 
                                     </div>
