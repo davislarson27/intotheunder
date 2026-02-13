@@ -53,23 +53,23 @@ export function Download({userData, changeUserData}) {
                                     "added ability to run on Windows"
                                 ]
                             },
-                    //         {
-                    //             updateNum: "v1.3.1",
-                    //             versionName: "Universe of Worlds",
-                    //             updateNotes: [
-                    //                 "added the load screen on the menu!",
-                    //                 "added the ability to load different worlds from the load screen"
-                    //             ]
-                    //         },
-                    //         {
-                    //             updateNum: "v1.3.0",
-                    //             versionName: "\"This Gets Interesting\"",
-                    //             updateNotes: [
-                    //                 "first released Version",
-                    //                 "added a Menu",
-                    //                 "added health bar placeholder"
-                    //             ]
-                    //         }
+                            {
+                                updateNum: "v1.3.1",
+                                versionName: "Universe of Worlds",
+                                updateNotes: [
+                                    "added the load screen on the menu!",
+                                    "added the ability to load different worlds from the load screen"
+                                ]
+                            },
+                            {
+                                updateNum: "v1.3.0",
+                                versionName: "\"This Gets Interesting\"",
+                                updateNotes: [
+                                    "first released Version",
+                                    "added a Menu",
+                                    "added health bar placeholder"
+                                ]
+                            }
                         ]
                     }
                 ]
