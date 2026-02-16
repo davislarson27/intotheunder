@@ -5,8 +5,24 @@ export function Download({userData, changeUserData}) {
     const [versionData, updateVersionData] = React.useState (
         {
             windows: {
-                currentVersion: "v1.3.2",
+                currentVersion: "v1.4.0",
                 versionGroups: [
+                    {
+                        sectionName: "1.4",
+                        availableVersions: [
+                            {
+                                updateNum: "v1.4.0",
+                                versionName: "Robotic Update",
+                                updateNotes: [
+                                    "added the glacier biome",
+                                    "added naturally generating snowmen",
+                                    "allowed user to mine and build using the mouse",
+                                    "updated character to be a robot",
+                                    "got a new app icon"
+                                ]
+                            }
+                        ]
+                    },
                     {
                         sectionName: "1.3",
                         availableVersions: [
@@ -31,7 +47,7 @@ export function Download({userData, changeUserData}) {
                         availableVersions: [
                             {
                                 updateNum: "v1.4.0",
-                                versionName: "The Robotic Update",
+                                versionName: "Robotic Update",
                                 updateNotes: [
                                     "added the glacier biome",
                                     "added naturally generating snowmen",
