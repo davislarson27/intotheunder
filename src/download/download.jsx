@@ -206,7 +206,7 @@ function DownloadButton ({version, os_type, userData, changeUserData}) {
             const link = document.createElement("a");
             link.href = file_path;
             link.download = "";
-            // link.click();
+            link.click();
             changeUserData(userData => ({
                 ...userData,
                 ["lastOSDownloaded"]: os_type,
