@@ -94,11 +94,12 @@ export function Download({userData, changeUserData}) {
         }
     
     )
-
     const [os_type, update_os] = React.useState("macsilicon");
-    // const [version, updateVersion] = React.useState(versionData[os_type].curVersion);
     const [version, updateVersion] = React.useState("v1.4.0");
 
+    if (userData != null) {
+        update_os(userData.lastOSDownloaded);
+    }
 
     // main return value
     return (

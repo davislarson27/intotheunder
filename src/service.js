@@ -10,8 +10,8 @@ export function createNewAccount (userName, userEmail, userPassword) {
             userName: null,
             // passwordToken: null,
             userEmail: null,
-            lastVersionDownloaded: null,
             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
+            lastVersionDownloaded: null,
             userCommentsIDs: []
         },
         error: {
