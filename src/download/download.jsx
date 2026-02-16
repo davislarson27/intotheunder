@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { updateUserData } from '../service';
+
 export function Download({userData, changeUserData}) {
     // declare react state variables
     const [versionData, updateVersionData] = React.useState (
@@ -97,9 +99,12 @@ export function Download({userData, changeUserData}) {
     const [os_type, update_os] = React.useState("macsilicon");
     const [version, updateVersion] = React.useState("v1.4.0");
 
-    if (userData != null) {
-        update_os(userData.lastOSDownloaded);
-    }
+    React.useEffect(() => {
+        if (userData != null) {
+            update_os(userData.lastOSDownloaded);
+        }
+    }, [userData]); // Run this effect only when userData changes
+
 
     // main return value
     return (
@@ -201,7 +206,13 @@ function DownloadButton ({version, os_type, userData, changeUserData}) {
             const link = document.createElement("a");
             link.href = file_path;
             link.download = "";
-            link.click();
+            // link.click();
+            changeUserData(userData => ({
+                ...userData,
+                ["lastOSDownloaded"]: os_type,
+                ["lastVersionDownloaded"] : version
+            }));
+            updateUserData(userData);
         }
     }
 

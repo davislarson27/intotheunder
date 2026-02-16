@@ -97,6 +97,26 @@ export function logInUser (userEmail, password) {
     // }
 }
 
+export function updateUserData (userObject) {
+    let userList = JSON.parse(localStorage.getItem('userList') || '[]');
+
+    let i = 0;
+    let foundUser = false;
+    for (let user of userList) {
+        if (user.userName == userObject.userName) {
+            foundUser = true;
+            break;
+        }
+        i++;
+    }
+
+    if (foundUser) {
+        userList[i] = userObject;
+    }
+    
+    localStorage.setItem('userList', JSON.stringify(userList));
+}
+
 export function getComments () {
     return [
         {
