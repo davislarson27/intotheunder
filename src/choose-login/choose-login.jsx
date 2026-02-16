@@ -9,6 +9,14 @@ export function ChooseLogin({userData, changeUserData}) {
     
     const navagate = useNavigate();
 
+    function chooseLogin () {
+        navagate('/login');
+    }
+
+    function chooseSignUp () {
+        navagate('/sign-up');
+    }
+
     return (
         <main className="py-4 flex-grow-1">
                 
@@ -23,8 +31,8 @@ export function ChooseLogin({userData, changeUserData}) {
                             <div className="card-body p-0">
                                 <div className="row g-0">
                                     <div className="col-12 col-md-6 p-3">
-                                        <button className="btn btn-primary w-100 mt-4">Log In</button>
-                                        <button className="btn btn-outline-secondary w-100 mt-4 mb-4">Sign Up</button>
+                                        <button className="btn btn-primary w-100 mt-4" onClick={chooseLogin}>Log In</button>
+                                        <button className="btn btn-outline-secondary w-100 mt-4 mb-4" onClick={chooseSignUp}>Sign Up</button>
                                     </div>
                                     <div className="col-12 col-md-6 bg-light p-3">
                                     <p>Sign in to be able to get access to additional features!</p>
