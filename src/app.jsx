@@ -61,79 +61,89 @@ export default function App() {
     }
 
     return (
-        // <BrowserRouter>
-            <div className="d-flex flex-column min-vh-100">
-                <header>
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <div className="container-fluid px-4">
-                            <NavLink className="navbar-brand" to="/">Into The Under</NavLink>
-                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>                  
-                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                <div className="d-flex ms-lg-auto">
-                                    <ul className="navbar-nav mb-2 mb-lg-0">
-                                        <li className="nav-item"><NavLink to="/" className="nav-link">Home</NavLink></li>
-                                        <li className="nav-item"><NavLink to="download" className="nav-link">Download</NavLink></li>
-                                        <li className="nav-item"><NavLink to="feedback" className="nav-link">Feedback</NavLink></li>
-                                        <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                                            
-                                            <ul className="dropdown-menu dropdown-menu-end">
-                                                { isUserLoggedIn(userData) ? (
-                                                    <>
-                                                        <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
-                                                        <li><button className="logout-btn dropdown-item text-danger" onClick={logOut}>Log Out</button></li>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <li><NavLink className="dropdown-item" to="login">Log In</NavLink></li>
-                                                        <li><NavLink className="dropdown-item" to="sign-up">Sign Up</NavLink></li>
-                                                    </>
-                                                )}
-                                            </ul>
-                                            
-                                        </li>
-                                    </ul>
-                                </div>
+        <div className="d-flex flex-column min-vh-100">
+            <header>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid px-4">
+                        <NavLink className="navbar-brand" to="/">Into The Under</NavLink>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>                  
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div className="d-flex ms-lg-auto">
+                                <ul className="navbar-nav mb-2 mb-lg-0">
+                                    <li className="nav-item"><NavLink to="/" className="nav-link">Home</NavLink></li>
+                                    <li className="nav-item"><NavLink to="download" className="nav-link">Download</NavLink></li>
+                                    <li className="nav-item"><NavLink to="feedback" className="nav-link">Feedback</NavLink></li>
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                                        
+                                        <ul className="dropdown-menu dropdown-menu-end">
+                                            { isUserLoggedIn(userData) ? (
+                                                <>
+                                                    <li><NavLink className="dropdown-item" to="profile">Profile</NavLink></li>
+                                                    <li><button className="logout-btn dropdown-item text-danger" onClick={logOut}>Log Out</button></li>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <li><NavLink className="dropdown-item" to="login">Log In</NavLink></li>
+                                                    <li><NavLink className="dropdown-item" to="sign-up">Sign Up</NavLink></li>
+                                                </>
+                                            )}
+                                        </ul>
+                                        
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </nav>
-                </header>
-
-            <Routes>
-                <Route path='/' element={<Home />} exact />
-                <Route path='/home' element={<Home />} />
-                <Route
-                    path='/download'
-                    element={
-                        <ForceLogin>
-                            <Download  userData={userData} changeUserData={changeUserData}/>
-                        </ForceLogin>
-                    }
-                />
-                <Route path='/feedback' element={<Feedback userData={userData} changeUserData={changeUserData} dbComments={dbComments} updateDbComments={updateDbComments} />} />
-                <Route path='/login' element={<Login userData={userData} changeUserData={changeUserData} />} />
-                <Route path='/sign-up' element={<Sign_up userData={userData} changeUserData={changeUserData} />} />
-                <Route path='/choose-login' element={<ChooseLogin userData={userData} changeUserData={changeUserData} />} />
-                <Route path='/profile' element={<Profile userData={userData} changeUserData={changeUserData} />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-
-                
-                <footer className="bg-light text-dark">
-                    <div className="container py-4">
-                        <div className="row align-items-center g-4">
-                            <div className="col-12 col-md-auto">
-                                <span className="footer_text text-muted">&copy; 2026 Davis Larson</span>
-                            </div>
-                            <div className="col-12 col-md-auto">
-                                <a className="text-muted" target="_blank" href="https://github.com/davislarson27/intotheunder/">Page Git Hub</a>
-                            </div>
-                        </div>    
                     </div>
-                </footer>
-            </div>
-        // </BrowserRouter>
+                </nav>
+            </header>
+
+        <Routes>
+            <Route path='/' element={<Home />} exact />
+            <Route path='/home' element={<Home />} />
+            <Route
+                path='/download'
+                element={
+                    <ForceLogin userData={userData}>
+                        <Download  userData={userData} changeUserData={changeUserData}/>
+                    </ForceLogin>
+                }
+            />
+            <Route 
+                path='/feedback'
+                element={
+                    <ForceLogin userData={userData}>
+                        <Feedback 
+                            userData={userData}
+                            changeUserData={changeUserData}
+                            dbComments={dbComments}
+                            updateDbComments={updateDbComments}
+                        />
+                    </ForceLogin>
+                } 
+            />
+            <Route path='/login' element={<Login userData={userData} changeUserData={changeUserData} />} />
+            <Route path='/sign-up' element={<Sign_up userData={userData} changeUserData={changeUserData} />} />
+            <Route path='/choose-login' element={<ChooseLogin userData={userData} changeUserData={changeUserData} />} />
+            <Route path='/profile' element={<Profile userData={userData} changeUserData={changeUserData} />} />
+            <Route path='*' element={<NotFound />} />
+        </Routes>
+
+            
+            <footer className="bg-light text-dark">
+                <div className="container py-4">
+                    <div className="row align-items-center g-4">
+                        <div className="col-12 col-md-auto">
+                            <span className="footer_text text-muted">&copy; 2026 Davis Larson</span>
+                        </div>
+                        <div className="col-12 col-md-auto">
+                            <a className="text-muted" target="_blank" href="https://github.com/davislarson27/intotheunder/">Page Git Hub</a>
+                        </div>
+                    </div>    
+                </div>
+            </footer>
+        </div>
     );
 }

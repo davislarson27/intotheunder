@@ -1,20 +1,24 @@
 import React from 'react';
 
-import { NavLink, useNavigate } from "react-router-dom";
-import { logInUser } from '../service';
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 
 export function ChooseLogin({userData, changeUserData}) {
     const [pagePurpose, changePagePurpose] = React.useState(" to Download")
+    const location = useLocation();
+
+    const from = location.state?.from || "/";
+
     
     const navagate = useNavigate();
 
     function chooseLogin () {
-        navagate('/login');
+        console.log(from);
+        navagate('/login', { state: {from} });
     }
 
     function chooseSignUp () {
-        navagate('/sign-up');
+        navagate('/sign-up', { state: {from} });
     }
 
     return (

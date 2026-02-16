@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { logInUser } from '../service';
 
 
@@ -8,7 +8,10 @@ export function Login({userData, changeUserData}) {
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
 
+    const location = useLocation();
     const navagate = useNavigate();
+
+    const from = location.state?.from || "/profile"
 
     function submitLogIn (event) {
         event.preventDefault();
@@ -21,7 +24,7 @@ export function Login({userData, changeUserData}) {
         } else {
             changeUserData(userObject);
             alert(`${userObject.userName} was logged in successfully`);
-            navagate('/profile');
+            navagate(from);
         }
     }
 
