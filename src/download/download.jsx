@@ -2,6 +2,8 @@ import React from 'react';
 
 import { updateUserData } from '../service';
 
+// needs to stop user from downloading when not logged in
+
 export function Download({userData, changeUserData}) {
     // declare react state variables
     const [versionData, updateVersionData] = React.useState (

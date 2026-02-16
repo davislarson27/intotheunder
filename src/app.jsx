@@ -14,6 +14,7 @@ import { Feedback } from './feedback/feedback';
 import { Login } from './login/login';
 import { Sign_up } from './sign-up/sign-up';
 import { Profile } from './profile/profile';
+import { ChooseLogin } from './choose-login/choose-login';
 import { NotFound } from './notfound/notfound';
 
 import { getComments } from './service';
@@ -93,6 +94,7 @@ export default function App() {
                 <Route path='/feedback' element={<Feedback userData={userData} changeUserData={changeUserData} dbComments={dbComments} updateDbComments={updateDbComments} />} />
                 <Route path='/login' element={<Login userData={userData} changeUserData={changeUserData} />} />
                 <Route path='/sign-up' element={<Sign_up userData={userData} changeUserData={changeUserData} />} />
+                <Route path='/choose-login' element={<ChooseLogin userData={userData} changeUserData={changeUserData} />} />
                 <Route path='/profile' element={<Profile userData={userData} changeUserData={changeUserData} />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
@@ -102,7 +104,7 @@ export default function App() {
                     <div className="container py-4">
                         <div className="row align-items-center g-4">
                             <div className="col-12 col-md-auto">
-                                <span className="footer_text text-muted">&copy; 2026 Into The Under</span>
+                                <span className="footer_text text-muted">&copy; 2026 Davis Larson</span>
                             </div>
                             <div className="col-12 col-md-auto">
                                 <a className="text-muted" target="_blank" href="https://github.com/davislarson27/intotheunder/">Page Git Hub</a>
