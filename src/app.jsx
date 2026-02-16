@@ -7,7 +7,7 @@ import "@fontsource/roboto/500.css";
 // import "@fontsource/material-icons"; // this will be needed when the thumbs up can be filled in
 import './app.css';
 
-import { NavLink, Route, Routes, useNavigate} from 'react-router-dom';
+import { NavLink, Route, Routes, useNavigate, Navigate, useLocation} from 'react-router-dom';
 import { Home } from './home/home';
 import { Download } from './download/download';
 import { Feedback } from './feedback/feedback';
@@ -19,12 +19,26 @@ import { NotFound } from './notfound/notfound';
 
 import { getComments } from './service';
 
-
+function ForceLogin ( {userData, children} ) {
+    const location = useLocation();
+    if (!userData) {
+        return (
+            <Navigate 
+                to="/choose-login"
+                state ={{from: location.pathname}}
+                replace
+            />
+        );
+    }
+    return children;
+}
 
 export default function App() {
 
     const [userData, changeUserData] = React.useState (null);
     const [dbComments, updateDbComments] = React.useState (getComments());
+
+    // const [prevRoute, newPrevRoute] = React.useState('/')
 
     const navagate = useNavigate();
 
@@ -90,7 +104,14 @@ export default function App() {
             <Routes>
                 <Route path='/' element={<Home />} exact />
                 <Route path='/home' element={<Home />} />
-                <Route path='/download' element={<Download  userData={userData} changeUserData={changeUserData}/>} />
+                <Route
+                    path='/download'
+                    element={
+                        <ForceLogin>
+                            <Download  userData={userData} changeUserData={changeUserData}/>
+                        </ForceLogin>
+                    }
+                />
                 <Route path='/feedback' element={<Feedback userData={userData} changeUserData={changeUserData} dbComments={dbComments} updateDbComments={updateDbComments} />} />
                 <Route path='/login' element={<Login userData={userData} changeUserData={changeUserData} />} />
                 <Route path='/sign-up' element={<Sign_up userData={userData} changeUserData={changeUserData} />} />
