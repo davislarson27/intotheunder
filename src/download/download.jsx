@@ -247,9 +247,6 @@ function UpdateInfoDisplay ({version, os_type, versionData}) {
     }
 
     const cardElements = [];
-    // cardElements.push(
-    //     <p key={version}><span key={version} className="text-muted">{version} - </span> The {getVersionName()} Update!</p>
-    // )
 
     const updateNotes = getUpdateNotes()
     updateNotes.map(curNote => (
