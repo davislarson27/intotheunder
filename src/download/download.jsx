@@ -80,7 +80,7 @@ export function Download({userData, changeUserData}) {
                             },
                             {
                                 updateNum: "v1.3.0",
-                                versionName: "\"This Gets Interesting\"",
+                                versionName: "Menu",
                                 updateNotes: [
                                     "first released Version",
                                     "added a Menu",
