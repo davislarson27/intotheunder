@@ -1,9 +1,14 @@
 import React from 'react';
 
+import { NavLink, useNavigate } from "react-router-dom";
+
 // Uncaught ReferenceError: navagate is not defined
 // at logOut (profile.jsx:25:13)
 
 export function Profile({userData, changeUserData}) {
+
+    // pull in functions for navigation
+    const navagate = useNavigate();
 
     function getVersion (version) {
         if (version == null) {
@@ -25,7 +30,7 @@ export function Profile({userData, changeUserData}) {
         if (isUserLoggedIn(userData)) {
             changeUserData(null);
             alert("user was logged out");
-            navagate('/');   
+            navagate('/login');   
         } else {
             alert("error: nobody is logged in");
         }
