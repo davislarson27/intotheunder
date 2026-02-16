@@ -112,6 +112,7 @@ export function updateUserData (userObject) {
 
     if (foundUser) {
         userList[i] = userObject;
+        console.log(userObject.lastVersionDownloaded);
     }
     
     localStorage.setItem('userList', JSON.stringify(userList));

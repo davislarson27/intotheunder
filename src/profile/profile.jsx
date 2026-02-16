@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Uncaught ReferenceError: navagate is not defined
+// at logOut (profile.jsx:25:13)
+
 export function Profile({userData, changeUserData}) {
 
     function getVersion (version) {

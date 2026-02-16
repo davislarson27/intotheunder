@@ -207,12 +207,13 @@ function DownloadButton ({version, os_type, userData, changeUserData}) {
             link.href = file_path;
             link.download = "";
             link.click();
-            changeUserData(userData => ({
+            let newUserData = {
                 ...userData,
                 ["lastOSDownloaded"]: os_type,
                 ["lastVersionDownloaded"] : version
-            }));
-            updateUserData(userData);
+            }
+            changeUserData(newUserData);
+            updateUserData(newUserData);
         }
     }
 
