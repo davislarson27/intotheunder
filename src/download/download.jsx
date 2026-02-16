@@ -216,9 +216,9 @@ function UpdateInfoDisplay ({version, os_type, versionData}) {
     }
 
     const cardElements = [];
-    cardElements.push(
-        <p key={version}><span key={version} className="text-muted">{version} - </span> The {getVersionName()} Update!</p>
-    )
+    // cardElements.push(
+    //     <p key={version}><span key={version} className="text-muted">{version} - </span> The {getVersionName()} Update!</p>
+    // )
 
     const updateNotes = getUpdateNotes()
     updateNotes.map(curNote => (
@@ -227,7 +227,10 @@ function UpdateInfoDisplay ({version, os_type, versionData}) {
 
     return (
         <div className='card-body'>
-            {cardElements}
+            <p><span className="text-muted">{version} - </span> The {getVersionName()} Update!</p>
+            <ul className="mb-1 ps-3">
+                {cardElements}
+            </ul>
         </div>
     );
 }
