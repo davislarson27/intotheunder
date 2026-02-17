@@ -161,7 +161,7 @@ function Comments ({userData, comments, dbComments, updateDbComments, countLoade
             )
         )
     
-        likeCommentRequest(comment.commentID, newLikeValue, userData); // this won't return anything -> the websocket will rerender if something needs to change
+        likeCommentRequest(comment.commentID, newLikeValue, userData.userName); // this won't return anything -> the websocket will rerender if something needs to change
     }
 
     

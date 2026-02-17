@@ -315,10 +315,33 @@ export function getComments (userData) {
         })
     }
 
+    localStorage.setItem('commentList', JSON.stringify(commentList));
+
     return userSideCommentList;
 
 }
 
-export function likeCommentRequest (commentId, reqValue, userData) {
+export function sendComment (comment, userData) {
+
+}
+
+export function likeCommentRequest (commentID, reqValue, userName) {
+    let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
+
+    for (const comment of commentList) {
+        if (comment.commentID === commentID) {
+            if (reqValue == true) {
+                if (!comment.userLikeList.includes(userName)) {
+                    comment.userLikeList.push(userName);
+                }
+            }
+            else {
+                comment.userLikeList = comment.userLikeList.filter(u => u !== userName);
+            }
+            break;
+        }
+    }
+
+    localStorage.setItem('commentList', JSON.stringify(commentList));
     
 }
