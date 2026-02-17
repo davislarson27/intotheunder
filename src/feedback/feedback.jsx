@@ -182,7 +182,12 @@ function Comments ({comments, dbComments, updateDbComments, countLoadedComments,
                     <div className="full_like_container" style={{padding: "0px"}}>
                         <p className="like_count" style={{marginTop: "1.5em"}}>{comment.likes}</p>
                         <span className="like_button_container" id={"like" + comment.commentID} onClick={() => likeComment(comment)}>
-                            <span className="material-icons-outlined like_button">thumb_up</span>
+                            {
+                                comment.isLikedByUser ?
+                                <><span className="material-icons">thumb_up</span></> :
+                                <><span className="material-icons-outlined like_button">thumb_up</span></>
+                            }
+                            {/* <span className="material-icons-outlined like_button">thumb_up</span> */}
                         </span>
                     </div>    
                 </div>
