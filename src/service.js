@@ -321,20 +321,6 @@ export function getComments (userData) {
 
     let userSideCommentList = getUserSideCommentList(commentList, userData);
 
-    // let userSideCommentList = [];
-    // for (const comment of commentList) {
-    //     const likes = comment.userLikeList.length;
-    //     const isLikedByUser = comment.userLikeList.includes(userData.userName);
-    //     userSideCommentList.push({
-    //         "commentID": comment.commentID,
-    //         "user": comment.user,
-    //         "commentVersion": comment.commentVersion,
-    //         "commentText": comment.commentText,
-    //         "likes": likes,
-    //         "isLikedByUser": isLikedByUser
-    //     })
-    // }
-
     localStorage.setItem('commentList', JSON.stringify(commentList));
 
     return userSideCommentList;
