@@ -269,6 +269,6 @@ export function getComments () {
 
 }
 
-export function likeCommentRequest (commentId, reqValue) {
+export function likeCommentRequest (commentId, reqValue, userData) {
     
 }
