@@ -118,6 +118,24 @@ export function updateUserData (userObject) {
     localStorage.setItem('userList', JSON.stringify(userList));
 }
 
+function getUserSideCommentList (commentList, userData) {
+    let userSideCommentList = [];
+    for (const comment of commentList) {
+        const likes = comment.userLikeList.length;
+        const isLikedByUser = comment.userLikeList.includes(userData.userName);
+        userSideCommentList.push({
+            "commentID": comment.commentID,
+            "user": comment.user,
+            "commentVersion": comment.commentVersion,
+            "commentText": comment.commentText,
+            "likes": likes,
+            "isLikedByUser": isLikedByUser
+        })
+    }
+
+    return userSideCommentList;
+}
+
 export function getComments (userData) {
     if (!userData) return []; // if nobody is logged in don't try this :)
 
@@ -301,19 +319,21 @@ export function getComments (userData) {
         }
     }
 
-    let userSideCommentList = [];
-    for (const comment of commentList) {
-        const likes = comment.userLikeList.length;
-        const isLikedByUser = comment.userLikeList.includes(userData.userName);
-        userSideCommentList.push({
-            "commentID": comment.commentID,
-            "user": comment.user,
-            "commentVersion": comment.commentVersion,
-            "commentText": comment.commentText,
-            "likes": likes,
-            "isLikedByUser": isLikedByUser
-        })
-    }
+    let userSideCommentList = getUserSideCommentList(commentList, userData);
+
+    // let userSideCommentList = [];
+    // for (const comment of commentList) {
+    //     const likes = comment.userLikeList.length;
+    //     const isLikedByUser = comment.userLikeList.includes(userData.userName);
+    //     userSideCommentList.push({
+    //         "commentID": comment.commentID,
+    //         "user": comment.user,
+    //         "commentVersion": comment.commentVersion,
+    //         "commentText": comment.commentText,
+    //         "likes": likes,
+    //         "isLikedByUser": isLikedByUser
+    //     })
+    // }
 
     localStorage.setItem('commentList', JSON.stringify(commentList));
 
