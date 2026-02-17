@@ -1,8 +1,11 @@
 import React from 'react';
 
-import { likeCommentRequest } from '../service';
+import { getComments, likeCommentRequest} from '../service';
 
-export function Feedback({dbComments, updateDbComments, userData, changeUserData}) {
+export function Feedback({userData, changeUserData}) {
+
+    const [dbComments, updateDbComments] = React.useState (getComments(userData));
+    
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
