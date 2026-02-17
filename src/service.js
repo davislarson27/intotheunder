@@ -328,7 +328,7 @@ export function getComments (userData) {
 }
 
 export function sendComment (comment, userData) {
-
+    return true;
 }
 
 export function likeCommentRequest (commentID, reqValue, userName) {
@@ -350,4 +350,7 @@ export function likeCommentRequest (commentID, reqValue, userName) {
 
     localStorage.setItem('commentList', JSON.stringify(commentList));
     
+    // let userSideCommentList = getUserSideCommentList(commentList);
+
+    // return userSideCommentList;
 }

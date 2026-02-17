@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getComments, likeCommentRequest} from '../service';
+import { getComments, likeCommentRequest, sendComment } from '../service';
 
 export function Feedback({userData, changeUserData}) {
 
@@ -9,13 +9,8 @@ export function Feedback({userData, changeUserData}) {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
-    const [loadedComments, updateLoadedComments] = React.useState (dbComments);
-
-    React.useEffect( () => 
-        updateLoadedComments(
-            dbComments
-        ), [dbComments]
-    );
+    // const [loadedComments, updateLoadedComments] = React.useState (dbComments);
+    const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
 
     return (
     
@@ -29,8 +24,7 @@ export function Feedback({userData, changeUserData}) {
                         <p className="text-muted">upvote ideas that you like and the developer will see them! please be respectful!</p>
                     </div>
                     < FilterComments 
-                        dbComments={dbComments}
-                        updateLoadedComments={updateLoadedComments}
+                        updateFilterCommentsValue={updateFilterCommentsValue}
                         updateCountLoadedComments={updateCountLoadedComments}
                         DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
                     />
@@ -58,12 +52,12 @@ export function Feedback({userData, changeUserData}) {
 
             <Comments
                 userData={userData}
-                comments={loadedComments}
                 dbComments={dbComments}
+                updateDbComments={updateDbComments}
                 countLoadedComments={countLoadedComments}
                 updateCountLoadedComments={updateCountLoadedComments}
-                updateDbComments={updateDbComments}
                 DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
+                filterCommentsValue={filterCommentsValue}
             />
 
 
@@ -74,8 +68,8 @@ export function Feedback({userData, changeUserData}) {
                 <div className="row mt-5">
                     <div className="col-12 col-md-8">
                         <AddCommentCard
-                            loadedComments={loadedComments}
-                            updateLoadedComments={updateLoadedComments}
+                            dbComments={dbComments}
+                            updateDbComments={updateDbComments}
                         />
                     </div>
                 </div>
@@ -87,21 +81,13 @@ export function Feedback({userData, changeUserData}) {
     );
 }
 
-function FilterComments ({dbComments, updateLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+
+function FilterComments ({ updateFilterCommentsValue, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS }) {
 
     function applyFilter (selectedVersion) { // this will probably call the server to replace the comments at some point
         const filterVersion = selectedVersion.target.value;
+        updateFilterCommentsValue(filterVersion);
         updateCountLoadedComments(DEFAULTLOADEDCOMMENTS);
-        if (filterVersion == "all") {
-            updateLoadedComments(
-                dbComments
-            );
-        }
-        else {
-            updateLoadedComments(
-                dbComments.filter(comment => comment.commentVersion == filterVersion)
-            );    
-        }
     }
 
     return (
@@ -128,7 +114,7 @@ function FilterComments ({dbComments, updateLoadedComments, updateCountLoadedCom
     );
 }
 
-function Comments ({userData, comments, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+function Comments ({userData, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS, filterCommentsValue}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
@@ -167,6 +153,12 @@ function Comments ({userData, comments, dbComments, updateDbComments, countLoade
     
     const commentElements = [];
     var i = 0;
+    if (filterCommentsValue === "all") {
+        let comments = dbComments;
+    } else {
+        let comments = dbComments.filter(c => c.commentVersion === filterCommentsValue)
+    }
+
     for (const comment of comments) {
         i++;
         if (i > countLoadedComments) {
@@ -225,7 +217,7 @@ function Comments ({userData, comments, dbComments, updateDbComments, countLoade
     );
 }
 
-function AddCommentCard ({loadedComments, updateLoadedComments}) {
+function AddCommentCard ({dbComments, updateDbComments}) {
     const [userComment, updateUserComment] = React.useState("");
 
     function IsValidComment () { // this needs to be done on the server for data safety
@@ -245,12 +237,14 @@ function AddCommentCard ({loadedComments, updateLoadedComments}) {
         }
     }
 
-    function submitComment () {
-        if (IsValidComment()) {
-            // this part will probably be replaced by calling the server
-            updateLoadedComments(
+    async function submitComment () {
+        if (IsValidComment()) { // user side check (min length, etc)
+
+            const submitSuccess = await sendComment(userComment, userData);
+
+            updateDbComments(
                 [
-                    ...loadedComments,
+                    ...dbComments,
                     {
                         commentID: 90,
                         user: "CurrentUser",
@@ -261,7 +255,7 @@ function AddCommentCard ({loadedComments, updateLoadedComments}) {
                 ]
             );
             
-            // now clear the text bos
+            // clear the text box
             updateUserComment("");
 
             // alert the user that it succeeded
