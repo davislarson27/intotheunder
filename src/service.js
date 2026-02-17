@@ -125,128 +125,150 @@ export function getComments () {
             user: "BestUserNameEver",
             commentVersion: "v1.4.0",
             commentText: "The game is cool but crafting unique blocks would make it even better",
-            likes: 87
+            likes: 87,
+            isLikedByUser: false
         },
         {
             commentID: 2,
             user: "JimTheThird",
             commentVersion: "v1.4.0",
             commentText: "We should let us remove stuff from our inventory or throw it out",
-            likes: 62
+            likes: 62,
+            isLikedByUser: false
         },
         {
             commentID: 3,
             user: "CrazyDave67",
             commentVersion: "v1.3.2",
             commentText: "I wish that we had chests in the game",
-            likes: 26
+            likes: 26,
+            isLikedByUser: false
         },
         {
             commentID: 4,
             user: "McDonaldsLover",
             commentVersion: "v1.4.0",
             commentText: "Increase the build height limit!",
-            likes: 17
+            likes: 17,
+            isLikedByUser: false
         },
         {
             commentID: 5,
             user: "JoseTheGOAT",
             commentVersion: "v1.4.0",
             commentText: "A background would be so cool! Maybe like in Terraria.",
-            likes: 17
+            likes: 17,
+            isLikedByUser: false
         },
         {
             commentID: 6,
             user: "McDonaldsLover",
             commentVersion: "v1.3.1",
             commentText: "Ok imagine this. Right now the insides of buildings look off because they don't have backgrounds. Imagine if they had a way to add blocks as a wall that made it look more like you were inside! I would be so down for that. Then we wouldn't have to dig out the ground to build tall stuff!",
-            likes: 14
+            likes: 14,
+            isLikedByUser: false
         },
         {
             commentID: 7,
             user: "Johnny123",
             commentVersion: "v1.3.0",
             commentText: "Doors please?",
-            likes: 11
+            likes: 11,
+            isLikedByUser: false
         },
         {
             commentID: 8,
             user: "rambo2.0",
             commentVersion: "v1.3.1",
             commentText: "Please make swimming mechanics more consistent!",
-            likes: 9
+            likes: 9,
+            isLikedByUser: false
         },
         {
             commentID: 9,
             user: "WhatAUser111",
             commentVersion: "v1.3.1",
             commentText: "Ladders would be so nice",
-            likes: 5
+            likes: 5,
+            isLikedByUser: false
         },
         {
             commentID: 10,
             user: "MegaBatman",
             commentVersion: "v1.4.0",
             commentText: "Please add the ability to take damage!",
-            likes: 3
+            likes: 3,
+            isLikedByUser: false
         },
         {
             commentID: 11,
             user: "SomeoneCool",
             commentVersion: "v1.4.0",
             commentText: "Here's some bad advice",
-            likes: 2
+            likes: 2,
+            isLikedByUser: false
         },
         {
             commentID: 12,
             user: "User123",
             commentVersion: "v1.4.0",
             commentText: "I like cheese",
-            likes: 2
+            likes: 2,
+            isLikedByUser: false
         },
         {
             commentID: 13,
             user: "TheFakeJimmer",
             commentVersion: "v1.4.0",
             commentText: "you should add the whole energy bar thing",
-            likes: 1
+            likes: 1,
+            isLikedByUser: false
         },
         {
             commentID: 14,
             user: "MabelMagnet",
             commentVersion: "v1.4.0",
             commentText: "Multiplayer would be cool",
-            likes: 1
+            likes: 1,
+            isLikedByUser: false
         },
         {
             commentID: 15,
             user: "JasonBourne123",
             commentVersion: "v1.4.0",
             commentText: "what about adding a hunger bar?",
-            likes: 0
+            likes: 0,
+            isLikedByUser: false
         },
         {
             commentID: 16,
             user: "NotAPolitician",
             commentVersion: "v1.4.0",
             commentText: "Can we choose between different skins",
-            likes: 0
+            likes: 0,
+            isLikedByUser: false
         },
         {
             commentID: 17,
             user: "TheJoker",
             commentVersion: "v1.4.0",
             commentText: "We should have creative mode like in Minecraft",
-            likes: 0
+            likes: 0,
+            isLikedByUser: false
         },
         {
             commentID: 18,
             user: "CougarsBoulevard",
             commentVersion: "v1.4.0",
             commentText: "We should be able to play on Linux",
-            likes: 0
+            likes: 0,
+            isLikedByUser: false
         },
 
     ];
 
+}
+
+export function likeCommentRequest (commentId, reqValue) {
+    
 }

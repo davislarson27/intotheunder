@@ -1,10 +1,18 @@
 import React from 'react';
 
+import { likeCommentRequest } from '../service';
+
 export function Feedback({dbComments, updateDbComments, userData, changeUserData}) {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
-    const [loadedComments, updateLoadedComments] = React.useState (dbComments)
+    const [loadedComments, updateLoadedComments] = React.useState (dbComments);
+
+    React.useEffect( () => 
+        updateLoadedComments(
+            dbComments
+        ), [dbComments]
+    );
 
     return (
     
@@ -47,8 +55,10 @@ export function Feedback({dbComments, updateDbComments, userData, changeUserData
 
             <Comments
                 comments={loadedComments}
+                dbComments={dbComments}
                 countLoadedComments={countLoadedComments}
                 updateCountLoadedComments={updateCountLoadedComments}
+                updateDbComments={updateDbComments}
                 DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
             />
 
@@ -114,7 +124,7 @@ function FilterComments ({dbComments, updateLoadedComments, updateCountLoadedCom
     );
 }
 
-function Comments ({comments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+function Comments ({comments, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
@@ -127,6 +137,29 @@ function Comments ({comments, countLoadedComments, updateCountLoadedComments, DE
             DEFAULTLOADEDCOMMENTS
         );
     }
+
+    function likeComment (comment) {
+        const newLikeValue = !comment.isLikedByUser;
+        let newCountofLikes = 0;
+        if (newLikeValue) {
+            newCountofLikes = comment.likes + 1;
+        } else {
+            newCountofLikes = comment.likes - 1;
+        }
+        
+        updateDbComments(
+            dbComments.map( c => 
+                comment.commentID === c.commentID
+                ? {...c, isLikedByUser: newLikeValue, likes: newCountofLikes }
+                : c
+            
+    
+            )
+        )
+    
+        likeCommentRequest(comment.commentID, newLikeValue); // this won't return anything -> the websocket will rerender if something needs to change
+    }
+
     
     const commentElements = [];
     var i = 0;
@@ -148,7 +181,7 @@ function Comments ({comments, countLoadedComments, updateCountLoadedComments, DE
                 <div className="col-1 me-2">
                     <div className="full_like_container" style={{padding: "0px"}}>
                         <p className="like_count" style={{marginTop: "1.5em"}}>{comment.likes}</p>
-                        <span className="like_button_container" id={"like" + comment.commentID}>
+                        <span className="like_button_container" id={"like" + comment.commentID} onClick={() => likeComment(comment)}>
                             <span className="material-icons-outlined like_button">thumb_up</span>
                         </span>
                     </div>    
