@@ -4,16 +4,13 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 
 export function ChooseLogin({userData, changeUserData}) {
-    const [pagePurpose, changePagePurpose] = React.useState(" to Download")
     const location = useLocation();
-
     const from = location.state?.from || "/";
 
-    
     const navagate = useNavigate();
+    
 
     function chooseLogin () {
-        console.log(from);
         navagate('/login', { state: {from} });
     }
 

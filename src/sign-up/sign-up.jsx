@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { createNewAccount } from '../service';
 
 export function Sign_up({userData, changeUserData}) {
@@ -8,7 +8,11 @@ export function Sign_up({userData, changeUserData}) {
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
 
+    const location = useLocation();
     const navagate = useNavigate();
+
+    const from = location.state?.from || "/profile"
+
 
     function submitNewAccount (event) {
         event.preventDefault();
@@ -20,7 +24,7 @@ export function Sign_up({userData, changeUserData}) {
         if (returnUserObject.user != null) {
             changeUserData(returnUserObject.user);
             alert(returnUserObject.user.userName);
-            navagate('/profile')
+            navagate(from)
         }
         else {
             alert("ran into an error creating your account")
