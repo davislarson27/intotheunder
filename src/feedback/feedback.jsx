@@ -54,6 +54,7 @@ export function Feedback({dbComments, updateDbComments, userData, changeUserData
 
 
             <Comments
+                userData={userData}
                 comments={loadedComments}
                 dbComments={dbComments}
                 countLoadedComments={countLoadedComments}
@@ -124,7 +125,7 @@ function FilterComments ({dbComments, updateLoadedComments, updateCountLoadedCom
     );
 }
 
-function Comments ({comments, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
+function Comments ({userData, comments, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
@@ -157,7 +158,7 @@ function Comments ({comments, dbComments, updateDbComments, countLoadedComments,
             )
         )
     
-        likeCommentRequest(comment.commentID, newLikeValue); // this won't return anything -> the websocket will rerender if something needs to change
+        likeCommentRequest(comment.commentID, newLikeValue, userData); // this won't return anything -> the websocket will rerender if something needs to change
     }
 
     
