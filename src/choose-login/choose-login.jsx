@@ -5,10 +5,10 @@ import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 export function ChooseLogin({userData, changeUserData}) {
     const location = useLocation();
-    const from = location.state?.from || "/";
+    const from = location.state?.from || "/profile";
 
     const navagate = useNavigate();
-    
+
 
     function chooseLogin () {
         navagate('/login', { state: {from} });

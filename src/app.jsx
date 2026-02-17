@@ -38,8 +38,6 @@ export default function App() {
     const [userData, changeUserData] = React.useState (null);
     const [dbComments, updateDbComments] = React.useState (getComments());
 
-    // const [prevRoute, newPrevRoute] = React.useState('/')
-
     const navagate = useNavigate();
 
     function isUserLoggedIn(userObject) {

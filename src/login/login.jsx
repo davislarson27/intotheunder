@@ -8,23 +8,32 @@ export function Login({userData, changeUserData}) {
     const [userEmailInput, setUserEmailInput] = React.useState ("");
     const [userPasswordInput, setUserPasswordInput] = React.useState ("");
 
+    const [waitingLogin, setWaitingLogin] = React.useState(false);
+
     const location = useLocation();
     const navagate = useNavigate();
 
     const from = location.state?.from || "/profile"
 
-    function submitLogIn (event) {
+    async function submitLogIn (event) {
         event.preventDefault();
-        const userEvent = event.target.value;
 
-        const userObject = logInUser(userEmailInput, userPasswordInput);
-
-        if (userObject == null) {
-            alert("username or password is incorrect");
-        } else {
-            changeUserData(userObject);
-            alert(`${userObject.userName} was logged in successfully`);
-            navagate(from);
+        if (!waitingLogin) {
+            try {
+                setWaitingLogin(true);
+                const userObject = await logInUser(userEmailInput, userPasswordInput);
+    
+                if (userObject == null) {
+                    alert("username or password is incorrect");
+                } else {
+                    changeUserData(userObject);
+                    alert(`${userObject.userName} was logged in successfully`);
+                    navagate(from);
+                }
+            } catch (error) {
+                alert("login failed - try again");
+            }
+            setWaitingLogin(false);
         }
     }
 
@@ -59,7 +68,9 @@ export function Login({userData, changeUserData}) {
                                     <br className="my-3"/>
 
                                     <div className="mb-3">
-                                        <button type="submit" className="btn btn-primary w-100">Log in</button>
+                                        <button type="submit" disabled={waitingLogin} className="btn btn-primary w-100">
+                                            {waitingLogin ? "Logging in" : "Log in"}
+                                        </button>
                                     </div>
 
                                     <div className="mb-3">
