@@ -1,4 +1,4 @@
-// log in and account creation functions
+// ------------------------------- account management functions ------------------------------- //
 export function createNewAccount (userName, userEmail, userPassword) {
 
     // load userList
@@ -68,7 +68,7 @@ function IsInList (lookUp, list, listAttr) {
     return false;
 }
 
-function isNotValidEmailForm (email) { // we'll want to check this on the back end as well as front end in case of dom manipulation
+function isNotValidEmailForm (email) {
     return false; // this isn't checking for anything yet
 }
 
@@ -118,6 +118,15 @@ export function updateUserData (userObject) {
     localStorage.setItem('userList', JSON.stringify(userList));
 }
 
+// ------------------------------- comments functions ------------------------------- //
+
+function updateCommentsLocalStorage (commentList) { // updates comments AFTER reorganizing them -> mutates original object
+    
+    commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length)
+    localStorage.setItem('commentList', JSON.stringify(commentList));
+
+}
+
 function getUserSideCommentList (commentList, userName) {
     let userSideCommentList = [];
     for (const comment of commentList) {
@@ -142,8 +151,6 @@ export function getComments (userData) {
     let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
 
     let userSideCommentList = getUserSideCommentList(commentList, userData.userName);
-
-    localStorage.setItem('commentList', JSON.stringify(commentList));
 
     return userSideCommentList;
 }
@@ -177,7 +184,8 @@ export function sendComment (comment, userData) {
 
     commentList.push(newComment);
 
-    localStorage.setItem('commentList', JSON.stringify(commentList));
+    // localStorage.setItem('commentList', JSON.stringify(commentList));
+    updateCommentsLocalStorage(commentList);
 
     const userSideCommentList = getUserSideCommentList(commentList, userData.userName);
 
@@ -204,7 +212,8 @@ export function likeCommentRequest (commentID, reqValue, userName) {
         }
     }
 
-    localStorage.setItem('commentList', JSON.stringify(commentList));
+    //localStorage.setItem('commentList', JSON.stringify(commentList));
+    updateCommentsLocalStorage(commentList);
     
     let userSideCommentList = getUserSideCommentList(commentList, userName);
 
