@@ -9,7 +9,6 @@ export function Feedback({userData, changeUserData}) {
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
-    // const [loadedComments, updateLoadedComments] = React.useState (dbComments);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
 
     return (
@@ -34,7 +33,7 @@ export function Feedback({userData, changeUserData}) {
 
                 <div className="row g-4 mt-1 comment" id="commentNum1">
                     <div className="col-12 col-md-8">
-                        {loadedComments.length > 0 ? (
+                        {dbComments.length > 0 ? (
                             <><h4>Top Suggestions:</h4></>
                         ): (
                             <>
@@ -70,6 +69,7 @@ export function Feedback({userData, changeUserData}) {
                         <AddCommentCard
                             dbComments={dbComments}
                             updateDbComments={updateDbComments}
+                            userData={userData}
                         />
                     </div>
                 </div>
@@ -153,10 +153,11 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     
     const commentElements = [];
     var i = 0;
+    let comments = [];
     if (filterCommentsValue === "all") {
-        let comments = dbComments;
+        comments = dbComments;
     } else {
-        let comments = dbComments.filter(c => c.commentVersion === filterCommentsValue)
+        comments = dbComments.filter(c => c.commentVersion === filterCommentsValue)
     }
 
     for (const comment of comments) {
@@ -217,7 +218,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     );
 }
 
-function AddCommentCard ({dbComments, updateDbComments}) {
+function AddCommentCard ({dbComments, updateDbComments, userData}) {
     const [userComment, updateUserComment] = React.useState("");
 
     function IsValidComment () { // this needs to be done on the server for data safety
