@@ -125,7 +125,8 @@ export function likeCommmentsSimulator () {
     let commentsList = getComments(userObjectPartial);
 
     // select a comment
-    let curCommentID = commentsList[Math.floor(Math.random() * commentsList.length)].commentID;
+    let shortenList = Math.floor(Math.random() * 2);
+    let curCommentID = commentsList[Math.floor(Math.random() * commentsList.length * ( 1 - (shortenList * 0.5)) )].commentID;
 
     // attempt to like the comment
     likeCommentRequest(curCommentID, true, userObjectPartial.userName)
