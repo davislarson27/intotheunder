@@ -1,31 +1,33 @@
 import { sendComment } from '../service';
 
+const userNames = [
+    "PixelMiner01",
+    "ArcticCoder",
+    "BlockBuilderX",
+    "ShadowRunner",
+    "NovaExplorer",
+    "IronForgeDev",
+    "SkylineGamer",
+    "QuantumQuest",
+    "DesertDrifter",
+    "ForestByte",
+    "GlacierKnight",
+    "EchoStriker",
+    "CrimsonCraft",
+    "NeonNavigator",
+    "SilentSyntax",
+    "CodeVoyager",
+    "LunarLogic",
+    "CopperCore",
+    "VelocityVibes",
+    "StormAssembler",
+    "BestUserEver23",
+    "WhatAboutBob",
+    "HappyFlamingo"
+];
+
+
 export function generateMessage () {
-    const userNames = [
-        "PixelMiner01",
-        "ArcticCoder",
-        "BlockBuilderX",
-        "ShadowRunner",
-        "NovaExplorer",
-        "IronForgeDev",
-        "SkylineGamer",
-        "QuantumQuest",
-        "DesertDrifter",
-        "ForestByte",
-        "GlacierKnight",
-        "EchoStriker",
-        "CrimsonCraft",
-        "NeonNavigator",
-        "SilentSyntax",
-        "CodeVoyager",
-        "LunarLogic",
-        "CopperCore",
-        "VelocityVibes",
-        "StormAssembler",
-        "BestUserEver23",
-        "WhatAboutBob",
-        "HappyFlamingo"
-    ];
     
     const possibleMessages = [
         "You should add a volcano biome with lava lakes and obsidian caves.",
@@ -105,4 +107,8 @@ export function generateMessage () {
 
     console.log(userObjectPartial.userName);
 
+}
+
+export function likeMessages () {
+    
 }
