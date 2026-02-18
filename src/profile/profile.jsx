@@ -11,7 +11,7 @@ export function Profile({userData, changeUserData}) {
     const navagate = useNavigate();
 
     function getVersion (version) {
-        if (version == null) {
+        if (version == "n/a" || version == null) {
             return "Not Yet Downloaded";
         } else {
             return version;

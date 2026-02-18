@@ -11,7 +11,7 @@ export function createNewAccount (userName, userEmail, userPassword) {
             // passwordToken: null,
             userEmail: null,
             lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
-            lastVersionDownloaded: null,
+            lastVersionDownloaded: "n/a",
             userCommentsIDs: []
         },
         error: {
@@ -159,6 +159,12 @@ export function sendComment (comment, userData) {
         if (comment.commentID > maxCommentID) {
             maxCommentID = comment.commentID;
         }
+    }
+
+    // check for if user has not downloaded the game yet
+    let printableDownloadVersion = userData.lastVersionDownloaded;
+    if (printableDownloadVersion == null) {
+        printableDownloadVersion ="n/a";
     }
 
     let newComment = {

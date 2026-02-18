@@ -125,6 +125,9 @@ function FilterComments ({ updateFilterCommentsValue, updateCountLoadedComments,
                             <option value="v1.3.1">v1.3.1</option>
                             <option value="v1.3.0">v1.3.0</option>    
                         </optgroup>
+                        <optgroup label="none">
+                            <option value="n/a">n/a</option>
+                        </optgroup>
                     </select>
                 </div>
             </div>
