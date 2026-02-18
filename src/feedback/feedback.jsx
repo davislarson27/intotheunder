@@ -241,20 +241,9 @@ function AddCommentCard ({dbComments, updateDbComments, userData}) {
     async function submitComment () {
         if (IsValidComment()) { // user side check (min length, etc)
 
-            const submitSuccess = await sendComment(userComment, userData);
+            const newDbCommentList = await sendComment(userComment, userData);
 
-            updateDbComments(
-                [
-                    ...dbComments,
-                    {
-                        commentID: 90,
-                        user: "CurrentUser",
-                        commentVersion: "v1.4.0",
-                        commentText: userComment,
-                        likes: 0
-                    }
-                ]
-            );
+            updateDbComments(newDbCommentList);
             
             // clear the text box
             updateUserComment("");

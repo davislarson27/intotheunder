@@ -324,11 +324,36 @@ export function getComments (userData) {
     localStorage.setItem('commentList', JSON.stringify(commentList));
 
     return userSideCommentList;
-
 }
 
 export function sendComment (comment, userData) {
-    return true;
+    if (!userData) return []; // if nobody is logged in don't try this :)
+
+    let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
+
+    // generate comment ID
+    let maxCommentID = 0;
+    for (const comment of commentList) {
+        if (comment.commentID > maxCommentID) {
+            maxCommentID = comment.commentID;
+        }
+    }
+
+    let newComment = {
+        commentID: maxCommentID + 1,
+        user: userData.userName,
+        commentVersion: userData.lastVersionDownloaded,
+        commentText: comment,
+        userLikeList: []
+    }
+
+    commentList.push(newComment);
+
+    localStorage.setItem('commentList', JSON.stringify(commentList));
+
+    const userSideCommentList = getUserSideCommentList(commentList, userData);
+
+    return userSideCommentList;
 }
 
 export function likeCommentRequest (commentID, reqValue, userName) {
