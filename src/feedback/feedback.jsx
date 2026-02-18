@@ -6,7 +6,6 @@ import { generateMessage, likeCommmentsSimulator } from './messageWebSocket';
 export function Feedback({userData, changeUserData}) {
 
     const [dbComments, updateDbComments] = React.useState (getComments(userData));
-    
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
@@ -24,7 +23,7 @@ export function Feedback({userData, changeUserData}) {
         const likeMessageInterval = setInterval( () => {
             likeCommmentsSimulator(); // like comments
             updateDbComments(getComments(userData)); // simulate redownloading comments
-        }, 2000);
+        }, 2500);
         return () => clearInterval(likeMessageInterval);
     }, [] );
 
@@ -51,7 +50,7 @@ export function Feedback({userData, changeUserData}) {
 
                 <div className="row g-4 mt-1 comment" id="commentNum1">
                     <div className="col-12 col-md-8">
-                        {dbComments.length > 0 ? (
+                        {dbComments.filter(c => filterCommentsValue === "all" ? true : c.commentVersion === filterCommentsValue).length > 0 ? (
                             <><h4>Top Suggestions:</h4></>
                         ): (
                             <>
@@ -177,12 +176,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     
     const commentElements = [];
     var i = 0;
-    let comments = [];
-    if (filterCommentsValue === "all") {
-        comments = dbComments;
-    } else {
-        comments = dbComments.filter(c => c.commentVersion === filterCommentsValue)
-    }
+    let comments = dbComments.filter(c => filterCommentsValue === "all" ? true : c.commentVersion === filterCommentsValue);
 
     for (const comment of comments) {
         i++;

@@ -12,7 +12,7 @@ export function Profile({userData, changeUserData}) {
 
     function getVersion (version) {
         if (version == "n/a" || version == null) {
-            return "Not Yet Downloaded";
+            return "No Version Downloaded Yet";
         } else {
             return version;
         }
