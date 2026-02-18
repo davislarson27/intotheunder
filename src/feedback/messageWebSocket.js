@@ -119,17 +119,18 @@ export function likeCommmentsSimulator () {
         "userName": userNames[Math.floor(Math.random() * userNames.length)],
     }
 
-    console.log(userObjectPartial.userName);
-
     // get the comments from that user's perspective
     let commentsList = getComments(userObjectPartial);
 
+    if (commentsList.length == 0) { return ; }
+
     // select a comment
     let shortenList = Math.floor(Math.random() * 2);
-    let curCommentID = commentsList[Math.floor(Math.random() * commentsList.length * ( 1 - (shortenList * 0.5)) )].commentID;
+    let commentIdIndex = Math.floor(Math.random() * commentsList.length * ( 1 - (shortenList * 0.5)) );
+    if (!Object.hasOwn(commentsList[commentIdIndex], "commentID")) { return; }
+    let curCommentID = commentsList[commentIdIndex].commentID;
 
     // attempt to like the comment
     likeCommentRequest(curCommentID, true, userObjectPartial.userName)
 
-    console.log(`liked ${curCommentID}`)
 }

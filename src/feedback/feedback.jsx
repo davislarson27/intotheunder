@@ -24,7 +24,7 @@ export function Feedback({userData, changeUserData}) {
         const likeMessageInterval = setInterval( () => {
             likeCommmentsSimulator(); // like comments
             updateDbComments(getComments(userData)); // simulate redownloading comments
-        }, 1000);
+        }, 2000);
         return () => clearInterval(likeMessageInterval);
     }, [] );
 
@@ -146,7 +146,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
         );
     }
 
-    function likeComment (comment) {
+    async function likeComment (comment) {
         const newLikeValue = !comment.isLikedByUser;
         let newCountofLikes = 0;
         if (newLikeValue) {
@@ -165,7 +165,10 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
             )
         )
     
-        likeCommentRequest(comment.commentID, newLikeValue, userData.userName); // this won't return anything -> the websocket will rerender if something needs to change
+        let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName); // this won't return anything -> the websocket will rerender if something needs to change
+        
+        updateDbComments(returnedComments);
+
     }
 
     
