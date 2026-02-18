@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getComments, likeCommentRequest, sendComment } from '../service';
-import { generateMessage, likeMessages } from './messageWebSocket';
+import { generateMessage, likeCommmentsSimulator } from './messageWebSocket';
 
 export function Feedback({userData, changeUserData}) {
 
@@ -22,10 +22,9 @@ export function Feedback({userData, changeUserData}) {
 
     React.useEffect( () => { //simulating websocket
         const likeMessageInterval = setInterval( () => {
-            // generateMessage(); // simulate user creating comment
-
+            likeCommmentsSimulator(); // like comments
             updateDbComments(getComments(userData)); // simulate redownloading comments
-        }, 600);
+        }, 1000);
         return () => clearInterval(likeMessageInterval);
     }, [] );
 

@@ -118,11 +118,11 @@ export function updateUserData (userObject) {
     localStorage.setItem('userList', JSON.stringify(userList));
 }
 
-function getUserSideCommentList (commentList, userData) {
+function getUserSideCommentList (commentList, userName) {
     let userSideCommentList = [];
     for (const comment of commentList) {
         const likes = comment.userLikeList.length;
-        const isLikedByUser = comment.userLikeList.includes(userData.userName);
+        const isLikedByUser = comment.userLikeList.includes(userName);
         userSideCommentList.push({
             "commentID": comment.commentID,
             "user": comment.user,
@@ -319,7 +319,7 @@ export function getComments (userData) {
         }
     }
 
-    let userSideCommentList = getUserSideCommentList(commentList, userData);
+    let userSideCommentList = getUserSideCommentList(commentList, userData.userName);
 
     localStorage.setItem('commentList', JSON.stringify(commentList));
 
@@ -351,7 +351,7 @@ export function sendComment (comment, userData) {
 
     localStorage.setItem('commentList', JSON.stringify(commentList));
 
-    const userSideCommentList = getUserSideCommentList(commentList, userData);
+    const userSideCommentList = getUserSideCommentList(commentList, userData.userName);
 
     return userSideCommentList;
 }
@@ -361,13 +361,16 @@ export function likeCommentRequest (commentID, reqValue, userName) {
 
     for (const comment of commentList) {
         if (comment.commentID === commentID) {
+            let commentIsLiked = comment.userLikeList.includes(userName);
             if (reqValue == true) {
-                if (!comment.userLikeList.includes(userName)) {
+                if (!commentIsLiked) {
                     comment.userLikeList.push(userName);
                 }
             }
             else {
-                comment.userLikeList = comment.userLikeList.filter(u => u !== userName);
+                if (commentIsLiked) {
+                    comment.userLikeList = comment.userLikeList.filter(u => u !== userName);
+                }
             }
             break;
         }
@@ -375,7 +378,7 @@ export function likeCommentRequest (commentID, reqValue, userName) {
 
     localStorage.setItem('commentList', JSON.stringify(commentList));
     
-    // let userSideCommentList = getUserSideCommentList(commentList);
+    let userSideCommentList = getUserSideCommentList(commentList, userName);
 
-    // return userSideCommentList;
+    return userSideCommentList;
 }

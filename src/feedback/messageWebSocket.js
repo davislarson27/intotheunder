@@ -1,4 +1,4 @@
-import { sendComment } from '../service';
+import { likeCommentRequest, sendComment, getComments } from '../service';
 
 const userNames = [
     "PixelMiner01",
@@ -23,7 +23,13 @@ const userNames = [
     "StormAssembler",
     "BestUserEver23",
     "WhatAboutBob",
-    "HappyFlamingo"
+    "HappyFlamingo",
+    "StarWarsInBlocks",
+    "HungryAnt",
+    "SlipperySnow",
+    "SandyOceans",
+    "JohnCena123",
+    "NotAPolitician1"
 ];
 
 
@@ -93,22 +99,36 @@ export function generateMessage () {
         "v1.3.1",
         "v1.3.0"
     ];
-          
+
     const userName = userNames[Math.floor(Math.random() * userNames.length)];
     const message = possibleMessages[Math.floor(Math.random() * possibleMessages.length)];
     const version = possibleVersions[Math.floor(Math.random() * possibleVersions.length)];
 
     const userObjectPartial = {
         "userName": userName,
-        "version": version
+        "lastVersionDownloaded": version
     }
 
     sendComment(message, userObjectPartial);
 
-    console.log(userObjectPartial.userName);
-
 }
 
-export function likeMessages () {
-    
+export function likeCommmentsSimulator () {
+    // choose user to like a comment with
+    const userObjectPartial = {
+        "userName": userNames[Math.floor(Math.random() * userNames.length)],
+    }
+
+    console.log(userObjectPartial.userName);
+
+    // get the comments from that user's perspective
+    let commentsList = getComments(userObjectPartial);
+
+    // select a comment
+    let curCommentID = commentsList[Math.floor(Math.random() * commentsList.length)].commentID;
+
+    // attempt to like the comment
+    likeCommentRequest(curCommentID, true, userObjectPartial.userName)
+
+    console.log(`liked ${curCommentID}`)
 }
