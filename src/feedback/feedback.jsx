@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { getComments, likeCommentRequest, sendComment } from '../service';
+import { generateMessage } from './messageWebSocket';
 
 export function Feedback({userData, changeUserData}) {
 
@@ -10,6 +11,14 @@ export function Feedback({userData, changeUserData}) {
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
+
+    React.useEffect( () => { //simulating websocket
+        const createMessageInterval = setInterval( () => {
+            generateMessage(); // simulate user creating comment
+            updateDbComments(getComments(userData)); // simulate redownloading comments
+        }, 28000);
+        return () => clearInterval(createMessageInterval);
+    }, [] );
 
     return (
     
