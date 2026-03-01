@@ -94,3 +94,8 @@ Use of different types of selectors including element, class, ID, and pseudo sel
  Bundled using Vite - Yes
  Components - I have 7 components for each page and a page not found error
  Router - Routing between each page and also between the login and sign-up page and from the home to the download page
+
+ ## React Deliverable Pt 2
+ I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+ All functionality is mockecked up -> stores comments and user data (minus passwords) to LocalStorage. Application requires login to access restricted pages
+ Hooks -> used UseState for login and likes data and download data and comments. used useEffect for comments.
