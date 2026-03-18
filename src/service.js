@@ -81,22 +81,6 @@ function getUserObject (inputIdenfitier, userObjectList, attrIdenfitier) {
     return null;
 }
 
-export function logInUser (userEmail, password) {
-    // load userList
-    const userList = JSON.parse(localStorage.getItem('userList') || '[]');
-
-    // get user
-    const userObject = getUserObject(userEmail, userList, "userEmail")
-    return userObject;
-
-    // if (userObject != null && password == userObject.passwordToken) {
-    //     return cleanUserObject(userObject);
-    // }
-    // else {
-    //     return null;
-    // }
-}
-
 export function updateUserData (userObject) {
     let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
@@ -218,4 +202,29 @@ export function likeCommentRequest (commentID, reqValue, userName) {
     let userSideCommentList = getUserSideCommentList(commentList, userName);
 
     return userSideCommentList;
+}
+
+
+
+// keep functions
+
+export async function logInUser (userEmail, password) {
+    const response = await fetch('/api/auth/login', {
+        method:'post',
+        body: JSON.stringify({
+            'userEmail':userEmail,
+            'userPassword':password
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+    if (response?.status === 200) {
+        const body = await response.json();
+        return body;
+    }
+    else {
+        const body = await response.json();
+        throw new Error(body.msg);
+    }
 }
