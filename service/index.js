@@ -88,9 +88,38 @@ apiRouter.post('/auth/create', async (req, res) => {
 
     // return cleaned userObject to the user
     setAuthCookie(res, userObject.user.token);
-    res.send(cleanUserObject(userObject));
+    res.send(cleanUserObjectFull(userObject));
 
 });
+
+apiRouter.post('/auth/login', async (req, res) => {
+    // get user
+    const user = getUserObject(req.body.userEmail, userList, "userEmail")
+
+    if (!user) {
+        res.status(401).send({ msg: 'Incorrect Email or Password' });
+        return;
+    }
+
+    if (!await bcrypt.compare(req.body.userPassword, user.passwordHash)) {
+        res.status(401).send({ msg: 'Incorrect Email or Password' });
+        return;
+    }
+
+    // set the token
+    user.token = uuid.v4();
+
+    // set the cookie
+    setAuthCookie(res, user.token);
+
+    // send back to data
+    res.send(scrubPassword(user));
+});
+
+apiRouter.delete('/auth/logout', async (req, res) => {
+
+});
+
 
 // ------------------------------------------ helper functions ------------------------------------------ //
 function getUserSideCommentList (commentList, userName) {
@@ -111,12 +140,17 @@ function getUserSideCommentList (commentList, userName) {
     return userSideCommentList;
 }
 
-function cleanUserObject (userObject) { // returns user object that can be returned (cleans off private data)
+function cleanUserObjectFull (userObject) { // returns user object that can be returned (cleans off private data)
     const {passwordHash, token,  ...cleanedUser} = userObject.user;
     return {
         "error": userObject.error,
         "user": cleanedUser
     };
+}
+
+function scrubPassword(user) {
+    const {passwordHash, token,  ...cleanedUser} = user;
+    return cleanedUser;
 }
 
 function IsInList (lookUp, list, listAttr) {
