@@ -116,9 +116,23 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.send(scrubPassword(user));
 });
 
-apiRouter.delete('/auth/logout', async (req, res) => {
-
+apiRouter.delete('/auth/logout', async (req, res) => { // expects request to come in as an email 
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token")
+    if (user) {
+        delete user.token;
+    }
+    res.clearCookie(authCookieName);
+    res.status(204).end();
 });
+
+async function verifyAuth(req, res, next) {
+    const user = await getUserObject(req.cookies[authCookieName], userList, "token")
+    if (user) {
+      next();
+    } else {
+      res.status(401).send({ msg: 'Unauthorized' });
+    }
+  };
 
 
 // ------------------------------------------ helper functions ------------------------------------------ //
