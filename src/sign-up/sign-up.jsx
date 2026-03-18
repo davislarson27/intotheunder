@@ -14,12 +14,14 @@ export function Sign_up({userData, changeUserData}) {
     const from = location.state?.from || "/profile"
 
 
-    function submitNewAccount (event) {
+    async function submitNewAccount (event) {
         event.preventDefault();
         const userSubmission = event.target.value;
 
-        const returnUserObject = createNewAccount(userNameInput, userEmailInput, userPasswordInput);
+        const returnUserObject = await createNewAccount(userNameInput, userEmailInput, userPasswordInput);
 
+        console.log(returnUserObject);
+        
         // this is testing code
         if (returnUserObject.user != null) {
             changeUserData(returnUserObject.user);

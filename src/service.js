@@ -1,58 +1,4 @@
 // ------------------------------- account management functions ------------------------------- //
-export function createNewAccount (userName, userEmail, userPassword) {
-
-    // load userList
-    let userList = JSON.parse(localStorage.getItem('userList') || '[]');
-
-    // create userReturnObject to be returned
-    let userObject = {
-        user: {
-            userName: null,
-            // passwordToken: null,
-            userEmail: null,
-            lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
-            lastVersionDownloaded: "n/a",
-            userCommentsIDs: []
-        },
-        error: {
-            userNameTaken: false,
-            userNameBlocked: false,
-            userEmailTaken: false,
-            userEmailInvalid: false
-        }
-    }
-
-    // check for invalid submissions
-    if (IsInList(userName, userList, "userName")) {
-        userObject.userNameTaken = true;
-        userObject.user = null;
-    }
-    if (IsInList(userEmail, userList, "userEmail")) {
-        userObject.userEmailTaken = true;
-        userObject.user = null;
-    }
-    if (isNotValidEmailForm(userEmail)) {
-        userObject.userEmailInvalid = true;
-        userObject.user = null;
-    }
-
-    // return if fail
-    if (userObject.user == null) {
-        return userObject;
-    }
-
-    // now continue if userName and email are valid
-    userObject.user.userName = userName;
-    userObject.user.userEmail = userEmail;
-    // userObject.user.passwordToken = userPassword; // this will have to do something but for now chrome is freaking out about it
-
-    // now write that to the database (localstorage)
-    userList.push(userObject.user);
-    localStorage.setItem('userList', JSON.stringify(userList)); // we don't want to save the error handling
-
-    // return cleaned userObject to the user
-    return cleanUserObject(userObject);
-}
 
 function cleanUserObject (userObject) { // returns user object that can be returned (cleans off private data)
     const {passwordToken, ...cleanedUser} = userObject;
@@ -225,6 +171,29 @@ export async function logInUser (userEmail, password) {
     }
     else {
         const body = await response.json();
+        throw new Error(body.msg);
+    }
+}
+
+export async function createNewAccount (userName, userEmail, userPassword) {
+    const response = await fetch('/api/auth/create', {
+        method:'post',
+        body: JSON.stringify({
+            'userName': userName,
+            'userEmail':userEmail,
+            'userPassword': userPassword
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    const body = await response.json();
+
+    if (response?.status === 200) {
+        return body;
+    }
+    else {
         throw new Error(body.msg);
     }
 }
