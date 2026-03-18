@@ -151,3 +151,11 @@ command + shift + l -> changes name throughout page
 
 ### React Notes
 React component names need to be capitalized!
+
+
+### Service Notes
+to initialize: npm init -y + npm install express (run in service directory created)
+to run server for tests go to service module and run "node index.js"
+
+to install cookie packages:
+npm install cookie-parser bcryptjs uuid
