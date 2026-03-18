@@ -2,6 +2,8 @@ import React from 'react';
 
 import { NavLink, useNavigate } from "react-router-dom";
 
+import { logOutService } from '../service';
+
 // Uncaught ReferenceError: navagate is not defined
 // at logOut (profile.jsx:25:13)
 
@@ -26,16 +28,21 @@ export function Profile({userData, changeUserData}) {
         }
     }
     
-    function logOut () {
+    async function logOut () {
         if (isUserLoggedIn(userData)) {
-            changeUserData(null);
-            alert("user was logged out");
-            navagate('/login');   
+            const loggedOut = await logOutService();
+            if (loggedOut) {
+                changeUserData(null);
+                alert("user was logged out");
+                navagate('/');
+            }
+            else {
+                alert("error: logout failed")
+            }
         } else {
             alert("error: nobody is logged in");
         }
     }
-
     
     return (
         <main className="py-4 flex-grow-1">

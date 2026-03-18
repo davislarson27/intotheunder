@@ -130,7 +130,7 @@ async function verifyAuth(req, res, next) {
     if (user) {
       next();
     } else {
-      res.status(401).send({ msg: 'Unauthorized' });
+      res.status(401).send({ msg: 'Unauthorized: No User Logged In' });
     }
   };
 

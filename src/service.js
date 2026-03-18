@@ -197,3 +197,16 @@ export async function createNewAccount (userName, userEmail, userPassword) {
         throw new Error(body.msg);
     }
 }
+
+export async function logOutService() {
+    const response = await fetch(`/api/auth/logout`, {
+        method: 'delete',
+    });
+
+    if (response?.status === 200) { // success
+        return false;
+    }
+    else { // failure
+        return true;
+    }
+}

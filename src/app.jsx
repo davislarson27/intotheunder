@@ -17,7 +17,7 @@ import { Profile } from './profile/profile';
 import { ChooseLogin } from './choose-login/choose-login';
 import { NotFound } from './notfound/notfound';
 
-import { getComments } from './service';
+import { logOutService, getComments } from './service';
 
 function ForceLogin ( {userData, children} ) {
     const location = useLocation();
@@ -48,11 +48,17 @@ export default function App() {
         }
     }
     
-    function logOut () {
+    async function logOut () {
         if (isUserLoggedIn(userData)) {
-            changeUserData(null);
-            alert("user was logged out");
-            navagate('/');    
+            const loggedOut = await logOutService();
+            if (loggedOut) {
+                changeUserData(null);
+                alert("user was logged out");
+                navagate('/');
+            }
+            else {
+                alert("error: logout failed")
+            }
         } else {
             alert("error: nobody is logged in");
         }
