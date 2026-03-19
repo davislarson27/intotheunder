@@ -90,12 +90,22 @@ Use of a imported font - Roboto is the goat
 Use of different types of selectors including element, class, ID, and pseudo selectors - used all three throughout, including pseudo selectors for the hovering on the like button
 
 ## React Deliverable Pt 1
- I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
- Bundled using Vite - Yes
- Components - I have 7 components for each page and a page not found error
- Router - Routing between each page and also between the login and sign-up page and from the home to the download page
+I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+Bundled using Vite - Yes
+Components - I have 7 components for each page and a page not found error
+Router - Routing between each page and also between the login and sign-up page and from the home to the download page
 
  ## React Deliverable Pt 2
- I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
- All functionality is mockecked up -> stores comments and user data (minus passwords) to LocalStorage. Application requires login to access restricted pages
- Hooks -> used UseState for login and likes data and download data and comments. used useEffect for comments.
+I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+All functionality is mockecked up -> stores comments and user data (minus passwords) to LocalStorage. Application requires login to access restricted pages
+Hooks -> used UseState for login and likes data and download data and comments. used useEffect for comments.
+
+## Service Deliverable
+I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+Node.js/Express HTTP service - completed!
+Static middleware for frontend - completed!
+Calls to third party endpoints - Called to github to show when my game repository was last updated
+Backend service endpoints - Runs data for login and messages
+Frontend calls service endpoints - Used the fetch function in a .js file that keeps these all together
+Supports registration, login, logout, and restricted endpoint - yes
+Uses BCrypt to hash passwords - This is found in the service/index.js file

@@ -159,3 +159,5 @@ to run server for tests go to service module and run "node index.js"
 
 to install cookie packages:
 npm install cookie-parser bcryptjs uuid
+
+set vite.config.js to port 3000 for testing and 4000 for deployment
