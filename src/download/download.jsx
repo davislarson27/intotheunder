@@ -195,7 +195,7 @@ function SelectVersion ({version, updateVersion, os_type, versionData}) {
 }
 
 function DownloadButton ({version, os_type, userData, changeUserData}) {
-    function downloadGame () {
+    async function downloadGame () {
         const file_extention = {
             windows:".zip",
             macsilicon: ".dmg"
@@ -215,7 +215,7 @@ function DownloadButton ({version, os_type, userData, changeUserData}) {
                 ["lastVersionDownloaded"] : version
             }
             changeUserData(newUserData);
-            updateUserData(newUserData);
+            await updateUserData(newUserData);
         }
     }
 

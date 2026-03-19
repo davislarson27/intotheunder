@@ -1,22 +1,20 @@
-export function updateUserData (userObject) {
-    let userList = JSON.parse(localStorage.getItem('userList') || '[]');
+export async function updateUserData (userObject) {
+    const response = await fetch('/api/auth/update-data', {
+        method:'post',
+        body: JSON.stringify({
+            'user':userObject,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
 
-    let i = 0;
-    let foundUser = false;
-    for (let user of userList) {
-        if (user.userName == userObject.userName) {
-            foundUser = true;
-            break;
-        }
-        i++;
+    if (!response?.status === 200) {
+        return true;
     }
-
-    if (foundUser) {
-        userList[i] = userObject;
-        console.log(userObject.lastVersionDownloaded);
+    else {
+        return false;
     }
-    
-    localStorage.setItem('userList', JSON.stringify(userList));
 }
 
 export async function logInUser (userEmail, password) {

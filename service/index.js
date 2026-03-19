@@ -27,6 +27,7 @@ commentList = [];
 "/auth/create"
 "/auth/login"
 "/auth/logout"
+"/auth/update-data"
 "/comments"
 "/comments/submit"
 "/comments/like"
@@ -124,6 +125,17 @@ apiRouter.delete('/auth/logout', async (req, res) => { // expects request to com
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
+});
+
+apiRouter.post('/auth/update-data', async (req, res) => {
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    if (user) {
+        user = req.body.user;
+        res.send(true);
+    }
+    else {
+        res.send(false);
+    }
 });
 
 apiRouter.get('/comments', async (req, res) => { // get comments
