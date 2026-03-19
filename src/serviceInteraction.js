@@ -135,3 +135,23 @@ export async function likeCommentRequest (commentID, reqValue, userName) {
         throw new Error(body.msg);
     }
 }
+
+export async function checkLogin () {
+    const response = await fetch('/api/auth/getCurLogin', {
+        method:'get',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    });
+
+    if (response?.status === 200) {
+        const body = await response.json();
+        if (body?.isLoggedIn) {
+            return body.user;
+        }
+        else {
+            return null;
+        }
+    }
+    else {
+        return null;
+    }
+}

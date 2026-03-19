@@ -94,6 +94,22 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 });
 
+apiRouter.get('/auth/getCurLogin', async (req, res) => {
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    if (user) {
+        res.send({
+            user: scrubPassword(user),
+            isLoggedIn: true
+        });
+    }
+    else {
+        res.send({
+            user: null,
+            isLoggedIn: false
+        });
+    }
+});
+
 apiRouter.post('/auth/login', async (req, res) => {
     // get user
     const user = getUserObject(req.body.userEmail, userList, "userEmail");
