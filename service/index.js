@@ -20,7 +20,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 // ------------------------------------------ stored variables ------------------------------------------ //
 
 userList = [];
-commentsList = [];
+commentList = [];
 
 
 // ------------------------------------------ routes list ------------------------------------------ //
@@ -28,6 +28,7 @@ commentsList = [];
 "/auth/login"
 "/auth/logout"
 "/comments"
+"/comments/submit"
 "/comments/like"
 
 
@@ -94,7 +95,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 apiRouter.post('/auth/login', async (req, res) => {
     // get user
-    const user = getUserObject(req.body.userEmail, userList, "userEmail")
+    const user = getUserObject(req.body.userEmail, userList, "userEmail");
 
     if (!user) {
         res.status(401).send({ msg: 'Incorrect Email or Password' });
@@ -117,12 +118,57 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => { // expects request to come in as an email 
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token")
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
         delete user.token;
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
+});
+
+apiRouter.get('/comments', async (req, res) => { // get comments
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    if (!user) {
+        res.status(401).send("User Not Logged In");
+        return
+    }
+    const returnComments = getUserSideCommentList(commentList, user.userName);
+    res.send(returnComments);
+});
+
+apiRouter.post('/comments/submit', async (req, res) => {
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    if (!user) {
+        res.status(401).send("User Not Logged In");
+        return
+    }
+
+    // generate comment ID
+    let maxCommentID = 0;
+    for (const comment of commentList) {
+        if (comment.commentID > maxCommentID) {
+            maxCommentID = comment.commentID;
+        }
+    }
+
+    // check for if user has not downloaded the game yet
+    let printableDownloadVersion = user.lastVersionDownloaded;
+    if (printableDownloadVersion == null) {
+        printableDownloadVersion ="n/a";
+    }
+
+    let newComment = {
+        commentID: maxCommentID + 1,
+        user: user.userName,
+        commentVersion: user.lastVersionDownloaded,
+        commentText: req.body.comment,
+        userLikeList: []
+    }
+
+    commentList.push(newComment);
+
+    res.send(getUserSideCommentList(commentList, user));
+
 });
 
 async function verifyAuth(req, res, next) {
@@ -132,7 +178,7 @@ async function verifyAuth(req, res, next) {
     } else {
       res.status(401).send({ msg: 'Unauthorized: No User Logged In' });
     }
-  };
+};
 
 
 // ------------------------------------------ helper functions ------------------------------------------ //
@@ -195,5 +241,4 @@ function setAuthCookie(res, authToken) {
       httpOnly: true,
       sameSite: 'strict',
     });
-  }
-  
+}

@@ -113,14 +113,14 @@ export function generateMessage () {
 
 }
 
-export function likeCommmentsSimulator () {
+export async function likeCommmentsSimulator () {
     // choose user to like a comment with
     const userObjectPartial = {
         "userName": userNames[Math.floor(Math.random() * userNames.length)],
     }
 
     // get the comments from that user's perspective
-    let commentsList = getComments(userObjectPartial);
+    let commentsList = await getComments(userObjectPartial);
 
     if (commentsList.length == 0) { return ; }
 

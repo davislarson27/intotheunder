@@ -75,53 +75,6 @@ function getUserSideCommentList (commentList, userName) {
     return userSideCommentList;
 }
 
-export function getComments (userData) {
-    if (!userData) return []; // if nobody is logged in don't try this :)
-
-    let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
-
-    let userSideCommentList = getUserSideCommentList(commentList, userData.userName);
-
-    return userSideCommentList;
-}
-
-export function sendComment (comment, userData) {
-    if (!userData) return []; // if nobody is logged in don't try this :)
-
-    let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
-
-    // generate comment ID
-    let maxCommentID = 0;
-    for (const comment of commentList) {
-        if (comment.commentID > maxCommentID) {
-            maxCommentID = comment.commentID;
-        }
-    }
-
-    // check for if user has not downloaded the game yet
-    let printableDownloadVersion = userData.lastVersionDownloaded;
-    if (printableDownloadVersion == null) {
-        printableDownloadVersion ="n/a";
-    }
-
-    let newComment = {
-        commentID: maxCommentID + 1,
-        user: userData.userName,
-        commentVersion: userData.lastVersionDownloaded,
-        commentText: comment,
-        userLikeList: []
-    }
-
-    commentList.push(newComment);
-
-    // localStorage.setItem('commentList', JSON.stringify(commentList));
-    updateCommentsLocalStorage(commentList);
-
-    const userSideCommentList = getUserSideCommentList(commentList, userData.userName);
-
-    return userSideCommentList;
-}
-
 export function likeCommentRequest (commentID, reqValue, userName) {
     let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
 
@@ -208,5 +161,43 @@ export async function logOutService() {
     }
     else { // failure
         return true;
+    }
+}
+
+export async function getComments (userData) {
+    if (!userData) return []; // if nobody is logged in don't try this :)
+
+    let response = await fetch('/api/comments', {
+        method:'get',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    });
+
+    if (response?.status === 200) {
+        return await response.json();
+    }
+
+    return [];
+}
+
+export async function sendComment (comment, userData) {
+    if (!userData) return []; // if nobody is logged in don't try this :)
+
+    const response = await fetch('/api/comments/submit', {
+        method:'post',
+        body: JSON.stringify({
+            "comment": comment
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    const body = await response.json();
+
+    if (response?.status === 200) {
+        return body;
+    }
+    else {
+        throw new Error(body.msg);
     }
 }

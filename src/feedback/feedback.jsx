@@ -5,7 +5,8 @@ import { generateMessage, likeCommmentsSimulator } from './messageWebSocket';
 
 export function Feedback({userData, changeUserData}) {
 
-    const [dbComments, updateDbComments] = React.useState (getComments(userData));
+    const [dbComments, updateDbComments] = React.useState ([]);
+    getComments(userData).then(comments => updateDbComments(comments));
 
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
@@ -22,7 +23,7 @@ export function Feedback({userData, changeUserData}) {
     React.useEffect( () => { //simulating websocket
         const likeMessageInterval = setInterval( () => {
             likeCommmentsSimulator(); // like comments
-            updateDbComments(getComments(userData)); // simulate redownloading comments
+            getComments(userData).then(comments => updateDbComments(comments)); // simulate redownloading comments
         }, 2500);
         return () => clearInterval(likeMessageInterval);
     }, [] );

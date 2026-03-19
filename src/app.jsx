@@ -36,7 +36,6 @@ function ForceLogin ( {userData, children} ) {
 export default function App() {
 
     const [userData, changeUserData] = React.useState (null);
-    // const [dbComments, updateDbComments] = React.useState (getComments());
 
     const navagate = useNavigate();
 
