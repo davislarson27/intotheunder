@@ -15,7 +15,7 @@ export function Feedback({userData, changeUserData}) {
     React.useEffect( () => { //simulating websocket
         const createMessageInterval = setInterval( () => {
             generateMessage(); // simulate user creating comment
-            updateDbComments(getComments(userData)); // simulate redownloading comments
+            getComments(userData).then(comments => updateDbComments(comments)); // simulate redownloading comments
         }, 28000);
         return () => clearInterval(createMessageInterval);
     }, [] );

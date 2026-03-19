@@ -171,6 +171,36 @@ apiRouter.post('/comments/submit', async (req, res) => {
 
 });
 
+apiRouter.post('/comments/like', async (req, res) => {
+    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    if (!user) {
+        res.status(401).send("User Not Logged In");
+        return
+    }
+
+    for (const comment of commentList) {
+        if (comment.commentID === req.body.commentID) {
+            let commentIsLiked = comment.userLikeList.includes(user.userName);
+            if (req.body.reqValue == true) {
+                if (!commentIsLiked) {
+                    comment.userLikeList.push(user.userName);
+                }
+            }
+            else {
+                if (commentIsLiked) {
+                    comment.userLikeList = comment.userLikeList.filter(u => u !== user.userName);
+                }
+            }
+            break;
+        }
+    }
+    
+    let userSideCommentList = getUserSideCommentList(commentList, user.userName);
+
+    res.send(userSideCommentList);
+
+});
+
 async function verifyAuth(req, res, next) {
     const user = await getUserObject(req.cookies[authCookieName], userList, "token")
     if (user) {

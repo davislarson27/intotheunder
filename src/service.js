@@ -75,35 +75,6 @@ function getUserSideCommentList (commentList, userName) {
     return userSideCommentList;
 }
 
-export function likeCommentRequest (commentID, reqValue, userName) {
-    let commentList = JSON.parse(localStorage.getItem('commentList') || '[]');
-
-    for (const comment of commentList) {
-        if (comment.commentID === commentID) {
-            let commentIsLiked = comment.userLikeList.includes(userName);
-            if (reqValue == true) {
-                if (!commentIsLiked) {
-                    comment.userLikeList.push(userName);
-                }
-            }
-            else {
-                if (commentIsLiked) {
-                    comment.userLikeList = comment.userLikeList.filter(u => u !== userName);
-                }
-            }
-            break;
-        }
-    }
-
-    //localStorage.setItem('commentList', JSON.stringify(commentList));
-    updateCommentsLocalStorage(commentList);
-    
-    let userSideCommentList = getUserSideCommentList(commentList, userName);
-
-    return userSideCommentList;
-}
-
-
 
 // keep functions
 
@@ -156,7 +127,7 @@ export async function logOutService() {
         method: 'delete',
     });
 
-    if (response?.status === 200) { // success
+    if (response?.status === 204) { // success
         return false;
     }
     else { // failure
@@ -186,6 +157,30 @@ export async function sendComment (comment, userData) {
         method:'post',
         body: JSON.stringify({
             "comment": comment
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    const body = await response.json();
+
+    if (response?.status === 200) {
+        return body;
+    }
+    else {
+        throw new Error(body.msg);
+    }
+}
+
+export async function likeCommentRequest (commentID, reqValue, userName) {
+    if (!userName) return []; // if nobody is logged in don't try this :)
+
+    const response = await fetch('/api/comments/like', {
+        method:'post',
+        body: JSON.stringify({
+            "commentID": commentID,
+            "reqValue": reqValue,
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
