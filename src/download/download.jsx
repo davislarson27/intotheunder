@@ -44,8 +44,25 @@ export function Download({userData, changeUserData}) {
                 ]
             },
             macsilicon: {
-                currentVersion: "v1.4.0",
+                currentVersion: "v1.5.0",
                 versionGroups: [
+                    {
+                        sectionName: "1.5",
+                        availableVersions: [
+                            {
+                                updateNum: "v1.5.0",
+                                versionName: "Crafting Update",
+                                updateNotes: [
+                                    "added crafting new items to the game",
+                                    "updated inventory UI",
+                                    "added chests, doors, and TNT",
+                                    "removed damage bar (will come back in later update)",
+                                    "added new blocks and ores",
+                                    "added general UI improvements"
+                                ]
+                            }
+                        ]
+                    },
                     {
                         sectionName: "1.4",
                         availableVersions: [
