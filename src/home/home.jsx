@@ -2,6 +2,31 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 
 export function Home() {
+
+    const [lastUpdateGitHub, setLastUpdateGitHub] = React.useState ("...loading...");
+
+    function processDateString (response) {
+        if (response?.status === 200) {
+            response.json().then( body => {
+                const lastUpdateDate = new Date(body[0].commit.author.date);
+
+                const month = lastUpdateDate.getMonth() + 1;
+                const day = lastUpdateDate.getDate();
+                const year = lastUpdateDate.getFullYear().toString().slice(-2);
+    
+                const displayDateString = `${month}/${day}/${year}`;
+    
+                setLastUpdateGitHub(displayDateString);    
+            });
+        }
+    }
+
+    React.useEffect(() => {
+        fetch('https://api.github.com/repos/davislarson27/IntoTheUnder-App/commits?per_page=1').then(
+            response => processDateString(response)
+        )
+    }, []);
+
     return (
         
         <main className="py-4 flex-grow-1">
@@ -85,6 +110,9 @@ export function Home() {
                             <p className="text-muted">
                                 Each world is its own unique world! When you create a new world, the game uses procedural generation to make a world unique to you!
                             </p>
+                            <p className="text-muted">
+                                In the game, you can explore common biomes like forests and deserts, all the while searching for rare biomes like glaciers and lakes! And you never know what's beneath you...
+                            </p>
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
@@ -102,12 +130,12 @@ export function Home() {
                     </div>
                     <div className="col-12 col-md-6  d-flex align-items-center">
                         <div className="featured_text">
-                            <h5>What's Up With the Biomes?</h5>
+                            <h5>Is ITU Receiving Active Updates?</h5>
                             <p className="text-muted">
-                                There's common biomes like forests and deserts, but as you explore you'll find other cool biomes like lakes and glaciers that will give you access to lots of cool blocks!
+                                Yes! We have a lot of features we want to add! But to be more specific we last saved some new code for the next big update on {lastUpdateGitHub}!
                             </p>
                             <p className="text-muted">
-                                Biomes also impact ore generation underground, so sometimes it's worth finding certain biomes when you're looking for certain ores!
+                                Experence the changes for yourself and participate in the community in the suggestions page!
                             </p>
                         </div>
                     </div>
