@@ -16,6 +16,10 @@ app.use(cookieParser());
 let apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
+  
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 
