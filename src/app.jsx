@@ -37,11 +37,18 @@ export default function App() {
 
     const [userData, changeUserData] = React.useState (null);
 
-    React.useEffect( () => {
-        checkLogin().then(user => changeUserData(user))
-    }, []);
-
     const navagate = useNavigate();
+    const location = useLocation();
+
+    React.useEffect( () => {
+        const from = location.state?.from || "/home";
+
+        checkLogin().then(
+            user => changeUserData(user)
+        ).then(
+            from => navagate(from)
+        );
+    }, []);
 
     function isUserLoggedIn(userObject) {
         if (userObject == null) {
@@ -56,7 +63,7 @@ export default function App() {
             const loggedOut = await logOutService();
             if (loggedOut) {
                 changeUserData(null);
-                alert("user was logged out");
+                alert("user was logged out!");
                 navagate('/');
             }
             else {

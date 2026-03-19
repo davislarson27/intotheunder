@@ -13,7 +13,7 @@ export function Login({userData, changeUserData}) {
     const location = useLocation();
     const navagate = useNavigate();
 
-    const from = location.state?.from || "/profile"
+    const from = location.state?.from || "/profile";
 
     async function submitLogIn (event) {
         event.preventDefault();
@@ -27,7 +27,7 @@ export function Login({userData, changeUserData}) {
                     alert("username or password is incorrect");
                 } else {
                     changeUserData(userObject);
-                    alert(`${userObject.userName} was logged in successfully`);
+                    alert(`${userObject.userName} was logged in successfully!`);
                     navagate(from);
                 }
             } catch (error) {

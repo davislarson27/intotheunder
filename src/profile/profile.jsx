@@ -34,7 +34,7 @@ export function Profile({userData, changeUserData}) {
             if (loggedOut) {
                 changeUserData(null);
                 alert("user was logged out");
-                navagate('/');
+                navagate('/login');
             }
             else {
                 alert("error: logout failed")

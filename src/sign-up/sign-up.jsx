@@ -11,7 +11,7 @@ export function Sign_up({userData, changeUserData}) {
     const location = useLocation();
     const navagate = useNavigate();
 
-    const from = location.state?.from || "/profile"
+    const from = location.state?.from || "/profile";
 
 
     async function submitNewAccount (event) {
