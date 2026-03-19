@@ -139,7 +139,11 @@ apiRouter.delete('/auth/logout', async (req, res) => { // expects request to com
     if (user) {
         delete user.token;
     }
-    res.clearCookie(authCookieName);
+    res.clearCookie(authCookieName, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
     res.status(204).end();
 });
 
