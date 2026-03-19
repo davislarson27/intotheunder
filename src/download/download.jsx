@@ -16,7 +16,7 @@ export function Download({userData, changeUserData}) {
                         availableVersions: [
                             {
                                 updateNum: "v1.4.0",
-                                versionName: "Robotic Update",
+                                versionName: "Robotic",
                                 updateNotes: [
                                     "added the glacier biome",
                                     "added naturally generating snowmen",
@@ -51,7 +51,7 @@ export function Download({userData, changeUserData}) {
                         availableVersions: [
                             {
                                 updateNum: "v1.5.0",
-                                versionName: "Crafting Update",
+                                versionName: "Crafting",
                                 updateNotes: [
                                     "added crafting new items to the game",
                                     "updated inventory UI",
@@ -68,7 +68,7 @@ export function Download({userData, changeUserData}) {
                         availableVersions: [
                             {
                                 updateNum: "v1.4.0",
-                                versionName: "Robotic Update",
+                                versionName: "Robotic",
                                 updateNotes: [
                                     "added the glacier biome",
                                     "added naturally generating snowmen",
