@@ -19,8 +19,6 @@ export function Sign_up({userData, changeUserData}) {
         const userSubmission = event.target.value;
 
         const returnUserObject = await createNewAccount(userNameInput, userEmailInput, userPasswordInput);
-
-        console.log(returnUserObject);
         
         // this is testing code
         if (returnUserObject.user != null) {

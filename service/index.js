@@ -158,22 +158,22 @@ apiRouter.post('/auth/update-data', async (req, res) => {
     }
 });
 
-apiRouter.get('/comments', async (req, res) => { // get comments
+apiRouter.get('/comments', verifyAuth, async (req, res) => { // get comments
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    if (!user) {
-        res.status(401).send("User Not Logged In");
-        return
-    }
+    // if (!user) {
+    //     res.status(401).send("User Not Logged In");
+    //     return
+    // }
     const returnComments = getUserSideCommentList(commentList, user.userName);
     res.send(returnComments);
 });
 
-apiRouter.post('/comments/submit', async (req, res) => {
+apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    if (!user) {
-        res.status(401).send("User Not Logged In");
-        return
-    }
+    // if (!user) {
+    //     res.status(401).send("User Not Logged In");
+    //     return
+    // }
 
     // generate comment ID
     let maxCommentID = 0;
@@ -203,12 +203,12 @@ apiRouter.post('/comments/submit', async (req, res) => {
 
 });
 
-apiRouter.post('/comments/like', async (req, res) => {
+apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    if (!user) {
-        res.status(401).send("User Not Logged In");
-        return
-    }
+    // if (!user) {
+    //     res.status(401).send("User Not Logged In");
+    //     return
+    // }
 
     for (const comment of commentList) {
         if (comment.commentID === req.body.commentID) {
@@ -241,6 +241,7 @@ async function verifyAuth(req, res, next) {
       next();
     } else {
       res.status(401).send({ msg: 'Unauthorized: No User Logged In' });
+      return;
     }
 };
 
