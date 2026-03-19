@@ -37,10 +37,6 @@ export function Login({userData, changeUserData}) {
         }
     }
 
-    function submitLogInGoogle () {
-        alert("error: google log in is not currently available");
-    }
-
     return (
         <main className="py-4 flex-grow-1">
                 
@@ -71,10 +67,6 @@ export function Login({userData, changeUserData}) {
                                         <button type="submit" disabled={waitingLogin} className="btn btn-primary w-100">
                                             {waitingLogin ? "Logging in" : "Log in"}
                                         </button>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <button type="button" id="google_login" className="btn btn-outline-secondary w-100" onClick={submitLogInGoogle}>Log in With Google</button>
                                     </div>
 
                                 </form>
