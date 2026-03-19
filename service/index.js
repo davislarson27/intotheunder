@@ -45,6 +45,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+// create an account
 apiRouter.post('/auth/create', async (req, res) => {
 
     // create userReturnObject to be returned
@@ -100,6 +101,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 });
 
+// keeps user logged in on refresh
 apiRouter.get('/auth/me', async (req, res) => {
     const token = req.cookies[authCookieName];
     console.log(token);
@@ -119,6 +121,7 @@ apiRouter.get('/auth/me', async (req, res) => {
     }
 });  
 
+// login
 apiRouter.post('/auth/login', async (req, res) => {
     // get user
     const user = getUserObject(req.body.userEmail, userList, "userEmail");
@@ -143,6 +146,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.send(scrubPassword(user));
 });
 
+// logout
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
@@ -152,7 +156,8 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.clearCookie(authCookieName);
     res.status(204).end();
   });
-  
+
+// update data (mainly for most recent version downloaded)
 apiRouter.post('/auth/update-data', async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
@@ -164,6 +169,7 @@ apiRouter.post('/auth/update-data', async (req, res) => {
     }
 });
 
+// gets comments
 apiRouter.get('/comments', verifyAuth, async (req, res) => { // get comments
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     // if (!user) {
@@ -174,6 +180,7 @@ apiRouter.get('/comments', verifyAuth, async (req, res) => { // get comments
     res.send(returnComments);
 });
 
+// submits a new comment
 apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     // if (!user) {
@@ -209,6 +216,7 @@ apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
 
 });
 
+// attempts to like a comment
 apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     // if (!user) {
