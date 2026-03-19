@@ -18,16 +18,14 @@ export function Sign_up({userData, changeUserData}) {
         event.preventDefault();
         const userSubmission = event.target.value;
 
-        const returnUserObject = await createNewAccount(userNameInput, userEmailInput, userPasswordInput);
-        
-        // this is testing code
-        if (returnUserObject.user != null) {
-            changeUserData(returnUserObject.user);
-            alert(returnUserObject.user.userName);
-            navagate(from)
+        try {
+            const user = await createNewAccount(userNameInput, userEmailInput, userPasswordInput);
+            changeUserData(user);
+            alert(`successfully logged in as ${user.userName}!`);
+            navagate(from);
         }
-        else {
-            alert("ran into an error creating your account")
+        catch (error) {
+            alert(error)
         }
     }
     

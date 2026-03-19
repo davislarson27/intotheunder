@@ -56,8 +56,11 @@ export async function createNewAccount (userName, userEmail, userPassword) {
     if (response?.status === 200) {
         return body;
     }
-    else {
+    else if (response?.status === 409 || response.status == 400) {
         throw new Error(body.msg);
+    }
+    else {
+        throw new Error("something went wrong - please try again!");
     }
 }
 
@@ -144,7 +147,6 @@ export async function checkLogin () {
 
     if (response?.status === 200) {
         const body = await response.json();
-        console.log(body.user)
         if (body?.isLoggedIn) {
             return body.user;
         }

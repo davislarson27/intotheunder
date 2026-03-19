@@ -45,68 +45,62 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// create an account
+// create new user
 apiRouter.post('/auth/create', async (req, res) => {
 
     // create userReturnObject to be returned
-    let userObject = {
-        user: {
-            userName: null,
-            userEmail: null,
-            lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
-            lastVersionDownloaded: "n/a",
-            userCommentsIDs: []
-        },
-        error: {
-            userNameTaken: false,
-            userNameBlocked: false,
-            userEmailTaken: false,
-            userEmailInvalid: false
-        }
-    }
+    let user = {
+        userName: null,
+        userEmail: null,
+        lastOSDownloaded: "macsilicon", // macsilicon is the default until they try something else
+        lastVersionDownloaded: "n/a",
+        userCommentsIDs: []
+    };
 
     // check for invalid submissions
     if (IsInList(req.body.userName, userList, "userName")) {
-        userObject.userNameTaken = true;
-        userObject.user = null;
+        res.status(409).send({ msg: 'Username is already taken' });
+        return;
     }
     if (IsInList(req.body.userEmail, userList, "userEmail")) {
-        userObject.userEmailTaken = true;
-        userObject.user = null;
+        res.status(409).send({ msg: 'Email is already taken' });
+        return;
     }
     if (isNotValidEmailForm(req.body.userEmail)) {
-        userObject.userEmailInvalid = true;
-        userObject.user = null;
+        res.status(400).send({ msg: 'Not a valid email' });
+        return;
+    }
+    if (isInvalidPassword(req.body.userPassword)) {
+        res.status(400).send({ mes: 'Invalid password - please try a more secure password' });
+        return;
     }
 
     // return if fail
-    if (userObject.user == null) {
-        // res.status(409).send({ msg: 'Username taken' });
-        res.send(userObject);
+    if (user == null) {
+        res.status(409).send({ msg: 'An error occured while creating your account - please try again' });
         return;
     }
 
     // now continue if userName and email are valid
-    userObject.user.userName = req.body.userName;
-    userObject.user.userEmail = req.body.userEmail;
-    userObject.user.passwordHash = await bcrypt.hash(req.body.userPassword, 10);
-    userObject.user.token = uuid.v4();
+    user.userName = req.body.userName;
+    user.userEmail = req.body.userEmail;
+    user.passwordHash = await bcrypt.hash(req.body.userPassword, 10);
+    user.token = uuid.v4();
 
     // add user to list
-    userList.push(userObject.user)
+    userList.push(user)
 
     // return cleaned userObject to the user
-    setAuthCookie(res, userObject.user.token);
-    res.send(cleanUserObjectFull(userObject));
+    setAuthCookie(res, user.token);
+    res.send(scrubPassword(user));
 
 });
+
 
 // keeps user logged in on refresh
 apiRouter.get('/auth/me', async (req, res) => {
     const token = req.cookies[authCookieName];
-    console.log(token);
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    console.log(user);
     if (user) {
         res.send({
             user: scrubPassword(user),
@@ -119,7 +113,7 @@ apiRouter.get('/auth/me', async (req, res) => {
             isLoggedIn: false
         });
     }
-});  
+});
 
 // login
 apiRouter.post('/auth/login', async (req, res) => {
@@ -151,7 +145,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
       delete user.token;
-      console.log(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -324,4 +317,8 @@ function setAuthCookie(res, authToken) {
       httpOnly: true,
       sameSite: 'strict',
     });
+}
+
+function isInvalidPassword(password) {
+    return false;
 }
