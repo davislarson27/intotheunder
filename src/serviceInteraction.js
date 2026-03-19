@@ -39,29 +39,40 @@ export async function logInUser (userEmail, password) {
 }
 
 export async function createNewAccount (userName, userEmail, userPassword) {
-    const response = await fetch('/api/auth/create', {
-        method:'post',
-        body: JSON.stringify({
-            'userName': userName,
-            'userEmail':userEmail,
-            'userPassword': userPassword
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-    });
+    let response;
+    let body;
+    
+    try {
+        response = await fetch('/api/auth/create', {
+            method:'post',
+            body: JSON.stringify({
+                'userName': userName,
+                'userEmail':userEmail,
+                'userPassword': userPassword
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
 
-    const body = await response.json();
+        body = await response.json();
+
+    } catch (error) {
+        console.log(error.msg);
+        throw new Error("something went wrong - please try again!");
+    }
+
 
     if (response?.status === 200) {
         return body;
     }
-    else if (response?.status === 409 || response.status == 400) {
+    else if (response?.status === 409 || response?.status == 400) {
         throw new Error(body.msg);
     }
     else {
         throw new Error("something went wrong - please try again!");
     }
+
 }
 
 export async function logOutService() {
