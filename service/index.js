@@ -195,6 +195,8 @@ apiRouter.post('/comments/like', async (req, res) => {
         }
     }
     
+    commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length);
+
     let userSideCommentList = getUserSideCommentList(commentList, user.userName);
 
     res.send(userSideCommentList);

@@ -1,32 +1,3 @@
-// ------------------------------- account management functions ------------------------------- //
-
-function cleanUserObject (userObject) { // returns user object that can be returned (cleans off private data)
-    const {passwordToken, ...cleanedUser} = userObject;
-    return cleanedUser;
-}
-
-function IsInList (lookUp, list, listAttr) {
-    for (const item of list) {
-        if (lookUp == item[listAttr]) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function isNotValidEmailForm (email) {
-    return false; // this isn't checking for anything yet
-}
-
-function getUserObject (inputIdenfitier, userObjectList, attrIdenfitier) {
-    for (const userObject of userObjectList) {
-        if (inputIdenfitier == userObject[attrIdenfitier]) {
-            return userObject;
-        }
-    }
-    return null;
-}
-
 export function updateUserData (userObject) {
     let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
@@ -47,36 +18,6 @@ export function updateUserData (userObject) {
     
     localStorage.setItem('userList', JSON.stringify(userList));
 }
-
-// ------------------------------- comments functions ------------------------------- //
-
-function updateCommentsLocalStorage (commentList) { // updates comments AFTER reorganizing them -> mutates original object
-    
-    commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length)
-    localStorage.setItem('commentList', JSON.stringify(commentList));
-
-}
-
-function getUserSideCommentList (commentList, userName) {
-    let userSideCommentList = [];
-    for (const comment of commentList) {
-        const likes = comment.userLikeList.length;
-        const isLikedByUser = comment.userLikeList.includes(userName);
-        userSideCommentList.push({
-            "commentID": comment.commentID,
-            "user": comment.user,
-            "commentVersion": comment.commentVersion,
-            "commentText": comment.commentText,
-            "likes": likes,
-            "isLikedByUser": isLikedByUser
-        })
-    }
-
-    return userSideCommentList;
-}
-
-
-// keep functions
 
 export async function logInUser (userEmail, password) {
     const response = await fetch('/api/auth/login', {
@@ -127,7 +68,7 @@ export async function logOutService() {
         method: 'delete',
     });
 
-    if (response?.status === 204) { // success
+    if (response?.status === 200) { // success
         return false;
     }
     else { // failure

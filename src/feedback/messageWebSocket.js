@@ -33,7 +33,7 @@ const userNames = [
 ];
 
 
-export function generateMessage () {
+export async function generateMessage () {
     
     const possibleMessages = [
         "You should add a volcano biome with lava lakes and obsidian caves.",
@@ -109,7 +109,7 @@ export function generateMessage () {
         "lastVersionDownloaded": version
     }
 
-    sendComment(message, userObjectPartial);
+    await sendComment(message, userObjectPartial);
 
 }
 
