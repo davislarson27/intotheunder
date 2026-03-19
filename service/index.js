@@ -241,6 +241,9 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
 
 });
 
+
+// ------------------------------------------ helper functions ------------------------------------------ //
+
 async function verifyAuth(req, res, next) {
     const user = await getUserObject(req.cookies[authCookieName], userList, "token")
     if (user) {
@@ -251,8 +254,6 @@ async function verifyAuth(req, res, next) {
     }
 };
 
-
-// ------------------------------------------ helper functions ------------------------------------------ //
 function getUserSideCommentList (commentList, userName) {
     let userSideCommentList = [];
     for (const comment of commentList) {
