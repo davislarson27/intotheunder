@@ -118,11 +118,19 @@ export function Download({userData, changeUserData}) {
     const [os_type, update_os] = React.useState("macsilicon");
     const [version, updateVersion] = React.useState("v1.4.0");
 
-    React.useEffect(() => {
+    function getCurrentVersion() {
+        return versionData[os_type].currentVersion
+    }
+
+    React.useEffect( () => {
         if (userData != null) {
             update_os(userData.lastOSDownloaded);
         }
     }, [userData]); // Run this effect only when userData changes
+
+    React.useEffect( () => { // initializes version when loaded to the most recent
+        updateVersion(getCurrentVersion());
+    }, []);
 
 
     // main return value
