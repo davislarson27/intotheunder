@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.static('public'));
+
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
