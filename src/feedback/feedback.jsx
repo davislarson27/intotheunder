@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getComments, likeCommentRequest, sendComment } from '../service';
+import { getComments, likeCommentRequest, sendComment } from '../serviceInteraction';
 import { generateMessage, likeCommmentsSimulator } from './messageWebSocket';
 
 export function Feedback({userData, changeUserData}) {

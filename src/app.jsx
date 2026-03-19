@@ -17,7 +17,7 @@ import { Profile } from './profile/profile';
 import { ChooseLogin } from './choose-login/choose-login';
 import { NotFound } from './notfound/notfound';
 
-import { logOutService, getComments } from './service';
+import { logOutService, getComments } from './serviceInteraction';
 
 function ForceLogin ( {userData, children} ) {
     const location = useLocation();

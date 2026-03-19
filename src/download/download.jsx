@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { updateUserData } from '../service';
+import { updateUserData } from '../serviceInteraction';
 
 // needs to stop user from downloading when not logged in
 

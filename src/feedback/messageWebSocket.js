@@ -1,4 +1,4 @@
-import { likeCommentRequest, sendComment, getComments } from '../service';
+import { likeCommentRequest, sendComment, getComments } from '../serviceInteraction';
 
 const userNames = [
     "PixelMiner01",

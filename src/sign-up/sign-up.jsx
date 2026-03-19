@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { createNewAccount } from '../service';
+import { createNewAccount } from '../serviceInteraction';
 
 export function Sign_up({userData, changeUserData}) {
     const [userNameInput, setUserNameInput] = React.useState ("");

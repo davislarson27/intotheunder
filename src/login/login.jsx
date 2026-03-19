@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { logInUser } from '../service';
+import { logInUser } from '../serviceInteraction';
 
 
 export function Login({userData, changeUserData}) {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { logOutService } from '../service';
+import { logOutService } from '../serviceInteraction';
 
 // Uncaught ReferenceError: navagate is not defined
 // at logOut (profile.jsx:25:13)
