@@ -130,7 +130,7 @@ apiRouter.delete('/auth/logout', async (req, res) => { // expects request to com
 apiRouter.post('/auth/update-data', async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
-        user = req.body.user;
+        Object.assign(user, req.body.user);
         res.send(true);
     }
     else {

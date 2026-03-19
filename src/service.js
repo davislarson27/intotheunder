@@ -9,8 +9,8 @@ export async function updateUserData (userObject) {
         },
     });
 
-    if (!response?.status === 200) {
-        return true;
+    if (response?.status === 200) {
+        return response.json();
     }
     else {
         return false;
