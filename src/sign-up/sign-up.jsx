@@ -43,7 +43,7 @@ export function Sign_up({userData, changeUserData}) {
                         <div className="card-body">
                             <form onSubmit={submitNewAccount}>
                               
-                                <div className="mb-4 text-muted">already have an account - log in <NavLink to="/login">here</NavLink>!</div>
+                                <div className="mb-4 text-muted">already have an account? log in <NavLink to="/login">here</NavLink>!</div>
 
                                 <div className="mb-3">
                                     <label htmlFor="userName" className="form-label">Username</label>
