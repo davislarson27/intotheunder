@@ -100,8 +100,11 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 });
 
-apiRouter.get('/auth/getCurLogin', async (req, res) => {
+apiRouter.get('/auth/me', async (req, res) => {
+    const token = req.cookies[authCookieName];
+    console.log(token);
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    console.log(user);
     if (user) {
         res.send({
             user: scrubPassword(user),
@@ -114,7 +117,7 @@ apiRouter.get('/auth/getCurLogin', async (req, res) => {
             isLoggedIn: false
         });
     }
-});
+});  
 
 apiRouter.post('/auth/login', async (req, res) => {
     // get user
@@ -140,19 +143,16 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.send(scrubPassword(user));
 });
 
-apiRouter.delete('/auth/logout', async (req, res) => { // expects request to come in as an email 
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+apiRouter.delete('/auth/logout', async (req, res) => {
+    const user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
-        delete user.token;
+      delete user.token;
+      console.log(user);
     }
-    res.clearCookie(authCookieName, {
-        secure: true,
-        httpOnly: true,
-        sameSite: 'strict',
-    });
+    res.clearCookie(authCookieName);
     res.status(204).end();
-});
-
+  });
+  
 apiRouter.post('/auth/update-data', async (req, res) => {
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     if (user) {
@@ -298,6 +298,9 @@ function isNotValidEmailForm (email) {
 }
 
 function getUserObject (inputIdenfitier, userObjectList, attrIdenfitier) {
+    if (!inputIdenfitier) {
+        return null;
+    }
     for (const userObject of userObjectList) {
         if (inputIdenfitier == userObject[attrIdenfitier]) {
             return userObject;

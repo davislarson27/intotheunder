@@ -137,13 +137,14 @@ export async function likeCommentRequest (commentID, reqValue, userName) {
 }
 
 export async function checkLogin () {
-    const response = await fetch('/api/auth/getCurLogin', {
+    const response = await fetch('/api/auth/me', {
         method:'get',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
     });
 
     if (response?.status === 200) {
         const body = await response.json();
+        console.log(body.user)
         if (body?.isLoggedIn) {
             return body.user;
         }
