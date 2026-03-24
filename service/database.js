@@ -51,9 +51,18 @@ async function getComments() {
     return await commentsCollection.find().toArray();
 }
 
+async function getComment(commentID) {
+    return await commentsCollection.findOne({ commentID: commentID });
+}
+
 async function submitNewComment(comment) {
     await commentsCollection.insertOne(comment);
 }
+
+async function modifyUserLikedList(comment) {
+    await commentsCollection.updateOne({ commentID: comment.commentID }, { $set: { userLikeList: comment.userLikeList } })
+}
+
 
 module.exports = {
     getUserByEmail,
@@ -64,5 +73,7 @@ module.exports = {
     removeUserToken,
     setUserToken,
     getComments,
-    submitNewComment
+    getComment,
+    submitNewComment,
+    modifyUserLikedList
 };  

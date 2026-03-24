@@ -25,8 +25,8 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 // ------------------------------------------ stored variables ------------------------------------------ //
 
-userList = [];
-commentList = [];
+// userList = [];
+// commentList = [];
 
 
 // ------------------------------------------ routes list ------------------------------------------ //
@@ -199,7 +199,7 @@ apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
         userLikeList: []
     }
 
-    db.submitNewComment(newComment);
+    await db.submitNewComment(newComment);
 
     res.send(getUserSideCommentList(commentList, req.user));
 
@@ -207,29 +207,40 @@ apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
 
 // attempts to like a comment
 apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    // if (!user) {
-    //     res.status(401).send("User Not Logged In");
-    //     return
-    // }
-
-    for (const comment of commentList) {
-        if (comment.commentID === req.body.commentID) {
-            let commentIsLiked = comment.userLikeList.includes(user.userName);
-            if (req.body.reqValue == true) {
-                if (!commentIsLiked) {
-                    comment.userLikeList.push(user.userName);
-                }
-            }
-            else {
-                if (commentIsLiked) {
-                    comment.userLikeList = comment.userLikeList.filter(u => u !== user.userName);
-                }
-            }
-            break;
-        }
+    let user = req.user;
+    let comment = await db.getComment(req.body.commentID);
+    if (!comment) {
+        // res.status(401).send({ msg: 'Unauthorized: No User Logged In' });
+        return;
     }
+
+    if (comment.userLikeList.includes(user.userName)) { // this means we are unliking it
+        comment.userLikeList = comment.userLikeList.filter(u => u !== user.userName);
+    }
+    else { // this means we are liking it
+        comment.userLikeList.push(user.userName);
+    }
+    await db.modifyUserLikedList(comment);
+
+    // for (const comment of commentList) {
+    //     if (comment.commentID === req.body.commentID) {
+    //         let commentIsLiked = comment.userLikeList.includes(user.userName);
+    //         if (req.body.reqValue == true) {
+    //             if (!commentIsLiked) {
+    //                 comment.userLikeList.push(user.userName);
+    //             }
+    //         }
+    //         else {
+    //             if (commentIsLiked) {
+    //                 comment.userLikeList = comment.userLikeList.filter(u => u !== user.userName);
+    //             }
+    //         }
+    //         break;
+    //     }
+    // }
     
+    let commentList = await db.getComments();
+
     commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length);
 
     let userSideCommentList = getUserSideCommentList(commentList, user.userName);
