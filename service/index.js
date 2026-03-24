@@ -25,7 +25,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 // ------------------------------------------ stored variables ------------------------------------------ //
 
-// userList = [];
+userList = [];
 commentList = [];
 
 
@@ -58,11 +58,11 @@ apiRouter.post('/auth/create', async (req, res) => {
     };
 
     // check for invalid submissions
-    if (db.getUserByUserName(req.body.userName)) {
+    if (await db.getUserByUserName(req.body.userName)) {
         res.status(409).send({ msg: 'Username is already taken' });
         return;
     }
-    if (db.getUserByEmail(req.body.userEmail)) {
+    if (await db.getUserByEmail(req.body.userEmail)) {
         res.status(409).send({ msg: 'Email is already taken' });
         return;
     }
@@ -101,7 +101,8 @@ apiRouter.post('/auth/create', async (req, res) => {
 // keeps user logged in on refresh
 apiRouter.get('/auth/me', async (req, res) => {
     const token = req.cookies[authCookieName];
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    // let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    let user = await db.getUserByToken(token);
     if (user) {
         res.send({
             user: scrubPassword(user),

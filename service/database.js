@@ -41,3 +41,12 @@ async function replaceUser(user) {
 async function removeToken(user) {
     await usersCollection.updateOne({ user: user }, { $unset: { token: 1 } });
 }
+
+module.exports = {
+    getUserByEmail,
+    getUserByToken,
+    getUserByUserName,
+    createUser,
+    replaceUser,
+    removeToken
+};  
