@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
-// import "@fontsource/material-icons-outlined";
-// import "@fontsource/material-icons"; // this will be needed when the thumbs up can be filled in
 import './app.css';
 
 import { NavLink, Route, Routes, useNavigate, Navigate, useLocation} from 'react-router-dom';
@@ -17,7 +15,7 @@ import { Profile } from './profile/profile';
 import { ChooseLogin } from './choose-login/choose-login';
 import { NotFound } from './notfound/notfound';
 
-import { logOutService, checkLogin, updateUserData } from './serviceInteraction';
+import { logOutService, checkLogin } from './serviceInteraction';
 
 function ForceLogin ( {userData, children} ) {
     const location = useLocation();
@@ -132,8 +130,6 @@ export default function App() {
                         <Feedback 
                             userData={userData}
                             changeUserData={changeUserData}
-                            // dbComments={dbComments}
-                            // updateDbComments={updateDbComments}
                         />
                     </ForceLogin>
                 } 

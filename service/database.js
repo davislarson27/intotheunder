@@ -35,8 +35,8 @@ async function createUser(user) {
     await usersCollection.insertOne( user );
 }
 
-async function replaceUser(user) {
-    await usersCollection.updateOne({ userEmail: user.email }, { $set: user });
+async function replaceDownloadDetails(userEmail, os_type, version) {
+    await usersCollection.updateOne({ userEmail: userEmail }, { $set: {lastOSDownloaded: os_type, lastVersionDownloaded: version} });
 }
 
 async function removeUserToken(email) {
@@ -52,7 +52,7 @@ module.exports = {
     getUserByToken,
     getUserByUserName,
     createUser,
-    replaceUser,
+    replaceDownloadDetails,
     removeUserToken,
     setUserToken
 };  

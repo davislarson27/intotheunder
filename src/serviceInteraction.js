@@ -1,22 +1,3 @@
-export async function updateUserData (userObject) {
-    const response = await fetch('/api/auth/update-data', {
-        method:'post',
-        body: JSON.stringify({
-            'user':userObject,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-    });
-
-    if (response?.status === 200) {
-        return response.json();
-    }
-    else {
-        return false;
-    }
-}
-
 export async function logInUser (userEmail, password) {
     const response = await fetch('/api/auth/login', {
         method:'post',
@@ -85,6 +66,26 @@ export async function logOutService() {
     }
     else { // failure
         return true;
+    }
+}
+
+export async function updateLastDownloadDetails (os_type, version) {
+    const response = await fetch('/api/auth/update-download-details', {
+        method:'post',
+        body: JSON.stringify({
+            'os_type': os_type,
+            'version': version
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response?.status === 200) {
+        return response.json();
+    }
+    else {
+        return false;
     }
 }
 

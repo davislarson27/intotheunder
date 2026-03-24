@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { updateUserData } from '../serviceInteraction';
+import { updateLastDownloadDetails } from '../serviceInteraction';
 
 // needs to stop user from downloading when not logged in
 
@@ -119,12 +119,13 @@ export function Download({userData, changeUserData}) {
     const [version, updateVersion] = React.useState("v1.4.0");
 
     function getCurrentVersion() {
-        return versionData[os_type].currentVersion
+        return versionData[userData.lastOSDownloaded].currentVersion;
     }
 
     React.useEffect( () => {
         if (userData != null) {
             update_os(userData.lastOSDownloaded);
+            updateVersion(getCurrentVersion());
         }
     }, [userData]); // Run this effect only when userData changes
 
@@ -233,14 +234,15 @@ function DownloadButton ({version, os_type, userData, changeUserData}) {
             const link = document.createElement("a");
             link.href = file_path;
             link.download = "";
-            link.click();
+            // link.click();
+            console.log('downloading');
             let newUserData = {
                 ...userData,
                 ["lastOSDownloaded"]: os_type,
                 ["lastVersionDownloaded"] : version
             }
             changeUserData(newUserData);
-            await updateUserData(newUserData);
+            await updateLastDownloadDetails(newUserData.lastOSDownloaded, newUserData.lastVersionDownloaded);
         }
     }
 

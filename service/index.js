@@ -154,12 +154,12 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   });
 
 // update data (mainly for most recent version downloaded)
-apiRouter.post('/auth/update-data', async (req, res) => {
+apiRouter.post('/auth/update-download-details', async (req, res) => {
     // let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     let user = await db.getUserByToken(req.cookies[authCookieName]);
     if (user) {
-        Object.assign(user, req.body.user);
-        await db.replaceUser(user);
+        // Object.assign(user, req.body.os_type);
+        await db.replaceDownloadDetails(user.userEmail, req.body.os_type, req.body.version);
         res.send(true);
     }
     else {
@@ -170,10 +170,6 @@ apiRouter.post('/auth/update-data', async (req, res) => {
 // gets comments
 apiRouter.get('/comments', verifyAuth, async (req, res) => { // get comments
     let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    // if (!user) {
-    //     res.status(401).send("User Not Logged In");
-    //     return
-    // }
     const returnComments = getUserSideCommentList(commentList, user.userName);
     res.send(returnComments);
 });
