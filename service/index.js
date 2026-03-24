@@ -169,20 +169,15 @@ apiRouter.post('/auth/update-download-details', async (req, res) => {
 
 // gets comments
 apiRouter.get('/comments', verifyAuth, async (req, res) => { // get comments
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    const returnComments = getUserSideCommentList(commentList, user.userName);
+    const returnComments = getUserSideCommentList(await db.getComments(), req.user.userName);
     res.send(returnComments);
 });
 
 // submits a new comment
 apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
-    // if (!user) {
-    //     res.status(401).send("User Not Logged In");
-    //     return
-    // }
-
     // generate comment ID
+    commentList = await db.getComments();
+
     let maxCommentID = 0;
     for (const comment of commentList) {
         if (comment.commentID > maxCommentID) {
@@ -191,22 +186,22 @@ apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
     }
 
     // check for if user has not downloaded the game yet
-    let printableDownloadVersion = user.lastVersionDownloaded;
+    let printableDownloadVersion = req.user.lastVersionDownloaded;
     if (printableDownloadVersion == null) {
         printableDownloadVersion ="n/a";
     }
 
     let newComment = {
         commentID: maxCommentID + 1,
-        user: user.userName,
-        commentVersion: user.lastVersionDownloaded,
+        user: req.user.userName,
+        commentVersion: req.user.lastVersionDownloaded,
         commentText: req.body.comment,
         userLikeList: []
     }
 
-    commentList.push(newComment);
+    db.submitNewComment(newComment);
 
-    res.send(getUserSideCommentList(commentList, user));
+    res.send(getUserSideCommentList(commentList, req.user));
 
 });
 
@@ -247,8 +242,11 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
 // ------------------------------------------ helper functions ------------------------------------------ //
 
 async function verifyAuth(req, res, next) {
-    const user = await getUserObject(req.cookies[authCookieName], userList, "token")
+    const token = req.cookies[authCookieName];
+    let user = await db.getUserByToken(token);
+
     if (user) {
+        req.user = user;
       next();
     } else {
       res.status(401).send({ msg: 'Unauthorized: No User Logged In' });

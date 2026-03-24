@@ -28,11 +28,11 @@ async function getUserByToken(token) {
 }
 
 async function getUserByUserName(userName) {
-    return await usersCollection.findOne({ userName: userName})
+    return await usersCollection.findOne({ userName: userName });
 }
   
 async function createUser(user) {
-    await usersCollection.insertOne( user );
+    await usersCollection.insertOne(user);
 }
 
 async function replaceDownloadDetails(userEmail, os_type, version) {
@@ -44,7 +44,15 @@ async function removeUserToken(email) {
 }
 
 async function setUserToken(email, token) {
-    await usersCollection.updateOne({ userEmail: email }, { $set: {token: token} });
+    await usersCollection.updateOne({ userEmail: email }, { $set: { token: token } });
+}
+
+async function getComments() {
+    return await commentsCollection.find().toArray();
+}
+
+async function submitNewComment(comment) {
+    await commentsCollection.insertOne(comment);
 }
 
 module.exports = {
@@ -54,5 +62,7 @@ module.exports = {
     createUser,
     replaceDownloadDetails,
     removeUserToken,
-    setUserToken
+    setUserToken,
+    getComments,
+    submitNewComment
 };  
