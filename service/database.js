@@ -19,7 +19,7 @@ const commentsCollection = db.collection('comments');
 })();
 
 async function getUserByEmail(email) {
-    return await usersCollection.findOne({ email: email });
+    return await usersCollection.findOne({ userEmail: email });
 }
 
 async function getUserByToken(token) {
@@ -36,15 +36,15 @@ async function createUser(user) {
 }
 
 async function replaceUser(user) {
-    await usersCollection.updateOne({ email: user.email }, { $set: user });
+    await usersCollection.updateOne({ userEmail: user.email }, { $set: user });
 }
 
 async function removeUserToken(email) {
-    await usersCollection.updateOne({ email: email }, { $unset: { token: 1 } });
+    await usersCollection.updateOne({ userEmail: email }, { $unset: { token: 1 } });
 }
 
 async function setUserToken(email, token) {
-    await usersCollection.updateOne({email: email}, { $set: {token: token} });
+    await usersCollection.updateOne({ userEmail: email }, { $set: {token: token} });
 }
 
 module.exports = {
