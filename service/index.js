@@ -6,7 +6,7 @@ app.use(express.static('public'));
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
-const DB = require('./database.js');
+const db = require('./database.js');
 
 const authCookieName = "token";
 
@@ -25,7 +25,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 // ------------------------------------------ stored variables ------------------------------------------ //
 
-userList = [];
+// userList = [];
 commentList = [];
 
 
@@ -58,11 +58,11 @@ apiRouter.post('/auth/create', async (req, res) => {
     };
 
     // check for invalid submissions
-    if (IsInList(req.body.userName, userList, "userName")) {
+    if (db.getUserByUserName(req.body.userName)) {
         res.status(409).send({ msg: 'Username is already taken' });
         return;
     }
-    if (IsInList(req.body.userEmail, userList, "userEmail")) {
+    if (db.getUserByEmail(req.body.userEmail)) {
         res.status(409).send({ msg: 'Email is already taken' });
         return;
     }
@@ -88,7 +88,8 @@ apiRouter.post('/auth/create', async (req, res) => {
     user.token = uuid.v4();
 
     // add user to list
-    userList.push(user)
+    // userList.push(user)
+    db.createUser(user);
 
     // return cleaned userObject to the user
     setAuthCookie(res, user.token);
@@ -152,9 +153,11 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // update data (mainly for most recent version downloaded)
 apiRouter.post('/auth/update-data', async (req, res) => {
-    let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    // let user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    let user = await db.getUserByToken(req.cookies[authCookieName]);
     if (user) {
         Object.assign(user, req.body.user);
+        await db.replaceUser(user);
         res.send(true);
     }
     else {
