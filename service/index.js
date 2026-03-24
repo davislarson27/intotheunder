@@ -88,7 +88,6 @@ apiRouter.post('/auth/create', async (req, res) => {
     user.token = uuid.v4();
 
     // add user to list
-    // userList.push(user)
     db.createUser(user);
 
     // return cleaned userObject to the user
@@ -101,7 +100,6 @@ apiRouter.post('/auth/create', async (req, res) => {
 // keeps user logged in on refresh
 apiRouter.get('/auth/me', async (req, res) => {
     const token = req.cookies[authCookieName];
-    // let user = await getUserObject(req.cookies[authCookieName], userList, "token");
     let user = await db.getUserByToken(token);
     if (user) {
         res.send({
@@ -120,7 +118,7 @@ apiRouter.get('/auth/me', async (req, res) => {
 // login
 apiRouter.post('/auth/login', async (req, res) => {
     // get user
-    const user = getUserObject(req.body.userEmail, userList, "userEmail");
+    const user = await db.getUserByEmail(req.body.userEmail);
 
     if (!user) {
         res.status(401).send({ msg: 'Incorrect Email or Password' });
@@ -134,6 +132,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 
     // set the token
     user.token = uuid.v4();
+    await db.setUserToken(user.userEmail, user.token);
 
     // set the cookie
     setAuthCookie(res, user.token);
@@ -144,10 +143,12 @@ apiRouter.post('/auth/login', async (req, res) => {
 
 // logout
 apiRouter.delete('/auth/logout', async (req, res) => {
-    const user = await getUserObject(req.cookies[authCookieName], userList, "token");
+    const token = req.cookies[authCookieName];
+    let user = await db.getUserByToken(token);
     if (user) {
       delete user.token;
     }
+    await db.removeUserToken(user.email);
     res.clearCookie(authCookieName);
     res.status(204).end();
   });

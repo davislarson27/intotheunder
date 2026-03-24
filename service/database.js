@@ -23,7 +23,8 @@ async function getUserByEmail(email) {
 }
 
 async function getUserByToken(token) {
-    return await usersCollection.findOne({ token: token });
+    if (token) return await usersCollection.findOne({ token: token });
+    else return null;
 }
 
 async function getUserByUserName(userName) {
@@ -38,8 +39,12 @@ async function replaceUser(user) {
     await usersCollection.updateOne({ email: user.email }, { $set: user });
 }
 
-async function removeToken(user) {
-    await usersCollection.updateOne({ user: user }, { $unset: { token: 1 } });
+async function removeUserToken(email) {
+    await usersCollection.updateOne({ email: email }, { $unset: { token: 1 } });
+}
+
+async function setUserToken(email, token) {
+    await usersCollection.updateOne({email: email}, { $set: {token: token} });
 }
 
 module.exports = {
@@ -48,5 +53,6 @@ module.exports = {
     getUserByUserName,
     createUser,
     replaceUser,
-    removeToken
+    removeUserToken,
+    setUserToken
 };  
