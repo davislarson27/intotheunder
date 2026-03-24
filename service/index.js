@@ -278,26 +278,9 @@ function getUserSideCommentList (commentList, userName) {
     return userSideCommentList;
 }
 
-function cleanUserObjectFull (userObject) { // returns user object that can be returned (cleans off private data)
-    const {passwordHash, token,  ...cleanedUser} = userObject.user;
-    return {
-        "error": userObject.error,
-        "user": cleanedUser
-    };
-}
-
 function scrubPassword(user) {
     const {passwordHash, token,  ...cleanedUser} = user;
     return cleanedUser;
-}
-
-function IsInList (lookUp, list, listAttr) {
-    for (const item of list) {
-        if (lookUp == item[listAttr]) {
-            return true;
-        }
-    }
-    return false;
 }
 
 function isNotValidEmailForm (email) {
