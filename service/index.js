@@ -221,23 +221,6 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
         comment.userLikeList.push(user.userName);
     }
     await db.modifyUserLikedList(comment);
-
-    // for (const comment of commentList) {
-    //     if (comment.commentID === req.body.commentID) {
-    //         let commentIsLiked = comment.userLikeList.includes(user.userName);
-    //         if (req.body.reqValue == true) {
-    //             if (!commentIsLiked) {
-    //                 comment.userLikeList.push(user.userName);
-    //             }
-    //         }
-    //         else {
-    //             if (commentIsLiked) {
-    //                 comment.userLikeList = comment.userLikeList.filter(u => u !== user.userName);
-    //             }
-    //         }
-    //         break;
-    //     }
-    // }
     
     let commentList = await db.getComments();
 
