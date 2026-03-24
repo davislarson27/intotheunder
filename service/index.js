@@ -6,7 +6,7 @@ app.use(express.static('public'));
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
-// const { createNewAccount } = require('../src/service');
+const DB = require('./database.js');
 
 const authCookieName = "token";
 
