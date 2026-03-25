@@ -26,9 +26,12 @@ export function Feedback({userData, changeUserData}) {
 
     React.useEffect( () => { //simulating websocket
         const likeMessageInterval = setInterval( () => {
-            likeCommmentsSimulator(); // like comments
-            getComments(userData).then(comments => updateDbComments(comments)); // simulate redownloading comments
-        }, 2500);
+            likeCommmentsSimulator().then( () =>
+                getComments(userData).then(
+                    comments => updateDbComments(comments)
+                )
+            ); // simulate redownloading comments
+        }, 18000);
         return () => clearInterval(likeMessageInterval);
     }, [] );
 
@@ -207,7 +210,6 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
                                 <><span className="material-icons">thumb_up</span></> :
                                 <><span className="material-icons-outlined like_button">thumb_up</span></>
                             }
-                            {/* <span className="material-icons-outlined like_button">thumb_up</span> */}
                         </span>
                     </div>    
                 </div>

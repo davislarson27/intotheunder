@@ -222,11 +222,7 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     }
     await db.modifyUserLikedList(comment);
     
-    let commentList = await db.getComments();
-
-    commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length);
-
-    let userSideCommentList = getUserSideCommentList(commentList, user.userName);
+    let userSideCommentList = getUserSideCommentList(await db.getComments(), user.userName);
 
     res.send(userSideCommentList);
 
@@ -249,6 +245,9 @@ async function verifyAuth(req, res, next) {
 };
 
 function getUserSideCommentList (commentList, userName) {
+    // sort comments
+    commentList = commentList.sort((a,b) => b.userLikeList.length - a.userLikeList.length);
+
     let userSideCommentList = [];
     for (const comment of commentList) {
         const likes = comment.userLikeList.length;
@@ -273,18 +272,6 @@ function scrubPassword(user) {
 
 function isNotValidEmailForm (email) {
     return false; // this isn't checking for anything yet
-}
-
-function getUserObject (inputIdenfitier, userObjectList, attrIdenfitier) {
-    if (!inputIdenfitier) {
-        return null;
-    }
-    for (const userObject of userObjectList) {
-        if (inputIdenfitier == userObject[attrIdenfitier]) {
-            return userObject;
-        }
-    }
-    return null;
 }
 
 function setAuthCookie(res, authToken) {

@@ -131,6 +131,6 @@ export async function likeCommmentsSimulator () {
     let curCommentID = commentsList[commentIdIndex].commentID;
 
     // attempt to like the comment
-    likeCommentRequest(curCommentID, true, userObjectPartial.userName)
+    await likeCommentRequest(curCommentID, true, userObjectPartial.userName)
 
 }
