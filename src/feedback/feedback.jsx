@@ -176,9 +176,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
         )
     
         let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName); // this won't return anything -> the websocket will rerender if something needs to change
-        
         updateDbComments(returnedComments);
-
     }
 
     
