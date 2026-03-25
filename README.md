@@ -109,3 +109,9 @@ Backend service endpoints - Runs data for login and messages
 Frontend calls service endpoints - Used the fetch function in a .js file that keeps these all together
 Supports registration, login, logout, and restricted endpoint - yes
 Uses BCrypt to hash passwords - This is found in the service/index.js file
+
+## DB Deliverable
+For this deliverable I moved users and comment storage to a database.
+I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+Application stores comments and user data in MongoDB
+Use MongoDB to store credentials (including users)
