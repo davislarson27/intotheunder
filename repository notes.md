@@ -43,6 +43,9 @@ simon.intotheunder.com {
    header Access-Control-Allow-Origin *
 }
 
+## CSS
+- use !important to move a CSS command up and override bootstrap
+
 
 ## Using the .sh file to deploy to the server
 for deploying to the server
