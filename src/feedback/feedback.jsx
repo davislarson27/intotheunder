@@ -14,18 +14,20 @@ export function Feedback({userData, changeUserData}) {
     const [commentUpdatesSinceRefresh, changeCommentUpdatesSinceRefresh] = React.useState(0);
     const [isRefreshingComments, updateIsRefreshingComments] = React.useState(false);
 
+    const webSocket = React.useRef(null);
+
     React.useEffect( () => { // onload
         getComments(userData).then(comments => updateDbComments(comments));
 
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        webSocket.current = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-        socket.onmessage = (event) => {
+        webSocket.current.onmessage = (event) => {
             console.log('received: ', event.data);
         };
 
         return () => {
-            socket.close();
+            webSocket.current.close();
         };
 
     }, []);
@@ -49,7 +51,7 @@ export function Feedback({userData, changeUserData}) {
                         <h3>Game Update Suggestions</h3>
                         <p className="text-muted">upvote ideas that you like and the developer will see them! please be respectful!</p>
                     </div>
-                    < FilterComments 
+                    < FilterComments
                         updateFilterCommentsValue={updateFilterCommentsValue}
                         updateCountLoadedComments={updateCountLoadedComments}
                         DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
@@ -88,6 +90,7 @@ export function Feedback({userData, changeUserData}) {
                 updateCountLoadedComments={updateCountLoadedComments}
                 DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
                 filterCommentsValue={filterCommentsValue}
+                webSocket={webSocket}
             />
 
 
@@ -101,6 +104,7 @@ export function Feedback({userData, changeUserData}) {
                             dbComments={dbComments}
                             updateDbComments={updateDbComments}
                             userData={userData}
+                            webSocket={webSocket}
                         />
                     </div>
                 </div>
@@ -148,7 +152,7 @@ function FilterComments ({ updateFilterCommentsValue, updateCountLoadedComments,
     );
 }
 
-function Comments ({userData, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS, filterCommentsValue}) {
+function Comments ({userData, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS, filterCommentsValue, webSocket}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
@@ -181,7 +185,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
             )
         )
     
-        let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName); // this won't return anything -> the websocket will rerender if something needs to change
+        let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current); // this won't return anything -> the websocket will rerender if something needs to change
         updateDbComments(returnedComments);
     }
 
@@ -247,7 +251,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     );
 }
 
-function AddCommentCard ({dbComments, updateDbComments, userData}) {
+function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
     const [userComment, updateUserComment] = React.useState("");
 
     function IsValidComment () { // this needs to be done on the server for data safety
@@ -270,7 +274,7 @@ function AddCommentCard ({dbComments, updateDbComments, userData}) {
     async function submitComment () {
         if (IsValidComment()) { // user side check (min length, etc)
 
-            const newDbCommentList = await sendComment(userComment, userData);
+            const newDbCommentList = await sendComment(userComment, userData, webSocket.current);
 
             updateDbComments(newDbCommentList);
             

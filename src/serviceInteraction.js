@@ -104,7 +104,7 @@ export async function getComments (userData) {
     return [];
 }
 
-export async function sendComment (comment, userData) {
+export async function sendComment (comment, userData, webSocket) {
     if (!userData) return []; // if nobody is logged in don't try this :)
 
     const response = await fetch('/api/comments/submit', {
@@ -120,6 +120,9 @@ export async function sendComment (comment, userData) {
     const body = await response.json();
 
     if (response?.status === 200) {
+        if (webSocket && webSocket.readyState === WebSocket.OPEN) {
+            webSocket.send(JSON.stringify({ update: true }));
+        }
         return body;
     }
     else {
@@ -127,7 +130,7 @@ export async function sendComment (comment, userData) {
     }
 }
 
-export async function likeCommentRequest (commentID, reqValue, userName) {
+export async function likeCommentRequest (commentID, reqValue, userName, webSocket) {
     if (!userName) return []; // if nobody is logged in don't try this :)
 
     const response = await fetch('/api/comments/like', {
@@ -144,6 +147,9 @@ export async function likeCommentRequest (commentID, reqValue, userName) {
     const body = await response.json();
 
     if (response?.status === 200) {
+        if (webSocket && webSocket.readyState === WebSocket.OPEN) {
+            webSocket.send(JSON.stringify({ update: true }));
+        }
         return body;
     }
     else {
