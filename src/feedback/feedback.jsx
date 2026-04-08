@@ -10,6 +10,7 @@ export function Feedback({userData, changeUserData}) {
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
+    const [commentUpdatesSinceRefresh, changeCommentUpdatesSinceRefresh] = React.useState(0);
 
     React.useEffect( () => { // onload
         getComments(userData).then(comments => updateDbComments(comments));
@@ -24,7 +25,7 @@ export function Feedback({userData, changeUserData}) {
         return () => {
             socket.close();
         };
-        
+
     }, []);
 
 
@@ -59,6 +60,8 @@ export function Feedback({userData, changeUserData}) {
                             </>
                         )
                         }
+                        
+                        {commentUpdatesSinceRefresh > 0 && (<button className='btn btn-outline-primary'>refresh suggestions ({commentUpdatesSinceRefresh})</button>)}
                         
                     </div>
                 </div>

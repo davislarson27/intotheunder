@@ -30,11 +30,11 @@ function peerProxy(httpServer) {
         });
     }, 15000)
 
-    setInterval( () => {
-        socketServer.clients.forEach((client) => {
-            client.send("hello from the socket world retry");
-        });
-    }, 5000)
+    // setInterval( () => {
+    //     socketServer.clients.forEach((client) => {
+    //         client.send("hello from the socket world retry");
+    //     });
+    // }, 5000)
     
 }
 
