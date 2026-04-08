@@ -29,12 +29,6 @@ function peerProxy(httpServer) {
             client.ping();
         });
     }, 15000)
-
-    // setInterval( () => {
-    //     socketServer.clients.forEach((client) => {
-    //         client.send("hello from the socket world retry");
-    //     });
-    // }, 5000)
     
 }
 

@@ -24,6 +24,7 @@ export function Feedback({userData, changeUserData}) {
 
         webSocket.current.onmessage = (event) => {
             console.log('received: ', event.data);
+            changeCommentUpdatesSinceRefresh(commentUpdatesSinceRefresh + 1);
         };
 
         return () => {
