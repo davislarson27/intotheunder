@@ -41,7 +41,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 // --------------------------------------- main functions begin here -------------------------------------- //
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
