@@ -17,6 +17,9 @@ function peerProxy(httpServer) {
         clientSocket.on('pong', () => {
             clientSocket.isAlive = true;
         });
+
+        clientSocket.send('hello from the socket world!');    
+
     });
 
     setInterval( () => {
@@ -26,6 +29,12 @@ function peerProxy(httpServer) {
             client.ping();
         });
     }, 15000)
+
+    setInterval( () => {
+        socketServer.clients.forEach((client) => {
+            client.send("hello from the socket world retry");
+        });
+    }, 5000)
     
 }
 

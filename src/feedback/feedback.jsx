@@ -11,29 +11,20 @@ export function Feedback({userData, changeUserData}) {
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
 
-    React.useEffect( () => {
+    React.useEffect( () => { // onload
         getComments(userData).then(comments => updateDbComments(comments));
+
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+        socket.onmessage = (event) => {
+            console.log('received: ', event.data);
+        };
+
+        return () => {
+            socket.close();
+        };
     }, []);
-
-    React.useEffect( () => { //simulating websocket
-        const createMessageInterval = setInterval( () => {
-            generateMessage().then( () => // simulate user creating comment
-                getComments(userData).then(comments => updateDbComments(comments))
-            ); // redownloading comments
-        }, 28000);
-        return () => clearInterval(createMessageInterval);
-    }, [] );
-
-    React.useEffect( () => { //simulating websocket
-        const likeMessageInterval = setInterval( () => {
-            likeCommmentsSimulator().then( () =>
-                getComments(userData).then(
-                    comments => updateDbComments(comments)
-                )
-            ); // simulate redownloading comments
-        }, 18000);
-        return () => clearInterval(likeMessageInterval);
-    }, [] );
 
 
     return (
