@@ -18,8 +18,6 @@ function peerProxy(httpServer) {
             clientSocket.isAlive = true;
         });
 
-        clientSocket.send('hello from the socket world!');    
-
     });
 
     setInterval( () => {
