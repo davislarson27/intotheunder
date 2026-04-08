@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const db = require('./database.js');
 
-const peerProxy = require('./peerProxy.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = "token";
 
