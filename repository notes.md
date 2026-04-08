@@ -168,3 +168,11 @@ set vite.config.js to port 3000 for testing and 4000 for deployment
 ### Deploying WebSocket
 run 'npm init -y'
 run 'npm install ws'
+
+#### Websocket .on() values
+'connection'
+'message'
+'close'
+'error'
+'pong'
+'open'
