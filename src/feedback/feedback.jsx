@@ -10,7 +10,9 @@ export function Feedback({userData, changeUserData}) {
     const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
     const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
+
     const [commentUpdatesSinceRefresh, changeCommentUpdatesSinceRefresh] = React.useState(0);
+    const [isRefreshingComments, updateIsRefreshingComments] = React.useState(false);
 
     React.useEffect( () => { // onload
         getComments(userData).then(comments => updateDbComments(comments));
@@ -27,6 +29,13 @@ export function Feedback({userData, changeUserData}) {
         };
 
     }, []);
+
+    async function updateCommentsWS () {
+        updateIsRefreshingComments(true);
+        await getComments(userData).then(comments => updateDbComments(comments));;
+        changeCommentUpdatesSinceRefresh(0);
+        updateIsRefreshingComments(false);
+    }
 
 
     return (
@@ -60,8 +69,10 @@ export function Feedback({userData, changeUserData}) {
                             </>
                         )
                         }
-                        
-                        {commentUpdatesSinceRefresh > 0 && (<button className='btn btn-outline-primary'>refresh suggestions ({commentUpdatesSinceRefresh})</button>)}
+
+                        { commentUpdatesSinceRefresh > 0 && (<button className='btn btn-outline-primary' onClick={() => updateCommentsWS()}>
+                            { isRefreshingComments ? ("refreshing...") : (`refresh suggestions (${commentUpdatesSinceRefresh})`) }
+                        </button>) }
                         
                     </div>
                 </div>
