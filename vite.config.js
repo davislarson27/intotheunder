@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 
+const port = '3000';
+
 export default defineConfig({
   server: {
     proxy: { // use 4000 for live server, 3000 for local testing
-      '/api': 'http://localhost:3000',
+      '/api': `http://localhost:${port}`,
       '/ws': {
-        target: 'ws://localhost:3000',
+        target: `ws://localhost:${port}`,
         ws: true,
       },
     },

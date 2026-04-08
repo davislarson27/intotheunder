@@ -24,6 +24,7 @@ export function Feedback({userData, changeUserData}) {
         return () => {
             socket.close();
         };
+        
     }, []);
 
 
