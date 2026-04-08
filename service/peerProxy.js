@@ -18,6 +18,15 @@ function peerProxy(httpServer) {
             clientSocket.isAlive = true;
         });
     });
+
+    setInterval( () => {
+        socketServer.clients.forEach((client) => {
+            if (client.isAlive === false) return client.terminate();
+            client.isAlive = false;
+            client.ping();
+        });
+    }, 15000)
+    
 }
 
 module.exports = { peerProxy };
