@@ -8,6 +8,8 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const db = require('./database.js');
 
+const peerProxy = require('./peerProxy.js');
+
 const authCookieName = "token";
 
 app.use(express.json());
@@ -285,3 +287,6 @@ function setAuthCookie(res, authToken) {
 function isInvalidPassword(password) {
     return false;
 }
+
+// ------------------------------------------ set up websocket ------------------------------------------ //
+peerProxy(httpService);
