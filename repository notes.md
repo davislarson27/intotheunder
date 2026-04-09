@@ -11,7 +11,8 @@ elastic ip: 54.243.197.140
 ## Caddy
 when using vi to edit caddy click the esc button then then :wq to exit and save
     vi Caddyfile
-    esc, :wq to write and escape
+    i -> press to 'insert' or edit
+    esc, :wq to write and escape -> basically just save and quit
 to restart:
     sudo service caddy restart
 
@@ -42,6 +43,33 @@ simon.intotheunder.com {
    header -etag
    header Access-Control-Allow-Origin *
 }
+
+current version (caches images for ITU)
+intotheunder.com, startup.intotheunder.com {
+   reverse_proxy * localhost:4000
+   @images {
+     path *.png *.jpg *.jpeg *.gif *.webp *.svg *.ico *.avif
+   }
+   @nonImages {
+     not path *.png *.jpg *.jpeg *.gif *.webp *.svg *.ico *.avif
+   }
+   header @images  Cache-Control "public, max-age=604800"
+   header @nonImages Cache-Control "no-store"
+   header -server
+   header Access-Control-Allow-Origin *
+}
+
+simon.intotheunder.com {
+   reverse_proxy * localhost:3000
+   header Cache-Control no-store
+   header -server
+   header -etag
+   header Access-Control-Allow-Origin *
+}
+
+note that the @images is meant to cache images for a week to stop the constant reloading of all of them
+
+replace no-store with "public, max-age=604800" to cache images for a week
 
 ## CSS
 - use !important to move a CSS command up and override bootstrap
