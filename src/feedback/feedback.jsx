@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { getComments, likeCommentRequest, sendComment } from '../serviceInteraction';
-import { generateMessage, likeCommmentsSimulator } from './messageWebSocket';
 
 export function Feedback({userData, changeUserData}) {
 
@@ -23,8 +22,10 @@ export function Feedback({userData, changeUserData}) {
         webSocket.current = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
         webSocket.current.onmessage = (event) => {
-            console.log('received: ', event.data);
-            changeCommentUpdatesSinceRefresh(commentUpdatesSinceRefresh + 1);
+            const webSocketData = JSON.parse(event.data);
+            if (webSocketData?.update === true) {
+                changeCommentUpdatesSinceRefresh(commentUpdatesSinceRefresh => commentUpdatesSinceRefresh + 1);
+            }
         };
 
         return () => {
