@@ -269,12 +269,18 @@ function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
 
     async function submitComment () {
         if (IsValidComment()) { // user side check (min length, etc)
+            updateIsRefreshingComments(true); // sets to refresh while this is reloading the comments
+
             const newDbCommentList = await sendComment(userComment, userData, webSocket.current);
 
             updateDbComments(newDbCommentList);
             
             // clear the text box
             updateUserComment("");
+
+            // reset the websocket updates counter
+            changeCommentUpdatesSinceRefresh(0);
+            updateIsRefreshingComments(false);
 
             // alert the user that it succeeded
             alert("Your Suggestion Was Submitted Successfully!");
