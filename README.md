@@ -115,3 +115,12 @@ For this deliverable I moved users and comment storage to a database.
 I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 Application stores comments and user data in MongoDB
 Use MongoDB to store credentials (including users)
+
+## WebSocket Deliverable
+For this deliverable I used webSocket to inform users that updates to the comments are available and how many changes need to be refreshed. (It was originally going to auto update but it was hard to read when comments got reordered).
+
+I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+Backend listens for WebSocket connection - See peerProxy.js
+Frontend makes WebSocket connection - See feedback.jsx and serviceInteraction.js
+Data sent over WebSocket connection - See service.js and peerProxy.js
+WebSocket data displayed - button appears once updates are available at the top of the comments section just below the title.
