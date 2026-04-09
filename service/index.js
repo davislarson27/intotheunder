@@ -224,8 +224,6 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     }
     await db.modifyUserLikedList(comment);
     
-    // let userSideCommentList = getUserSideCommentList(await db.getComments(), user.userName);
-    // res.send(userSideCommentList);
     res.send({ "success": true} );
 });
 
