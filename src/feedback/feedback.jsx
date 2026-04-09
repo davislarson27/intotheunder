@@ -140,8 +140,11 @@ function FilterComments ({ updateFilterCommentsValue, updateCountLoadedComments,
                         <optgroup label="all">
                             <option value="all">all versions</option>
                         </optgroup>
+                        <optgroup label="v1.5">
+                            <option value="v1.5.0">v1.5.0 (current)</option>
+                        </optgroup>
                         <optgroup label="v1.4">
-                            <option value="v1.4.0">v1.4.0 (current)</option>
+                            <option value="v1.4.0">v1.4.0</option>
                         </optgroup>
                         <optgroup label="1.3">
                             <option value="v1.3.2">v1.3.2</option>
