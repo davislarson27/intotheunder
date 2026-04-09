@@ -186,10 +186,6 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
         )
     
         await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);
-
-        // stop this from updating
-        // let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);
-        // updateDbComments(returnedComments);
     }
 
     
@@ -269,21 +265,27 @@ function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
 
     async function submitComment () {
         if (IsValidComment()) { // user side check (min length, etc)
-            updateIsRefreshingComments(true); // sets to refresh while this is reloading the comments
+            try {
+                updateIsRefreshingComments(true); // sets to refresh while this is reloading the comments
 
-            const newDbCommentList = await sendComment(userComment, userData, webSocket.current);
+                const newDbCommentList = await sendComment(userComment, userData, webSocket.current);
+                updateDbComments(newDbCommentList);
+                
+                // clear the text box
+                updateUserComment("");
 
-            updateDbComments(newDbCommentList);
+                // reset the websocket updates counter
+                changeCommentUpdatesSinceRefresh(0);
+
+                // alert the user that it succeeded
+                alert("Your Suggestion Was Submitted Successfully!");
+            } 
+            catch (error) {
+                alert(error.message)
+            }
             
-            // clear the text box
-            updateUserComment("");
-
-            // reset the websocket updates counter
-            changeCommentUpdatesSinceRefresh(0);
+            // ensure that the isRefreshingComments is not active
             updateIsRefreshingComments(false);
-
-            // alert the user that it succeeded
-            alert("Your Suggestion Was Submitted Successfully!");
         }
     }
 
