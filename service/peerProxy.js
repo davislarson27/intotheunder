@@ -9,7 +9,7 @@ function peerProxy(httpServer) {
         clientSocket.on('message', () => {
             socketServer.clients.forEach((client) => {
                 if (client !== clientSocket && client.readyState === WebSocket.OPEN) {
-                  client.send(JSON.stringify({ update: true }));
+                    client.send(JSON.stringify({ update: true }));
                 }
             });
         });
@@ -26,7 +26,7 @@ function peerProxy(httpServer) {
             client.isAlive = false;
             client.ping();
         });
-    }, 15000)
+    }, 15000);
     
 }
 
