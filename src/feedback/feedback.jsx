@@ -6,8 +6,9 @@ export function Feedback({userData, changeUserData}) {
 
     const [dbComments, updateDbComments] = React.useState ([]);
 
-    const [countLoadedComments, updateCountLoadedComments] = React.useState (10);
-    const [DEFAULTLOADEDCOMMENTS] = React.useState (10);
+    const [countLoadedComments, updateCountLoadedComments] = React.useState(12);
+    const [DEFAULTLOADEDCOMMENTS] = React.useState(12);
+    const [newCommentsPerExpansion] = React.useState(8);
     const [filterCommentsValue, updateFilterCommentsValue] = React.useState("all");
 
     const [commentUpdatesSinceRefresh, changeCommentUpdatesSinceRefresh] = React.useState(0);
@@ -89,6 +90,7 @@ export function Feedback({userData, changeUserData}) {
                 dbComments={dbComments}
                 updateDbComments={updateDbComments}
                 countLoadedComments={countLoadedComments}
+                newCommentsPerExpansion={newCommentsPerExpansion}
                 updateCountLoadedComments={updateCountLoadedComments}
                 DEFAULTLOADEDCOMMENTS={DEFAULTLOADEDCOMMENTS}
                 filterCommentsValue={filterCommentsValue}
@@ -156,11 +158,11 @@ function FilterComments ({ updateFilterCommentsValue, updateCountLoadedComments,
     );
 }
 
-function Comments ({userData, dbComments, updateDbComments, countLoadedComments, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS, filterCommentsValue, webSocket}) {
+function Comments ({userData, dbComments, updateDbComments, countLoadedComments, newCommentsPerExpansion, updateCountLoadedComments, DEFAULTLOADEDCOMMENTS, filterCommentsValue, webSocket}) {
 
     function loadMoreComments () {
         updateCountLoadedComments (
-            countLoadedComments + 5
+            countLoadedComments + newCommentsPerExpansion
         );
     }
 
