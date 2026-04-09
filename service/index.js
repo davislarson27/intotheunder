@@ -203,7 +203,7 @@ apiRouter.post('/comments/submit', verifyAuth, async (req, res) => {
 
     await db.submitNewComment(newComment);
 
-    res.send(getUserSideCommentList(commentList, req.user));
+    res.send(getUserSideCommentList(await db.getComments(), req.user.userName));
 
 });
 
@@ -212,7 +212,7 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     let user = req.user;
     let comment = await db.getComment(req.body.commentID);
     if (!comment) {
-        // res.status(401).send({ msg: 'Unauthorized: No User Logged In' });
+        res.status(404).send({ msg: 'Comment not found' });
         return;
     }
 
@@ -224,10 +224,9 @@ apiRouter.post('/comments/like', verifyAuth, async (req, res) => {
     }
     await db.modifyUserLikedList(comment);
     
-    let userSideCommentList = getUserSideCommentList(await db.getComments(), user.userName);
-
-    res.send(userSideCommentList);
-
+    // let userSideCommentList = getUserSideCommentList(await db.getComments(), user.userName);
+    // res.send(userSideCommentList);
+    res.send({ "success": true} );
 });
 
 

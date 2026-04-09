@@ -182,13 +182,14 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
                 comment.commentID === c.commentID
                 ? {...c, isLikedByUser: newLikeValue, likes: newCountofLikes }
                 : c
-            
-    
             )
         )
     
-        let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current); // this won't return anything -> the websocket will rerender if something needs to change
-        updateDbComments(returnedComments);
+        await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);
+
+        // stop this from updating
+        // let returnedComments = await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);
+        // updateDbComments(returnedComments);
     }
 
     
@@ -261,13 +262,6 @@ function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
             alert("Failed to Submit: Suggestions Must Be Longer Than 10 Characters!");
             return false;
         }
-        else if (false) {
-            // this will check for bad words. download the line below and figure out how to use it.
-            // npm install bad-words
-            // this part also needs to be done server side so users can't bypass it
-            alert("Failed to Submit: This Suggestion Does Not Meet Our Community Standards");
-            return false;
-        }
         else {
             return true;
         }
@@ -275,7 +269,6 @@ function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
 
     async function submitComment () {
         if (IsValidComment()) { // user side check (min length, etc)
-
             const newDbCommentList = await sendComment(userComment, userData, webSocket.current);
 
             updateDbComments(newDbCommentList);

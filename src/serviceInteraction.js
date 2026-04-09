@@ -150,7 +150,7 @@ export async function likeCommentRequest (commentID, reqValue, userName, webSock
         if (webSocket && webSocket.readyState === WebSocket.OPEN) {
             webSocket.send(JSON.stringify({ update: true }));
         }
-        return body;
+        return true;
     }
     else {
         throw new Error(body.msg);
