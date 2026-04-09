@@ -34,7 +34,7 @@ export function Home() {
             <div className="container">
                 <div className="row g-5 d-flex justify-content-center align-items-center" id="primary_main_box">
                     <div className="col-12 col-md-6 d-flex justify-content-center align-items-center">
-                        <img className="card-img-top" src="intotheunder_logo.PNG" alt="Into The Under Logo" id="main_logo"/>
+                        <img className="card-img-top" src="intotheunder_logo.png" alt="Into The Under Logo" id="main_logo"/>
                     </div>
                     <div className="col-12 col-md-6 hero_text">
                         <p>Explore New Worlds</p>
