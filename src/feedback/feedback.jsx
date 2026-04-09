@@ -169,23 +169,28 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     }
 
     async function likeComment (comment) {
-        const newLikeValue = !comment.isLikedByUser;
-        let newCountofLikes = 0;
-        if (newLikeValue) {
-            newCountofLikes = comment.likes + 1;
-        } else {
-            newCountofLikes = comment.likes - 1;
-        }
-        
-        updateDbComments(
-            dbComments.map( c => 
-                comment.commentID === c.commentID
-                ? {...c, isLikedByUser: newLikeValue, likes: newCountofLikes }
-                : c
+        try {
+            const newLikeValue = !comment.isLikedByUser;
+            let newCountofLikes = 0;
+            if (newLikeValue) {
+                newCountofLikes = comment.likes + 1;
+            } else {
+                newCountofLikes = comment.likes - 1;
+            }
+            
+            updateDbComments(
+                dbComments.map( c => 
+                    comment.commentID === c.commentID
+                    ? {...c, isLikedByUser: newLikeValue, likes: newCountofLikes }
+                    : c
+                )
             )
-        )
-    
-        await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);
+        
+            await likeCommentRequest(comment.commentID, newLikeValue, userData.userName, webSocket.current);    
+        }
+        catch (error) {
+            alert(error.message);
+        }
     }
 
     
