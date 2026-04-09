@@ -106,6 +106,8 @@ export function Feedback({userData, changeUserData}) {
                             dbComments={dbComments}
                             updateDbComments={updateDbComments}
                             userData={userData}
+                            changeCommentUpdatesSinceRefresh={changeCommentUpdatesSinceRefresh}
+                            updateIsRefreshingComments={updateIsRefreshingComments}
                             webSocket={webSocket}
                         />
                     </div>
@@ -255,7 +257,7 @@ function Comments ({userData, dbComments, updateDbComments, countLoadedComments,
     );
 }
 
-function AddCommentCard ({dbComments, updateDbComments, userData, webSocket}) {
+function AddCommentCard ({dbComments, updateDbComments, userData, changeCommentUpdatesSinceRefresh, updateIsRefreshingComments, webSocket}) {
     const [userComment, updateUserComment] = React.useState("");
 
     function IsValidComment () { // this needs to be done on the server for data safety
