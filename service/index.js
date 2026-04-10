@@ -6,6 +6,7 @@ app.use(express.static('public'));
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+
 const db = require('./database.js');
 
 const { peerProxy } = require('./peerProxy.js');
@@ -23,12 +24,6 @@ app.use((_req, res) => {
 });
   
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
-
-
-// ------------------------------------------ stored variables ------------------------------------------ //
-
-// userList = [];
-// commentList = [];
 
 
 // ------------------------------------------ routes list ------------------------------------------ //

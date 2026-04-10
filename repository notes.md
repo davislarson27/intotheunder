@@ -67,6 +67,15 @@ simon.intotheunder.com {
    header Access-Control-Allow-Origin *
 }
 
+doctrinalmaster.intotheunder.com {
+   reverse_proxy * localhost:3001
+   header Cache-Control no-store
+   header -server
+   header -etag
+   header Access-Control-Allow-Origin *
+}
+
+
 note that the @images is meant to cache images for a week to stop the constant reloading of all of them
 
 replace no-store with "public, max-age=604800" to cache images for a week
@@ -190,6 +199,8 @@ to run server for tests go to service module and run "node index.js"
 
 to install cookie packages:
 npm install cookie-parser bcryptjs uuid
+
+also create vite.config.js file
 
 set vite.config.js to port 3000 for testing and 4000 for deployment
 
